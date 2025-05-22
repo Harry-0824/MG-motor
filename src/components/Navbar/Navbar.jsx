@@ -7,7 +7,7 @@ const Navbar = () => (
     {/* 左上角品牌logo */}
     <Brand>
       <Link to="/">
-        <LogoImg src="/media/logo.jpg" alt="MG Logo" />
+        <LogoImg src="/media/navbar/logo.jpg" alt="MG Logo" />
       </Link>
     </Brand>
     {/* 第一區塊：由左至右 */}
