@@ -11,7 +11,7 @@ import {
 } from "./styles";
 
 const Accordion = ({ items }) => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const handleToggle = (idx) => {
     setActiveIndex((prev) => (prev === idx ? null : idx));
   };

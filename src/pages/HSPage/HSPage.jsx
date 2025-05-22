@@ -9,10 +9,16 @@ import {
   DetailSectionTitle,
   PowerImage,
   PowerAccordionWrapper,
+  SafetySectionWrapper,
+  SafetyCarouselWrapperStyled,
+  SafetyImageBlock,
+  SafetyImage,
+  SafetyText,
 } from "./styles";
 import { useRef, useState } from "react";
 import GalleryWithText from "../../components/GalleryWithText/GalleryWithText";
 import Accordion from "../../components/Accordion/Accordion";
+import Carousel from "../../components/Carousel/Carousel";
 
 const NAV_ITEMS = [
   { label: "流線運動風格", anchor: "design" },
@@ -205,6 +211,34 @@ const HSPage = () => {
                 />
               </PowerAccordionWrapper>
             </>
+          ) : item.anchor === "safety" ? (
+            <SafetySectionWrapper>
+              <SafetyCarouselWrapperStyled>
+                <Carousel
+                  slides={[
+                    {
+                      image: "/media/hs/品牌介紹頁_Teaser_PC_創新科技入口.jpg",
+                      link: "https://www.mgmotor.com.tw/configuration/hs.html",
+                      h1: "MG HS 馭風前行版",
+                      buttonText: "瞭解更多",
+                    },
+                    { image: "/media/hs/車款介紹頁_ACC_PC.jpg" },
+                    { image: "/media/hs/車款介紹頁_AEB_PC.jpg" },
+                    { image: "/media/hs/車款介紹頁_LKA_PC.jpg" },
+                  ]}
+                  dotsClassName="carousel-dots"
+                  bottomLeftClassName="carousel-bottom-left"
+                />
+              </SafetyCarouselWrapperStyled>
+              <SafetyImageBlock>
+                <SafetyImage
+                  src="/media/hs/accordion/MG2.0官網_PC810x455_動力.jpg"
+                  alt="安全守護"
+                />
+                <SafetyText>主動安全科技，守護每一段旅程</SafetyText>
+                <SafetyText>全方位被動防護，讓你安心駕馭每一刻</SafetyText>
+              </SafetyImageBlock>
+            </SafetySectionWrapper>
           ) : null}
         </SectionAnchor>
       ))}

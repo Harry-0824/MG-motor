@@ -10,7 +10,12 @@ import {
   Dot,
 } from "./styles";
 
-const Carousel = ({ slides }) => {
+const Carousel = ({
+  slides,
+  hideTextContent,
+  dotsClassName,
+  bottomLeftClassName,
+}) => {
   const [index, setIndex] = useState(0);
   const total = slides.length;
   const maxDots = Math.min(total, 5);
@@ -36,21 +41,36 @@ const Carousel = ({ slides }) => {
         alt={current.label}
         style={{ width: "100%", height: "auto", display: "block" }}
       />
-      <TextContent>
-        <TitleH2 style={current.h2Color ? { color: current.h2Color } : {}}>
-          {current.h2 || ""}
-        </TitleH2>
-        <TitleH1 style={current.h1Color ? { color: current.h1Color } : {}}>
-          {current.h1 || current.label || ""}
-        </TitleH1>
-      </TextContent>
+      {!hideTextContent &&
+        (bottomLeftClassName ? (
+          <div className={bottomLeftClassName}>
+            {current.h1 && <h1>{current.h1}</h1>}
+            {current.buttonText && current.link && (
+              <a href={current.link} target="_blank" rel="noopener noreferrer">
+                {current.buttonText}
+              </a>
+            )}
+          </div>
+        ) : (
+          <TextContent>
+            <TitleH2 style={current.h2Color ? { color: current.h2Color } : {}}>
+              {current.h2 || ""}
+            </TitleH2>
+            <TitleH1 style={current.h1Color ? { color: current.h1Color } : {}}>
+              {current.h1 || current.label || ""}
+            </TitleH1>
+          </TextContent>
+        ))}
       <ArrowButton onClick={next}>&gt;</ArrowButton>
-      {current.link !== undefined && (
-        <LinkButton href={current.link || "#"} target={current.target || "_self"}>
+      {current.link !== undefined && !bottomLeftClassName && (
+        <LinkButton
+          href={current.link || "#"}
+          target={current.target || "_self"}
+        >
           {current.buttonText || "瞭解更多"} <span>&rarr;</span>
         </LinkButton>
       )}
-      <DotsWrapper>
+      <DotsWrapper className={dotsClassName}>
         {Array.from({ length: maxDots }).map((_, i) => (
           <Dot
             key={i}
