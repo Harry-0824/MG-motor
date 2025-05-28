@@ -139,60 +139,99 @@ export const SafetyImage = styled.img`
 `;
 
 export const SafetyText = styled.p`
-  text-align: center;
-  font-size: 1.25rem;
-  color: #222;
-  margin: 0.5rem 0;
-  font-weight: 500;
+  text-align: left; // 文字向左對齊
+  font-size: 1rem; // 保留使用者偏好的字體大小
+  color: #000; // 保留使用者偏好的文字顏色
+  width: 80%; // 設定區塊的百分比寬度
+  margin: 1rem 0; // 垂直邊距；水平居中由父層處理
+  line-height: 1.6; // 行高
+  padding: 0 2rem; // 區塊內部的左右內邊距
+  box-sizing: border-box; // 確保 padding 被包含在寬度計算之內
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0 1rem;
+    width: 90%; // 針對較小螢幕調整寬度
+  }
 `;
 
-// 只針對 SafetyCarouselWrapper 內的 Carousel DotsWrapper 進行覆蓋
-export const SafetyCarouselWrapperStyled = styled(SafetyCarouselWrapper)`
-  .carousel-dots {
-    position: absolute !important;
-    left: 50% !important;
-    top: 165% !important;
-    bottom: 2.5rem !important;
-    transform: translateX(-50%) !important;
-    margin: 0 !important;
-    z-index: 10;
-  }
+export const SafetyCarouselWrapperStyled = styled.div`
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+
+  /* carousel-bottom-left 類別樣式 */
   .carousel-bottom-left {
     position: absolute;
-    left: 2.5rem;
-    bottom: 2.5rem;
-    z-index: 10;
+    bottom: 80px;
+    left: 80px;
+    z-index: 3;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 1.5rem;
-  }
-  .carousel-bottom-left h1 {
-    color: #fff;
-    font-size: 2.2rem;
-    font-weight: bold;
-    margin: 0;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  }
-  .carousel-bottom-left a {
-    /* 套用 HomeLinkButton 樣式 */
-    ${HomeLinkButton}
-    margin-top: 0.5rem;
-  }
-  .carousel-bottom-left a:hover {
-    /* 保持 HomeLinkButton hover 樣式 */
-  }
-  @media (max-width: 900px) {
-    .carousel-bottom-left {
-      left: 1rem;
-      bottom: 1rem;
+    max-width: 600px;
+
+    h1 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin: 0;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      line-height: 1.2;
     }
-    .carousel-bottom-left h1 {
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 220px;
+      height: 56px;
+      background: #fff;
+      color: #111;
+      padding: 0 24px;
+      text-decoration: none;
+      border-radius: 0;
+      font-weight: 600;
       font-size: 1.2rem;
+      border: 2px solid #111;
+      border-right: 6px solid #e10012;
+      box-sizing: border-box;
+      transition: border-color 0.2s, color 0.2s;
+      letter-spacing: 1px;
+
+      &:hover {
+        border-color: #c00;
+        color: #c00;
+        text-decoration: none;
+      }
+
+      &::after {
+        content: "→";
+        font-size: 1.5em;
+        color: #888;
+        transition: color 0.2s;
+        margin-left: 0.3em;
+      }
+
+      &:hover::after {
+        color: #c00;
+      }
     }
-    .carousel-bottom-left a {
-      font-size: 0.95rem;
-      padding: 0.5rem 1.2rem;
-    }
+  }
+
+  /* carousel-dots 類別樣式 */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    z-index: 2;
   }
 `;

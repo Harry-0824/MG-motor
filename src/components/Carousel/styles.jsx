@@ -3,9 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  height: 400px;
-  margin-top: 17rem; /* 增加上方間距，避免被Navbar遮擋 */
-  margin-bottom: 19rem; /* 增加下方間距，避免被Footer遮擋 */
   background-image: url(${({ bg }) => bg});
   background-size: cover;
   background-position: center;
@@ -15,22 +12,35 @@ export const Container = styled.div`
 
 export const ArrowButton = styled.button`
   position: absolute;
-  top: 40%;
+  top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: black;
   border: none;
-  padding: 10px;
   font-size: 1.5rem;
+  padding: 0;
   cursor: pointer;
   border-radius: 50%;
   ${({ left }) => (left ? "left: 20px;" : "right: 20px;")}
   z-index: 1;
+  &::before {
+    display: block;
+    width: 50px;
+    height: 50px;
+    content: "";
+  }
+  &::after {
+    display: block;
+    ${({ left }) => (left ? `content: "<"` : `content: ">"`)};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+    }
 `;
 
 export const TextContent = styled.div`
   position: absolute;
-  top: 40px;
   left: 40px;
   z-index: 2;
   color: #111;
@@ -56,6 +66,7 @@ export const LinkButton = styled.a`
   justify-content: space-between;
   position: absolute;
   left: 6.5rem;
+  top: 55%;
   width: 220px;
   height: 56px;
   background: #fff;
@@ -91,12 +102,11 @@ export const DotsWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 24px;
-  margin-top: 18px;
-  margin-left: 6.5rem;
+  gap: 30px;
   position: absolute;
-  left: 37rem;
-  bottom: -10rem;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
   z-index: 2;
 `;
 

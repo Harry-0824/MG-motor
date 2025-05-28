@@ -70,11 +70,36 @@ export const InfoSection = styled.section`
   margin-top: 3rem;
 `;
 
+export const InfoMainTitle = styled.div`
+  position: relative;
+  width: 100%;
+  height: 224px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+export const InfoBackText = styled.div`
+  position: absolute;
+  top: 88px;
+  text-transform: uppercase;
+  color: #f8f8f8;
+  font-family: "Noto Serif TC";
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 56px;
+`;
+
 export const InfoSectionTitle = styled.h2`
   text-align: center;
-  margin: 2rem 0 2rem 0;
-  font-size: 2.4rem;
-  color: #222;
+  margin: 0 0 2rem 0;
+  position: absolute;
+  top: 80px;
+  color: #1a1a1a;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: 0.3px;
 `;
 
 export const InfoBlock = styled.div`
@@ -82,7 +107,7 @@ export const InfoBlock = styled.div`
   flex-direction: ${({ direction }) => direction || "row"};
   background: ${({ bg }) => bg || "#fff"};
   align-items: stretch;
-  min-height: 320px;
+  height: 300px;
   margin-bottom: 0;
   @media (max-width: 900px) {
     flex-direction: column;
@@ -94,7 +119,6 @@ export const InfoImage = styled.img`
   float: left;
   clear: none;
   object-fit: cover;
-  min-height: 320px;
   @media (max-width: 900px) {
     width: 100%;
     min-height: 180px;
@@ -103,7 +127,7 @@ export const InfoImage = styled.img`
 `;
 
 export const InfoText = styled.div`
-  width: ${({ textWidth }) => textWidth || "33.3333%"};
+  width: ${({ textWidth }) => textWidth || "33.33333333%"};
   float: left;
   clear: none;
   display: flex;
@@ -118,14 +142,14 @@ export const InfoText = styled.div`
 `;
 
 export const InfoTitle = styled.h3`
-  font-size: 2rem;
+  font-size: 24px;
   font-weight: bold;
   margin: 0;
   color: #222;
 `;
 
 export const InfoDesc = styled.p`
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.7;
   margin-top: 1rem;
   color: #6d6f73;
@@ -145,7 +169,7 @@ export const BannerTitle = styled.h2`
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
-  margin: 4rem 0 0 0;
+  margin: 4rem 0 4rem 0;
   color: #222;
 `;
 
@@ -156,10 +180,6 @@ export const BannerCarouselWrapper = styled.div`
   position: relative;
   overflow: hidden;
   background: #fff;
-  & > div {
-    margin-top: 20rem;
-    margin-bottom: 12rem;
-  }
 `;
 
 export const BannerFormWrapper = styled.div`

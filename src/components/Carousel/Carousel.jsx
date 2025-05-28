@@ -33,9 +33,7 @@ const Carousel = ({
 
   return (
     <Container>
-      <ArrowButton left onClick={prev}>
-        &lt;
-      </ArrowButton>
+      <ArrowButton left onClick={prev}></ArrowButton>
       <img
         src={current.image}
         alt={current.label}
@@ -61,7 +59,7 @@ const Carousel = ({
             </TitleH1>
           </TextContent>
         ))}
-      <ArrowButton onClick={next}>&gt;</ArrowButton>
+      <ArrowButton onClick={next}></ArrowButton>
       {current.link !== undefined && !bottomLeftClassName && (
         <LinkButton
           href={current.link || "#"}

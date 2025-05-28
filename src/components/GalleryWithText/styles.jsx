@@ -26,6 +26,7 @@ export const GalleryLeft = styled.div`
 
 export const GalleryRight = styled.div`
   flex: 0 0 60%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

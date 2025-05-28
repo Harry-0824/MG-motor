@@ -219,12 +219,27 @@ const HSPage = () => {
                     {
                       image: "/media/hs/品牌介紹頁_Teaser_PC_創新科技入口.jpg",
                       link: "https://www.mgmotor.com.tw/configuration/hs.html",
-                      h1: "MG HS 馭風前行版",
-                      buttonText: "瞭解更多",
+                      h1: "MG PILOT 2.0 Level 2 智慧駕駛輔助",
+                      buttonText: "了解更多",
                     },
-                    { image: "/media/hs/車款介紹頁_ACC_PC.jpg" },
-                    { image: "/media/hs/車款介紹頁_AEB_PC.jpg" },
-                    { image: "/media/hs/車款介紹頁_LKA_PC.jpg" },
+                    {
+                      image: "/media/hs/車款介紹頁_ACC_PC.jpg",
+                      link: "https://www.mgmotor.com.tw/configuration/hs.html",
+                      h1: "ACC 智慧型全速域主動車距巡航控制系統 (附 Stop & Go)",
+                      buttonText: "了解更多",
+                    },
+                    {
+                      image: "/media/hs/車款介紹頁_AEB_PC.jpg",
+                      link: "https://www.mgmotor.com.tw/configuration/hs.html",
+                      h1: "AEB自動緊急煞車輔助系統",
+                      buttonText: "了解更多",
+                    },
+                    {
+                      image: "/media/hs/車款介紹頁_LKA_PC.jpg",
+                      link: "https://www.mgmotor.com.tw/configuration/hs.html",
+                      h1: "LKA車道維持輔助系統",
+                      buttonText: "了解更多",
+                    },
                   ]}
                   dotsClassName="carousel-dots"
                   bottomLeftClassName="carousel-bottom-left"
@@ -232,11 +247,15 @@ const HSPage = () => {
               </SafetyCarouselWrapperStyled>
               <SafetyImageBlock>
                 <SafetyImage
-                  src="/media/hs/accordion/MG2.0官網_PC810x455_動力.jpg"
+                  src="/media/hs/車款介紹頁_被動安全_PC.jpg"
                   alt="安全守護"
                 />
-                <SafetyText>主動安全科技，守護每一段旅程</SafetyText>
-                <SafetyText>全方位被動防護，讓你安心駕馭每一刻</SafetyText>
+                <SafetyText>
+                  車身結構使用大量高強度鋼材，在A/B柱等重點結構更是1500MPa以上超高强度鋼材，四門均以斜列防撞鋼樑設計來提升強度，強化車身抗扭曲剛性。以人為本的思考，把車內所有人的安全擺在第一位，將安全守護做到極致。
+                </SafetyText>
+                <SafetyText>
+                  搭載雙前座SRS輔助氣囊、雙前座側邊SRS輔助氣囊、雙車側簾幕式SRS輔助氣簾，全面嚴密保護，讓駕駛與乘客安心享受每趟旅程。
+                </SafetyText>
               </SafetyImageBlock>
             </SafetySectionWrapper>
           ) : null}

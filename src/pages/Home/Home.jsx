@@ -21,6 +21,8 @@ import {
   BannerInput,
   BannerButton,
   BannerBgImage,
+  InfoMainTitle,
+  InfoBackText,
 } from "./styles";
 
 const Home = () => {
@@ -81,7 +83,11 @@ const Home = () => {
         </HomeLinkButton>
       </FlexRow>
       <InfoSection>
-        <InfoSectionTitle>即刻認識MG</InfoSectionTitle>
+        <InfoMainTitle>
+          <InfoBackText>Always Beyond 誰說不可能</InfoBackText>
+          <InfoSectionTitle>即刻認識MG</InfoSectionTitle>
+        </InfoMainTitle>
+
         <InfoBlock bg="#f8f8f8" direction="row">
           <InfoImage
             src="/media/home/MG官網banner_0327_960x300(PC).jpg"
@@ -103,7 +109,7 @@ const Home = () => {
           <InfoText>
             <InfoTitle style={{ color: "#fff" }}>他們說你天生不一樣</InfoTitle>
             <InfoDesc style={{ color: "#fff" }}>
-              MG ZS 天生卓異，敢於挑戰界限，時尚設計與內外兼修，有你自己的風格。
+              MG ZS 天生出眾，改寫遊戲的規則，你的世界，有你自己的玩法。
             </InfoDesc>
           </InfoText>
         </InfoBlock>
