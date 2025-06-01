@@ -99,10 +99,11 @@ export const DetailSectionTitle = styled.h2`
 
 export const PowerImage = styled.img`
   width: 100%;
-  height: auto;
-  display: block;
+`;
+
+export const ExperienceTextWrapper = styled.div`
+  text-align: center;
   margin-bottom: 3rem;
-  margin-top: 1rem;
 `;
 
 export const PowerAccordionWrapper = styled.div`
@@ -223,6 +224,52 @@ export const SafetyCarouselWrapperStyled = styled.div`
   }
 
   /* carousel-dots 類別樣式 */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+`;
+
+export const ExperienceCarouselWrapperStyled = styled.div`
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: #fff; // 假設背景為白色，可根據需要調整
+
+  /* carousel-bottom-left 類別樣式 - 與 SafetyCarouselWrapperStyled 相似 */
+  .carousel-bottom-left {
+    position: absolute;
+    bottom: 80px;
+    left: 80px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+
+    h1 {
+      font-size: 2.2rem;
+      color: #fff; // 假設文字為白色，可根據 experience 區塊的需要調整
+      margin: 0;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); // 文字陰影以提高可讀性
+      line-height: 1.2;
+    }
+
+    // 如果需要，您可能希望在此處包含按鈕樣式，類似於 SafetyCarouselWrapperStyled
+    // a { ... }
+  }
+
+  /* carousel-dots 類別樣式 - 與 SafetyCarouselWrapperStyled 相似 */
   .carousel-dots {
     display: flex;
     justify-content: center;

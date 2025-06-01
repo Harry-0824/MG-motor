@@ -14,6 +14,7 @@ export const GalleryContainer = styled.div`
 export const GalleryLeft = styled.div`
   flex: 0 0 40%;
   padding: 48px;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -71,8 +72,9 @@ export const GalleryTitle = styled.h2`
 
 export const GalleryDesc = styled.p`
   font-size: 1.08rem;
-  color: #444;
-  margin: 0 0 1.5rem 0;
+  color: ${(props) => (props.isType2 ? "#000" : "#444")};
+  margin: ${(props) =>
+    props.isType2 ? "0" : "0 0 1.5rem 0"}; // Conditional margin
   line-height: 1.7;
 `;
 
@@ -123,12 +125,62 @@ export const GalleryArrowRow = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 10rem;
-  margin-top: -3rem;
+  margin-bottom: ${(props) => (props.isType2 ? "10rem" : "2rem")};
+  margin-top: ${(props) => (props.isType2 ? "0" : "1rem")};
 `;
 
 export const GalleryIndexSlash = styled.span`
   color: #e60012;
   font-size: 32px;
   margin: 0 4px;
+`;
+
+// New Styled Components for Additional Info
+export const AdditionalInfoWrapper = styled.div`
+  margin: 0;
+`;
+
+export const AdditionalInfoParagraph = styled.p`
+  font-size: 0.9rem;
+  color: #000;
+  line-height: 1.6;
+  margin-bottom: 0;
+`;
+
+export const AdditionalInfoList = styled.ul`
+  list-style: none;
+  margin-left: 20px;
+  padding-left: 0;
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 0.5rem;
+  margin-top: 0rem;
+`;
+
+export const AdditionalInfoListItem = styled.li`
+  margin-bottom: 0.25rem;
+`;
+
+// Styles for the action button
+export const GalleryActionButton = styled.a`
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-right: 6px solid #e10012;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
+  width: 160px;
+  text-align: center;
+
+  &:hover {
+    color: #fff; // Keep text white on hover
+    text-decoration: none; // Remove underline on hover
+  }
 `;

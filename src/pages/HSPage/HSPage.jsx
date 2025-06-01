@@ -14,11 +14,18 @@ import {
   SafetyImageBlock,
   SafetyImage,
   SafetyText,
+  ExperienceTextWrapper, // 匯入 ExperienceTextWrapper
+  ExperienceCarouselWrapperStyled, // 匯入 ExperienceCarouselWrapperStyled
 } from "./styles";
 import { useRef, useState } from "react";
-import GalleryWithText from "../../components/GalleryWithText/GalleryWithText";
+// Change to named import
+import {
+  GalleryWithTextType1,
+  GalleryWithTextType2,
+} from "../../components/GalleryWithText/GalleryWithText";
 import Accordion from "../../components/Accordion/Accordion";
 import Carousel from "../../components/Carousel/Carousel";
+import VehicleSpecSheet from "../../components/VehicleSpecSheet/VehicleSpecSheet"; // 匯入 VehicleSpecSheet
 
 const NAV_ITEMS = [
   { label: "流線運動風格", anchor: "design" },
@@ -70,7 +77,7 @@ const HSPage = () => {
           {item.anchor === "design" ? (
             <>
               <DesignSectionTitle>運動是本能，更是顯性基因</DesignSectionTitle>
-              <GalleryWithText
+              <GalleryWithTextType1
                 slides={[
                   {
                     title: "直瀑式水箱護罩",
@@ -258,11 +265,230 @@ const HSPage = () => {
                 </SafetyText>
               </SafetyImageBlock>
             </SafetySectionWrapper>
+          ) : item.anchor === "experience" ? (
+            <>
+              {/* 將 Carousel 包裹在 ExperienceCarouselWrapperStyled 中 */}
+              <ExperienceCarouselWrapperStyled>
+                <Carousel
+                  slides={[
+                    {
+                      // 預留給您的內容
+                      image: "/media/hs/車款介紹頁_HS_大內裝_PC.jpg", // 佔位圖片
+                      h1: "跑 或不跑，都是同樣的迷人",
+                    },
+                    {
+                      // 預留給您的內容
+                      image: "/media/hs/車款介紹頁_HS_座椅_PC.jpg", // 佔位圖片
+                      h1: "跑 或不跑，都是同樣的迷人",
+                    },
+                    {
+                      // 預留給您的內容
+                      image: "/media/hs/車款介紹頁_HS_情境圖_PC.jpg", // 佔位圖片
+                      h1: "跑 或不跑，都是同樣的迷人",
+                    },
+                  ]}
+                  dotsClassName="carousel-dots"
+                  bottomLeftClassName="carousel-bottom-left"
+                />
+              </ExperienceCarouselWrapperStyled>
+              {/* 將 div 替換為 ExperienceTextWrapper */}
+              <ExperienceTextWrapper>
+                <p>
+                  質感這東西，是會讓人沉迷的，你將沉迷於坐在一體式賽車座椅上，感受256色環艙氣氛燈創造的氛圍，思考著下一站。但也或許，移動才是你的方向。
+                </p>
+              </ExperienceTextWrapper>
+              {/* Change to use GalleryWithTextType1 (or Type2 if preferred) */}
+              <GalleryWithTextType1
+                slides={[
+                  {
+                    title: "沉浸式全景天窗",
+                    desc: "同級罕見超大型全景天窗，面積高達1.19平方公尺，讓車室空間備感敞亮，盡情享受天際風光，並搭配電動遮陽簾，自由調節光線進入。",
+                    image: "/media/hs/車款介紹頁_HS_天窗_PC.jpg", // 佔位圖片
+                  },
+                  {
+                    title: "手機無線充電",
+                    desc: "隨手放置即刻充電，全車搭配4個USB介面，滿足車上所有人的充電需求。",
+                    image: "/media/hs/車款介紹頁_HS_手機無線充電_PC.jpg", // 佔位圖片
+                  },
+                  {
+                    title:
+                      "10.1吋懸浮式觸控螢幕(標配Apple Carplay 與 Android Auto)",
+                    desc: "人體工學搭配IPS廣視角設計，可視角度達170度，讓駕駛能直覺看到螢幕資料，保持視線於前方，維持行車安全，並採用低反光技術，讓使用者更加清晰閱讀。",
+                    image:
+                      "/media/hs/車款介紹頁_HS_10.1吋懸浮式觸控螢幕_PC.jpg", // 佔位圖片
+                  },
+                  {
+                    title: "12.3吋數位儀表",
+                    desc: "搭載大面積數位儀表，能清楚呈現車輛多樣資訊，並在不同的駕駛模式下，可呈現不同的儀錶設計，能帶來不同的駕駛氛圍。同時儀錶板可自動感應環境光源調節背光，資訊隨時清晰可視。",
+                    image: "/media/hs/車款介紹頁_HS_12.3吋數位儀表_PC.jpg", // 佔位圖片
+                  },
+                  {
+                    title: "銀翼電子排檔桿",
+                    desc: "握感舒適，操作隨心所欲，吸睛的造型如飛翔羽翼，打破傳統SUV的工具感，每次排檔的瞬間，都讓你感覺愉悅。",
+                    image: "/media/hs/車款介紹頁_HS_銀翼電子排檔桿_PC.jpg", // 佔位圖片
+                  },
+                ]}
+              />
+            </>
+          ) : item.anchor === "info" ? (
+            <>
+              <GalleryWithTextType2
+                slides={[
+                  {
+                    title: "MG驚喜禮馭  只為你",
+                    desc: "現在賞車試乘，獻上精選限定好禮",
+                    image: "/media/hs/驚喜篇 PC 1920x1080.jpg",
+                    buttonText: "立即預約",
+                    buttonLink: "https://www.mgmotor.com.tw/testdrive.html",
+                    additionalInfo: {
+                      paragraph1: "「MG 質感好禮」",
+                      listItems: [
+                        "🎁 賞車禮：MG 100週年杯墊 ",
+                        "🎁 試乘禮：MG 時尚皮革修容組",
+                        "🎁 訂車禮：百週年時光禮盒 ",
+                        "🎁 交車禮：模型車 及 Morii 玩偶 ",
+                      ],
+                      paragraph2:
+                        "*贈品實際樣式與顏色依現場為準，數量有限，送完為止",
+                    },
+                  },
+                  {
+                    title: "HS車主 徐先生&徐太太",
+                    desc: "HS陪伴我成為車主將近2年，從牽車隔天的環島旅行，到忙碌的日常通勤，MG的主被動安全輔助，總能為我帶來安心感。",
+                    image: "/media/hs/車主貼文_1920x1080.jpg",
+                    buttonText: "觀看完整故事",
+                    buttonLink: "https://www.mgmotor.com.tw/stories/1", // 請更新為實際連結
+                  },
+                ]}
+              />
+            </>
+          ) : item.anchor === "spec" ? (
+            <>
+              <VehicleSpecSheet vehicleData={hsSpecData} />
+            </>
           ) : null}
         </SectionAnchor>
       ))}
     </div>
   );
+};
+
+const hsSpecData = {
+  modelName: "HS & HS PHEV",
+  trims: [
+    {
+      name: "HS 1.5T 旗艦版",
+      price: "939,000",
+      colors: [
+        {
+          name: "電掣白",
+          hex: "#FFFFFF",
+          imageSrc: "/media/hs/MG官網_共用圖_690x494_HS白.png",
+          swatchSrc: "/media/hs/2022_HS系列_白_color pic.png",
+        },
+        {
+          name: "掠影黑",
+          hex: "#2B2B2B",
+          imageSrc: "/media/hs/MG官網_共用圖_690x494_HS黑.png",
+          swatchSrc: "/media/hs/2022_HS系列_黑_color pic.png",
+        },
+        {
+          name: "沉穩灰",
+          hex: "#808080", // Changed from #2B2B2B to a more standard grey
+          imageSrc: "/media/hs/MG官網_共用圖_690x494_EHS灰.png",
+          swatchSrc: "/media/hs/2022_HS系列_灰_color pic.png",
+        },
+        {
+          name: "風馳紅",
+          hex: "#A30000",
+          imageSrc: "/media/hs/MG官網_共用圖_690x494_HS紅.png",
+          swatchSrc: "/media/hs/2022_HS系列_紅_color pic.png",
+        },
+        // { name: "電光銀", hex: "#A9A9A9" }, // 假設的顏色，如果HS 1.5T有此顏色
+      ],
+      equipment: {
+        column1: [
+          "MG PILOT 2.0 LV.2 智慧駕駛輔助",
+          "ACC智慧型主動車距巡航控制系統",
+          "TJA交通壅塞輔助系統",
+          "LKA車道保持輔助系統",
+          "SAS智能速限輔助系統",
+          "AEB自動緊急煞車輔助系統",
+          "IHC遠近光燈自動調節系統",
+          "BSD盲點偵測系統",
+          "360°環景影像輔助系統",
+          "6SRS安全輔助氣囊",
+          "ESP車身穩定控制系統",
+          "TCS循跡防滑控制系統",
+          "HDC陡坡緩降控制系統",
+          "HSA陡坡起步輔助系統",
+        ],
+        column2: [
+          "賽道之眼LED大燈/LED尾燈",
+          "12.3吋數位儀表",
+          "10.1吋懸浮式觸控螢幕",
+          "256色環艙氣氛燈",
+          "Keyless Entry & Push Start",
+          "雙區恆溫空調",
+          "手機無線充電",
+          "一體式賽車座椅",
+          "駕駛座六向電動座椅",
+          "Trophy套件組",
+          "智慧防夾電動尾門",
+          "沉浸式全景天窗",
+          "18吋燻黑雙色鋁圈",
+          "Drive Mode多重駕駛模式",
+        ],
+      },
+      basicSpecs: [
+        { label: "長*寬*高(mm)", value: "4,610*1,876*1,685" },
+        { label: "軸距(mm)", value: "2,720" },
+        {
+          label: "引擎型式",
+          value: "MEGA Tech 1.5T缸內直噴渦輪增壓引擎",
+        },
+        {
+          label: "變速箱系統",
+          value: "MEGA Tech 7速DCT雙離合器",
+        },
+        { label: "驅動系統", value: "前輪驅動" },
+        {
+          label: "懸吊系統(前/後)",
+          value: "獨立麥花臣懸吊附防傾桿/獨立多連桿懸吊附防傾桿",
+        },
+        { label: "最大馬力(ps/rpm)", value: "180/5,600" },
+        { label: "最大扭力(kg-m/rpm)", value: "29.1/1,500-4,000" },
+      ],
+      specImages: {
+        main: {
+          src: "/media/hs/MG官網_共用圖_690x494_EHS灰.png",
+          alt: "HS 1.5T 旗艦版",
+        }, // 請替換為實際主圖
+        dimensionsDisplayImage: {
+          src: "/media/hs/車款介紹頁_HS PHEV_三視圖_PC_灰.png",
+          alt: "HS 1.5T 旗艦版 車輛尺寸",
+        }, // 新增的尺寸展示圖片
+      },
+      disclaimer: "免責聲明: 此車輛尺寸為標準尺寸, 實際尺寸以交車為準",
+      bookingLink: "https://www.mgmotor.com.tw/testdrive.html",
+      onlineOrderLink: "https://www.mgmotor.com.tw/order.html", // 假設的線上訂車連結
+    },
+    // 如果有 HS PHEV 或其他版本的資料，可以在這裡加入
+    // {
+    //   name: "HS PHEV 馭電版",
+    //   price: "1,219,000", // 假設價格
+    //   colors: [
+    //     { name: "電掣白", hex: "#FFFFFF" },
+    //     { name: "掠影黑", hex: "#2B2B2B" },
+    //   ],
+    //   equipment: { /* ...PHEV的配備... */ },
+    //   basicSpecs: [ /* ...PHEV的規格... */ ],
+    //   specImages: { /* ...PHEV的圖片... */ },
+    //   disclaimer: "免責聲明: 此車輛尺寸為標準尺寸, 實際尺寸以交車為準",
+    //   bookingLink: "https://www.mgmotor.com.tw/testdrive.html",
+    //   onlineOrderLink: "https://www.mgmotor.com.tw/order.html",
+    // },
+  ],
 };
 
 export default HSPage;
