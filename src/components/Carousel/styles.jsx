@@ -60,6 +60,13 @@ export const TitleH1 = styled.h1`
   text-align: left;
 `;
 
+export const DescriptionP = styled.p`
+  font-size: 1rem;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 400;
+`;
+
 export const LinkButton = styled.a`
   display: flex;
   align-items: center;

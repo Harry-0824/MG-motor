@@ -13,8 +13,7 @@ export const GalleryContainer = styled.div`
 
 export const GalleryLeft = styled.div`
   flex: 0 0 40%;
-  padding: 48px;
-
+  padding: ${(props) => (props.isType2 ? "48px" : "24px")};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -75,6 +74,8 @@ export const GalleryDesc = styled.p`
   color: ${(props) => (props.isType2 ? "#000" : "#444")};
   margin: ${(props) =>
     props.isType2 ? "0" : "0 0 1.5rem 0"}; // Conditional margin
+  padding: ${(props) =>
+    props.isType2 ? "0 3rem 0 0" : "0 "}; // Conditional padding
   line-height: 1.7;
 `;
 

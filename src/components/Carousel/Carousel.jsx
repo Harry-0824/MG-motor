@@ -8,6 +8,7 @@ import {
   TitleH2,
   DotsWrapper,
   Dot,
+  DescriptionP, // 匯入 DescriptionP
 } from "./styles";
 
 const Carousel = ({
@@ -43,6 +44,7 @@ const Carousel = ({
         (bottomLeftClassName ? (
           <div className={bottomLeftClassName}>
             {current.h1 && <h1>{current.h1}</h1>}
+            {(current.description || current.p) && <DescriptionP>{current.description || current.p}</DescriptionP>} {/* 在此處添加 p 標籤的渲染 */}
             {current.buttonText && current.link && (
               <a href={current.link} target="_blank" rel="noopener noreferrer">
                 {current.buttonText}
@@ -57,6 +59,7 @@ const Carousel = ({
             <TitleH1 style={current.h1Color ? { color: current.h1Color } : {}}>
               {current.h1 || current.label || ""}
             </TitleH1>
+            {(current.description || current.p) && <DescriptionP>{current.description || current.p}</DescriptionP>} {/* 修改此處以檢查 current.p */}
           </TextContent>
         ))}
       <ArrowButton onClick={next}></ArrowButton>
