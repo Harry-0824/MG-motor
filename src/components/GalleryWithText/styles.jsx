@@ -5,6 +5,7 @@ export const GalleryContainer = styled.div`
   width: 100%;
   min-height: 420px;
   background: #fff;
+  gap: ${(props) => (props.isType3 ? "4rem" : "0")};
   @media (max-width: 900px) {
     flex-direction: column;
     min-height: 0;
@@ -12,7 +13,7 @@ export const GalleryContainer = styled.div`
 `;
 
 export const GalleryLeft = styled.div`
-  flex: 0 0 40%;
+  flex: 0 0 50%;
   padding: ${(props) => (props.isType2 ? "48px" : "24px")};
   display: flex;
   flex-direction: column;
@@ -25,13 +26,14 @@ export const GalleryLeft = styled.div`
 `;
 
 export const GalleryRight = styled.div`
-  flex: 0 0 60%;
+  flex: 0 0 50%;
   height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   position: relative;
+  padding: ${(props) => (props.isType3 ? "24px" : "24px")};
   @media (max-width: 900px) {
     flex: none;
     width: 100%;

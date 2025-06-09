@@ -465,7 +465,7 @@ const hsSpecData = {
           alt: "HS 1.5T 旗艦版",
         }, // 請替換為實際主圖
         dimensionsDisplayImage: {
-          src: "/media/hs/車款介紹頁_HS PHEV_三視圖_PC_灰.png",
+          src: "/media/zs/MG-ZS官網網頁_三視圖_PC-1440x375_黑.png",
           alt: "HS 1.5T 旗艦版 車輛尺寸",
         }, // 新增的尺寸展示圖片
       },
@@ -473,21 +473,6 @@ const hsSpecData = {
       bookingLink: "https://www.mgmotor.com.tw/testdrive.html",
       onlineOrderLink: "https://www.mgmotor.com.tw/order.html", // 假設的線上訂車連結
     },
-    // 如果有 HS PHEV 或其他版本的資料，可以在這裡加入
-    // {
-    //   name: "HS PHEV 馭電版",
-    //   price: "1,219,000", // 假設價格
-    //   colors: [
-    //     { name: "電掣白", hex: "#FFFFFF" },
-    //     { name: "掠影黑", hex: "#2B2B2B" },
-    //   ],
-    //   equipment: { /* ...PHEV的配備... */ },
-    //   basicSpecs: [ /* ...PHEV的規格... */ ],
-    //   specImages: { /* ...PHEV的圖片... */ },
-    //   disclaimer: "免責聲明: 此車輛尺寸為標準尺寸, 實際尺寸以交車為準",
-    //   bookingLink: "https://www.mgmotor.com.tw/testdrive.html",
-    //   onlineOrderLink: "https://www.mgmotor.com.tw/order.html",
-    // },
   ],
 };
 
