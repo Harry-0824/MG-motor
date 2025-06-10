@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SpecsContainer = styled.div`
   width: 100%;
-  max-width: 1200px; /* Adjust as needed, similar to image */
+
   margin: 30px auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
@@ -24,11 +24,13 @@ export const TopTitle = styled.h2`
 export const DropdownContainer = styled.div`
   padding: 20px;
   background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0; /* Separator line */
+  display: flex;
+  justify-content: center;
 `;
 
 export const DropdownSelect = styled.select`
-  width: 250px; /* Width as seen in image */
+  width: 50%; /* Width as seen in image */
+  height: 44px; /* Height as seen in image */
   padding: 10px;
   border: 1px solid #cccccc;
   border-radius: 3px;
@@ -65,7 +67,7 @@ export const AccordionTitleBar = styled.div`
 
 export const AccordionTitleText = styled.span`
   font-size: 1em;
-  color: #333333;
+  color: ##1a1a1a;
 `;
 
 export const AccordionIcon = styled.span`
@@ -81,4 +83,38 @@ export const AccordionContent = styled.div`
   background-color: #fdfdfd;
   border-top: 1px solid #f0f0f0;
   line-height: 1.6;
+`;
+
+export const SpecList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Add margin: 0 to remove default ul margin */
+`;
+
+export const SpecItem = styled.li`
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0; /* Remove margin for the last item */
+  }
+`;
+
+export const SpecLabel = styled.div`
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px; /* Add some space between label and value */
+`;
+
+export const SpecValue = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  color: #333; /* Slightly darker color for value */
+`;
+
+export const DisclaimerText = styled.p`
+  display: flex;
+  justify-content: center;
+  text-align: left; /* Assuming the text within the centered block should be left-aligned */
+  margin: 30px 150px;
+  color: #6d6f73;
+  font-size: 14px; /* Adjust as needed */
 `;

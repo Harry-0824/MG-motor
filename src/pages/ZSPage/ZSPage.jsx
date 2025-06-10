@@ -34,6 +34,8 @@ import {
 import Accordion from "../../components/Accordion/Accordion";
 import Carousel from "../../components/Carousel/Carousel";
 import VehicleSpecSheet from "../../components/VehicleSpecSheet/VehicleSpecSheet"; // 引入 VehicleSpecSheet
+import DetailedVehicleSpecs from "../../components/DetailedVehicleSpecs/DetailedVehicleSpecs"; // 匯入 DetailedVehicleSpecs
+import { zsDetailedSpecs } from "../../data/zs/detailedSpecs.js"; // 匯入 zsDetailedSpecs
 
 const NAV_ITEMS = [
   { label: "天生出眾外觀", anchor: "exterior_design" },
@@ -227,8 +229,9 @@ const ZSPage = () => {
                   DVVT雙連續可變汽門正時汽油引擎，搭配可模擬8速手自排的CVT無段變速系統，為駕駛帶來輸出順暢且節能的輕鬆移動體驗
                 </OverlayText>
               </ContextualImageWrapper>
-              ) : item.anchor === "large_space" ? ( // Create large_space
-              section
+            </>
+          ) : item.anchor === "large_space" ? ( // Create large_space section
+            <>
               <SpaceCarouselWrapper>
                 <Carousel
                   slides={[
@@ -351,6 +354,13 @@ const ZSPage = () => {
           ) : item.anchor === "specifications" ? ( // Create specifications section
             <>
               <VehicleSpecSheet vehicleData={zsSpecData} />
+              <DetailedVehicleSpecs
+                trimOptions={Object.keys(zsDetailedSpecs).map((trimName) => ({
+                  label: trimName,
+                  value: trimName,
+                }))}
+                detailedSpecsData={zsDetailedSpecs}
+              />
             </>
           ) : null}
         </SectionAnchor>

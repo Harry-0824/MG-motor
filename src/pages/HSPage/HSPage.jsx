@@ -26,6 +26,8 @@ import {
 import Accordion from "../../components/Accordion/Accordion";
 import Carousel from "../../components/Carousel/Carousel";
 import VehicleSpecSheet from "../../components/VehicleSpecSheet/VehicleSpecSheet"; // 匯入 VehicleSpecSheet
+import DetailedVehicleSpecs from "../../components/DetailedVehicleSpecs/DetailedVehicleSpecs"; // 匯入 DetailedVehicleSpecs
+import { hsDetailedSpecs } from "../../data/hs/detailedSpecs.js"; // 匯入 zsDetailedSpecs
 
 const NAV_ITEMS = [
   { label: "流線運動風格", anchor: "design" },
@@ -365,6 +367,13 @@ const HSPage = () => {
           ) : item.anchor === "spec" ? (
             <>
               <VehicleSpecSheet vehicleData={hsSpecData} />
+              <DetailedVehicleSpecs
+                trimOptions={Object.keys(hsDetailedSpecs).map((trimName) => ({
+                  label: trimName,
+                  value: trimName,
+                }))}
+                detailedSpecsData={hsDetailedSpecs}
+              />
             </>
           ) : null}
         </SectionAnchor>
