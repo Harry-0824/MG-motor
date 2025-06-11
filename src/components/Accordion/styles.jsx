@@ -47,6 +47,9 @@ export const Content = styled.div`
   font-size: 1.05rem;
   line-height: 1.7;
   background: #fff;
+  @media (max-width: 500px) {
+    padding: 0.5rem 1rem 1rem 1rem; // Adjust padding for smaller screens
+  }
 `;
 export const ImageWrapper = styled.div`
   flex: 0 0 48%;
@@ -56,12 +59,33 @@ export const ImageWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
-  @media (max-width: 900px) {
+
+  &.mobile-image-wrapper {
+    display: none; // Initially hidden
     width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    margin-top: 2rem;
+    padding-right: 0;
+    margin-top: 1rem; // Space between content and image on mobile
     justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    // Styles for tablet and potentially mobile if not overridden
+    &.desktop-image-wrapper {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 500px) {
+    &.desktop-image-wrapper {
+      display: none; // Hide desktop image wrapper on small screens
+    }
+    &.mobile-image-wrapper {
+      display: flex; // Show mobile image wrapper
+    }
   }
 `;
 export const Img = styled.img`

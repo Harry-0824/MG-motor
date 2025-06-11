@@ -21,19 +21,28 @@ export const HeroImage = styled.img`
 
 export const HeroNavBar = styled.nav`
   display: flex;
-  justify-content: space-between;
-  padding: 0 5rem;
+  justify-content: center;
+  padding: 0 1rem;
   align-items: flex-end;
-  gap: 2.5rem;
+  gap: 10rem;
   background: #fff;
   position: sticky;
   top: 0;
   z-index: 10;
   height: 90px;
   border-bottom: 1.5px solid #e5e5e5;
-  @media (max-width: 768px) {
-    gap: 1.2rem;
+  overflow-x: visible;
+  @media (max-width: 500px) {
+    gap: 0.5rem;
     height: 48px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
@@ -48,6 +57,10 @@ export const HeroNavItem = styled.button`
   position: relative;
   cursor: pointer;
   border-bottom: ${({ $active }) => ($active ? "3px solid #000" : "none")};
+  min-width: 110px;
+  text-align: center;
+  background-color: transparent;
+  transition: color 0.2s, border-bottom 0.2s;
   &::before {
     content: "";
     position: absolute;
@@ -59,10 +72,12 @@ export const HeroNavItem = styled.button`
     z-index: -3;
     display: ${({ $active }) => ($active ? "block" : "none")};
   }
-
-  @media (max-width: 768px) {
-    font-size: 0.98rem;
-    padding: 0 0.3em 0.3em 0.3em;
+  @media (max-width: 500px) {
+    font-size: 1rem;
+    min-width: 110px;
+    padding: 0 0.2em 0.5em 0.2em;
+    white-space: nowrap;
+    border-bottom-width: 2px;
   }
 `;
 
@@ -82,6 +97,11 @@ export const DesignSectionTitle = styled.h2`
   font-weight: 700;
   margin: 3rem 0 5rem 0;
   letter-spacing: 2px;
+  @media (max-width: 500px) {
+    font-size: 24px;
+    line-height: 32px;
+    margin: 1.5rem 0;
+  }
 `;
 
 export const DetailSectionWrapper = styled.div`
@@ -220,6 +240,29 @@ export const SafetyCarouselWrapperStyled = styled.div`
         color: #c00;
       }
     }
+
+    @media (max-width: 500px) {
+      position: static; /* Change from absolute to static for stacking */
+      bottom: auto;
+      left: auto;
+      width: 100%;
+      padding: 1rem; /* Add padding for spacing */
+      text-align: center; /* Center the text */
+      gap: 0.5rem; /* Reduce gap for smaller screens */
+
+      h1 {
+        font-size: 1.5rem; /* Adjust font size for mobile */
+        color: #333; /* Change color for visibility if background becomes light */
+        text-shadow: none; /* Remove text shadow if not needed */
+      }
+
+      /* Targeting DescriptionP specifically if its styles need overriding for mobile */
+      p {
+        font-size: 0.9rem; /* Adjust font size for mobile */
+        color: #555; /* Change color for visibility */
+        line-height: 1.5;
+      }
+    }
   }
 
   /* carousel-dots 類別樣式 */
@@ -301,6 +344,15 @@ export const ContextualText = styled.h1`
   font-weight: 400;
   letter-spacing: 0.3px;
   color: #fff;
+  @media (max-width: 500px) {
+    width: 100%;
+    color: #000;
+    font-size: 24px;
+    right: 0;
+    bottom: 0;
+    top: 190px;
+    left: 20px;
+  }
 `;
 
 export const OverlayText = styled.h1`
@@ -313,6 +365,14 @@ export const OverlayText = styled.h1`
   font-size: 1rem;
   line-height: 24px;
   font-weight: 400;
+  @media (max-width: 500px) {
+    width: 100%;
+    color: #6d6f73;
+    font-size: 14px;
+    left: 0;
+    top: 180px;
+    padding: 0 5px;
+  }
 `;
 
 export const SpaceCarouselWrapper = styled.div`
@@ -341,6 +401,29 @@ export const SpaceCarouselWrapper = styled.div`
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       line-height: 1.2;
     }
+
+    @media (max-width: 500px) {
+      position: static; /* Change from absolute to static for stacking */
+      bottom: auto;
+      left: auto;
+      width: 100%;
+      padding: 1rem; /* Add padding for spacing */
+      text-align: center; /* Center the text */
+      gap: 0.5rem; /* Reduce gap for smaller screens */
+
+      h1 {
+        font-size: 1.5rem; /* Adjust font size for mobile */
+        color: #333; /* Change color for visibility if background becomes light */
+        text-shadow: none; /* Remove text shadow if not needed */
+      }
+
+      /* Targeting DescriptionP specifically if its styles need overriding for mobile */
+      p {
+        font-size: 0.9rem; /* Adjust font size for mobile */
+        color: #555; /* Change color for visibility */
+        line-height: 1.5;
+      }
+    }
   }
 
   .carousel-dots {
@@ -362,6 +445,14 @@ export const SafetyTextOverlayWrapper = styled.div`
   left: 48px; /* Adjust as needed */
   z-index: 1;
   width: 40%; /* Adjust as needed */
+
+  @media (max-width: 500px) {
+    position: static;
+    width: 100%;
+    padding: 1rem; /* Add padding for spacing */
+    text-align: left; /* Center the text */
+    margin-top: 1rem; /* Space below the image */
+  }
 `;
 
 export const SafetyHeaderText = styled.h1`
@@ -371,6 +462,11 @@ export const SafetyHeaderText = styled.h1`
   line-height: 40px;
   color: #333; /* Assuming white text on a dark image, adjust if image is light */
   margin-bottom: 1rem; /* Space between H1 and P */
+
+  @media (max-width: 500px) {
+    font-size: 1.5rem; /* Adjust font size for mobile */
+    line-height: 1.3;
+  }
 `;
 
 export const SafetyParagraphText = styled.p`
@@ -379,4 +475,9 @@ export const SafetyParagraphText = styled.p`
   font-size: 1rem;
   line-height: 24px;
   color: #6d6f73; /* Assuming white text on a dark image, adjust if image is light */
+
+  @media (max-width: 500px) {
+    font-size: 0.9rem; /* Adjust font size for mobile */
+    line-height: 1.5;
+  }
 `;

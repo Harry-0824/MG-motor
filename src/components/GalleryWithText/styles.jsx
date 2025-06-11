@@ -21,7 +21,7 @@ export const GalleryLeft = styled.div`
   @media (max-width: 900px) {
     flex: none;
     width: 100%;
-    padding: 24px 16px 0 16px;
+    padding: 24px 16px;
   }
 `;
 
@@ -39,6 +39,7 @@ export const GalleryRight = styled.div`
     width: 100%;
     align-items: center;
     margin-top: 16px;
+    padding: 0;
   }
 `;
 
@@ -53,6 +54,9 @@ export const GalleryArrowButton = styled.button`
   &:hover {
     color: #b8000d;
   }
+  @media (max-width: 500px) {
+    display: none; /* Hide arrows on small screens */
+  }
 `;
 
 export const GalleryIndex = styled.div`
@@ -62,6 +66,9 @@ export const GalleryIndex = styled.div`
   display: flex;
   align-items: baseline;
   gap: 2px;
+  @media (max-width: 500px) {
+    display: none; /* Hide index on small screens */
+  }
 `;
 
 export const GalleryTitle = styled.h2`

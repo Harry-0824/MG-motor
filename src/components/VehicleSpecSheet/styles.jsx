@@ -5,6 +5,9 @@ export const SpecSheetContainer = styled.div`
   margin: 0 auto;
   padding: 66px 136px;
   background-color: #f8f8f8;
+  @media (max-width: 768px) {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
 `;
 
 export const HeaderSection = styled.div`
@@ -63,11 +66,60 @@ export const Price = styled.div`
   font-weight: bold;
 `;
 
+/* // TopSection is commented out as it's replaced by MainContentContainer
 export const TopSection = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Align items to the start of the cross axis */
-  gap: 20px; /* Add some gap between color options and main image */
+  align-items: flex-start;
+  gap: 20px;
+`;
+*/
+
+export const MainContentContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 30px; /* Adjust gap between columns as needed */
+  margin-top: 20px;
+
+  @media (max-width: 768px) {
+    /* Adjust breakpoint as needed */
+    flex-direction: column;
+  }
+`;
+
+export const LeftColumn = styled.div`
+  flex: 1; /* Or adjust ratio e.g., flex: 2 for wider left column */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  order: 2; /* Default order for larger screens */
+
+  @media (max-width: 768px) {
+    /* Adjust breakpoint as needed */
+    order: 3; /* Order in column layout */
+  }
+`;
+
+export const MainImage = styled.img`
+  width: 100%; /* Added width */
+  max-width: 600px; /* Added max-width */
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+`;
+
+export const RightColumn = styled.div`
+  flex: 2; /* Or adjust ratio e.g., flex: 3 for wider right column */
+  display: flex;
+  flex-direction: column; /* Changed to column to allow title and image stacking if needed */
+  align-items: center; /* Center items horizontally */
+  gap: 20px; /* Gap between items if multiple are in RightColumn */
+  order: 1; /* Default order for larger screens */
+
+  @media (max-width: 768px) {
+    /* Adjust breakpoint as needed */
+    order: 2; /* Order in column layout */
+  }
 `;
 
 export const ColorOptions = styled.div`
@@ -127,12 +179,6 @@ export const ColorSwatchImage = styled.img`
   height: 100%;
   object-fit: cover;
   display: block; /* Remove extra space below img */
-`;
-
-export const MainImage = styled.img`
-  height: auto;
-  border-radius: 8px;
-  object-fit: contain;
 `;
 
 export const CarImageAndSpecsContainer = styled.div`
@@ -263,6 +309,11 @@ export const Disclaimer = styled.p`
   margin-bottom: 20px;
   padding-top: 10px;
   border-top: 1px solid #eee;
+
+  @media (max-width: 768px) {
+    /* Adjust breakpoint as needed */
+    order: 5; /* Order in column layout */
+  }
 `;
 
 export const ActionButtons = styled.div`
@@ -270,6 +321,13 @@ export const ActionButtons = styled.div`
   justify-content: flex-start;
   gap: 20px; /* Space between buttons */
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    /* Adjust breakpoint as needed */
+    order: 4; /* Order in column layout */
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    align-items: stretch; /* Make buttons take full width */
+  }
 `;
 
 export const ActionButton = styled.a`

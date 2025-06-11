@@ -7,9 +7,9 @@ import {
   Price,
   SectionTitle,
   ColorOptions,
-  ColorSwatchOuter, // Added import
-  ColorSwatchInner, // Added import
-  ColorSwatchImage, // Added import
+  ColorSwatchOuter,
+  ColorSwatchInner,
+  ColorSwatchImage,
   EquipmentSection,
   EquipmentColumn,
   EquipmentItem,
@@ -23,12 +23,11 @@ import {
   Disclaimer,
   ActionButtons,
   ActionButton,
-  TopSection,
   HeaderSection,
   DropdownAndPriceContainer,
-  CarImageAndSpecsContainer,
-  CarImageContainer,
-  SpecsListContainer,
+  MainContentContainer, // New
+  LeftColumn, // New
+  RightColumn, // New
 } from "./styles";
 
 const VehicleSpecSheet = ({ vehicleData }) => {
@@ -38,10 +37,9 @@ const VehicleSpecSheet = ({ vehicleData }) => {
   const [selectedTrimData, setSelectedTrimData] = useState(
     vehicleData?.trims?.[0]
   );
-  // State for the currently active color hex
   const [activeColorHex, setActiveColorHex] = useState("");
-  // State for the main image source, tied to the selected color
   const [currentMainImageSrc, setCurrentMainImageSrc] = useState("");
+  const [dimensionsImageSrc, setDimensionsImageSrc] = useState(""); // New state for dimensions image
 
   useEffect(() => {
     const newSelectedTrim = vehicleData?.trims?.find(
@@ -52,12 +50,38 @@ const VehicleSpecSheet = ({ vehicleData }) => {
 
   useEffect(() => {
     if (selectedTrimData) {
-      // Set initial active color and image when trim data is loaded or changed
       const initialColor = selectedTrimData.colors?.[0];
       setActiveColorHex(initialColor?.hex || "");
       setCurrentMainImageSrc(
         initialColor?.imageSrc || selectedTrimData.specImages?.main?.src || ""
       );
+
+      // Set initial dimensions image based on screen width
+      const updateDimensionsImage = () => {
+        if (
+          window.innerWidth <= 500 &&
+          selectedTrimData.specImages?.dimensionsDisplayImage?.mobileSrc
+        ) {
+          setDimensionsImageSrc(
+            selectedTrimData.specImages.dimensionsDisplayImage.mobileSrc
+          );
+        } else if (
+          selectedTrimData.specImages?.dimensionsDisplayImage?.desktopSrc
+        ) {
+          setDimensionsImageSrc(
+            selectedTrimData.specImages.dimensionsDisplayImage.desktopSrc
+          );
+        } else {
+          // Fallback if desktopSrc is also not available, though ideally one should be
+          setDimensionsImageSrc(
+            selectedTrimData.specImages?.dimensionsDisplayImage?.src || ""
+          );
+        }
+      };
+
+      updateDimensionsImage(); // Initial call
+      window.addEventListener("resize", updateDimensionsImage);
+      return () => window.removeEventListener("resize", updateDimensionsImage);
     }
   }, [selectedTrimData]);
 
@@ -69,7 +93,7 @@ const VehicleSpecSheet = ({ vehicleData }) => {
   const {
     name: trimName,
     price,
-    colors, // This now needs to have an imageSrc property for each color object
+    colors,
     equipment,
     basicSpecs,
     specImages,
@@ -82,7 +106,6 @@ const VehicleSpecSheet = ({ vehicleData }) => {
 
   const handleColorClick = (color) => {
     setActiveColorHex(color.hex);
-    // Use the color-specific image, fallback to trim's main image if not provided
     setCurrentMainImageSrc(
       color.imageSrc || selectedTrimData.specImages?.main?.src || ""
     );
@@ -106,38 +129,29 @@ const VehicleSpecSheet = ({ vehicleData }) => {
         </DropdownAndPriceContainer>
       </HeaderSection>
 
-      <TopSection>
-        <ColorOptions>
-          <SectionTitle>車輛顏色</SectionTitle>
-          <div>
-            {colors.map((color) => (
-              <ColorSwatchOuter
-                key={color.name}
-                title={color.name}
-                onClick={() => handleColorClick(color)}
-                isActive={color.hex === activeColorHex} // Or use color.name if hex is not unique for images
-              >
-                <ColorSwatchInner>
-                  <ColorSwatchImage
-                    src={color.swatchSrc || color.imageSrc}
-                    alt={color.name}
-                  />
-                </ColorSwatchInner>
-              </ColorSwatchOuter>
-            ))}
-          </div>
-        </ColorOptions>
-        <MainImage
-          src={currentMainImageSrc}
-          alt={`${modelName} ${trimName} ${activeColorHex}`}
-        />
-      </TopSection>
+      <MainContentContainer>
+        <LeftColumn>
+          <ColorOptions>
+            <SectionTitle>車輛顏色</SectionTitle>
+            <div>
+              {colors.map((color) => (
+                <ColorSwatchOuter
+                  key={color.name}
+                  title={color.name}
+                  onClick={() => handleColorClick(color)}
+                  isActive={color.hex === activeColorHex}
+                >
+                  <ColorSwatchInner>
+                    <ColorSwatchImage
+                      src={color.swatchSrc || color.imageSrc}
+                      alt={color.name}
+                    />
+                  </ColorSwatchInner>
+                </ColorSwatchOuter>
+              ))}
+            </div>
+          </ColorOptions>
 
-      <CarImageAndSpecsContainer>
-        <CarImageContainer>
-          {/* Placeholder for the large car image, will be replaced by specImages.main if needed or a specific one */}
-        </CarImageContainer>
-        <SpecsListContainer>
           <EquipmentSection>
             <SectionTitle>配備式樣</SectionTitle>
             <div style={{ display: "flex" }}>
@@ -165,36 +179,42 @@ const VehicleSpecSheet = ({ vehicleData }) => {
               ))}
             </SpecGrid>
           </BasicSpecsSection>
+        </LeftColumn>
 
-          <ActionButtons>
-            <ActionButton href={selectedTrimData.bookingLink || "#"} primary>
-              預約賞車/試乘
-            </ActionButton>
-            <ActionButton href={selectedTrimData.onlineOrderLink || "#"}>
-              線上訂車
-            </ActionButton>
-          </ActionButtons>
-        </SpecsListContainer>
-      </CarImageAndSpecsContainer>
+        <RightColumn>
+          <MainImage
+            src={currentMainImageSrc}
+            alt={`${modelName} ${trimName} ${activeColorHex}`}
+          />
+        </RightColumn>
+      </MainContentContainer>
+
+      <ActionButtons>
+        <ActionButton href={selectedTrimData.bookingLink || "#"} primary>
+          預約賞車/試乘
+        </ActionButton>
+        <ActionButton href={selectedTrimData.onlineOrderLink || "#"}>
+          線上訂車
+        </ActionButton>
+      </ActionButtons>
 
       <ImageGallery>
-        {specImages.dimensionsDisplayImage && (
+        {dimensionsImageSrc && ( // Use the new state variable here
           <MainImage
-            src={specImages.dimensionsDisplayImage.src}
+            src={dimensionsImageSrc} // Use the new state variable here
             alt={
-              specImages.dimensionsDisplayImage.alt ||
+              selectedTrimData.specImages?.dimensionsDisplayImage?.alt ||
               `${modelName} ${trimName} 車輛尺寸`
             }
             style={{
               maxWidth: "100%",
               height: "auto",
               display: "block",
-              margin: "0 auto",
-            }} // Added inline styles for better display
+              margin: "20px auto 0", // Added top margin
+            }}
           />
         )}
       </ImageGallery>
-      {disclaimer && <Disclaimer>{disclaimer}</Disclaimer>}
     </SpecSheetContainer>
   );
 };

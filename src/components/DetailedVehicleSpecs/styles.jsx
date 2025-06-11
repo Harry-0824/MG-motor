@@ -38,6 +38,9 @@ export const DropdownSelect = styled.select`
   background-color: white;
   box-sizing: border-box;
   cursor: pointer;
+  @media (max-width: 500px) {
+    width: 85%; /* Full width on smaller screens */
+  }
 `;
 
 export const AccordionWrapper = styled.div`
@@ -117,4 +120,7 @@ export const DisclaimerText = styled.p`
   margin: 30px 150px;
   color: #6d6f73;
   font-size: 14px; /* Adjust as needed */
+  @media (max-width: 500px) {
+    margin: 30px 20px; /* Adjust margin for smaller screens */
+  }
 `;

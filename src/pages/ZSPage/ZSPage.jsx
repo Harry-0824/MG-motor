@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   HeroImageWrapper,
   HeroImage,
@@ -49,15 +49,59 @@ const NAV_ITEMS = [
 
 const ZSPage = () => {
   const [activeIdx, setActiveIdx] = useState(0);
-  const sectionRefs = NAV_ITEMS.map(() => useRef(null));
+  const [heroImageSrc, setHeroImageSrc] = useState(
+    "/media/zs/車型頁_2160_540_pc.jpg"
+  );
+  const [selectedTrim, setSelectedTrim] = useState("旗艦版");
+  const navRef = useRef(null);
+  const [showLeftFade, setShowLeftFade] = useState(false);
+  const [showRightFade, setShowRightFade] = useState(true);
+
+  // Initialize sectionRefs as an array of refs
+  const sectionRefs = useRef(NAV_ITEMS.map(() => React.createRef()));
 
   const handleNavClick = (idx) => {
     setActiveIdx(idx);
-    sectionRefs[idx].current?.scrollIntoView({
+    // Access refs via sectionRefs.current
+    sectionRefs.current[idx].current?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 500) {
+        setHeroImageSrc("/media/zs/車型頁_750_800_mo.jpg");
+      } else {
+        setHeroImageSrc("/media/zs/車型頁_2160_540_pc.jpg");
+      }
+    };
+
+    const handleScroll = () => {
+      if (navRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = navRef.current;
+        setShowLeftFade(scrollLeft > 0);
+        setShowRightFade(scrollLeft < scrollWidth - clientWidth - 1); // -1 to handle potential subpixel issues
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
+    const currentNavRef = navRef.current;
+    if (currentNavRef) {
+      currentNavRef.addEventListener("scroll", handleScroll);
+      handleScroll(); // Initial check for fades
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (currentNavRef) {
+        currentNavRef.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
 
   return (
     <div className="zs-page">
@@ -65,11 +109,19 @@ const ZSPage = () => {
       {/* Changed class name to zs-page */}
       <HeroImageWrapper>
         <HeroImage
-          src="/media/zs/車型頁_2160_540_pc.jpg" // Placeholder - Update with ZS specific image
+          src={
+            window.innerWidth <= 500
+              ? "/media/zs/車型頁_750_800_mo.jpg"
+              : "/media/zs/車型頁_2160_540_pc.jpg"
+          }
           alt="ZS Hero"
         />
       </HeroImageWrapper>
-      <HeroNavBar>
+      <HeroNavBar
+        ref={navRef}
+        $showLeftFade={showLeftFade}
+        $showRightFade={showRightFade}
+      >
         {NAV_ITEMS.map((item, idx) => (
           <HeroNavItem
             key={item.anchor}
@@ -85,7 +137,8 @@ const ZSPage = () => {
         <SectionAnchor
           key={item.anchor} // Ensure key prop
           id={item.anchor}
-          ref={sectionRefs[idx]}
+          // Access refs via sectionRefs.current
+          ref={sectionRefs.current[idx]}
         >
           {item.anchor === "exterior_design" ? (
             <>
@@ -468,11 +521,11 @@ const zsSpecData = {
           alt: "ZS 1.5L 旗艦版",
         },
         dimensionsDisplayImage: {
-          src: "/media/zs/MG-ZS官網網頁_三視圖_PC-1440x375_黑.png", // Placeholder - Update with ZS specific image
+          desktopSrc: "/media/zs/MG-ZS官網網頁_三視圖_PC-1440x375_黑.png", // Existing desktop image
+          mobileSrc: "/media/zs/MG-ZS官網網頁_三視圖_MB-750x1920_藍.png", // New mobile image
           alt: "ZS 1.5L 旗艦版 車輛尺寸",
         },
       },
-      disclaimer: "免責聲明: 此車輛尺寸為標準尺寸, 實際尺寸以交車為準",
       bookingLink: "https://www.mgmotor.com.tw/testdrive.html",
       onlineOrderLink: "https://www.mgmotor.com.tw/order.html",
     },

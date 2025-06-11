@@ -11,7 +11,8 @@ import {
 } from "./styles";
 
 const Accordion = ({ items }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0); // Keep first item open by default
+
   const handleToggle = (idx) => {
     setActiveIndex((prev) => (prev === idx ? null : idx));
   };
@@ -31,19 +32,32 @@ const Accordion = ({ items }) => {
               </AccordionIcon>
             </Title>
             {activeIndex === idx && (
-              <Content>
-                {item.content.map((text, i) => (
-                  <p key={i}>{text}</p>
-                ))}
-              </Content>
+              <>
+                <Content>
+                  {item.content.map((text, i) => (
+                    <p key={i}>{text}</p>
+                  ))}
+                </Content>
+                {item.image && (
+                  <ImageWrapper className="mobile-image-wrapper">
+                    <Img src={item.image} alt={item.title} />
+                  </ImageWrapper>
+                )}
+              </>
             )}
           </Item>
         ))}
       </List>
-      <ImageWrapper>
-        {activeIndex !== null && items[activeIndex].image && (
-          <Img src={items[activeIndex].image} alt={items[activeIndex].title} />
-        )}
+      {/* Image for larger screens - remains outside the map */}
+      <ImageWrapper className="desktop-image-wrapper">
+        {activeIndex !== null &&
+          items[activeIndex] &&
+          items[activeIndex].image && (
+            <Img
+              src={items[activeIndex].image}
+              alt={items[activeIndex].title}
+            />
+          )}
       </ImageWrapper>
     </Container>
   );

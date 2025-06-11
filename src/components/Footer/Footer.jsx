@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Assuming you are using react-router for navigation
+import React, { useState, useEffect } from "react"; // Import useState and useEffect
+import { Link } from "react-router-dom";
 import {
   FooterContainer,
   FooterGrid,
@@ -68,112 +68,140 @@ const InstagramIcon = () => (
   </svg>
 );
 
-const Footer = () => (
-  <FooterContainer>
-    <FooterGrid>
-      <FooterSection>
-        <FooterSectionTitle>車款介紹</FooterSectionTitle>
-        <FooterLinkList>
-          <FooterLinkItem>
-            <FooterLink to="/hs">HS</FooterLink>
-          </FooterLinkItem>
-          <FooterLinkItem>
-            <FooterLink to="/zs">ZS</FooterLink>
-          </FooterLinkItem>
-        </FooterLinkList>
-      </FooterSection>
+const Footer = () => {
+  // State to manage accordion open/close for each section
+  const [openAccordion, setOpenAccordion] = useState({});
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
 
-      <FooterSection>
-        <FooterSectionTitle>購車專區</FooterSectionTitle>
-        <FooterLinkList>
-          <FooterLinkItem>
-            <FooterLink to="/test-drive">預約賞車/試乘</FooterLink>
-          </FooterLinkItem>
-          <FooterLinkItem>
-            <FooterLink to="/order">車價試算與線上下訂</FooterLink>
-          </FooterLinkItem>
-        </FooterLinkList>
-      </FooterSection>
+  // Function to toggle accordion
+  const toggleAccordion = (sectionTitle) => {
+    if (isMobile) {
+      setOpenAccordion((prevState) => ({
+        ...prevState,
+        [sectionTitle]: !prevState[sectionTitle],
+      }));
+    }
+  };
 
-      <FooterSection>
-        <FooterSectionTitle>關於 MG</FooterSectionTitle>
-        <FooterLinkList>
-          <FooterLinkItem>
-            <FooterLink to="/about">品牌介紹</FooterLink>
-          </FooterLinkItem>
-          <FooterLinkItem>
-            <FooterLink to="/contact">聯絡我們</FooterLink>
-          </FooterLinkItem>{" "}
-          {/* Assuming /contact is the correct path */}
-          <FooterLinkItem>
-            <FooterLink to="/dealer">查詢據點</FooterLink>
-          </FooterLinkItem>
-        </FooterLinkList>
-      </FooterSection>
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 500);
+      // If resizing to desktop, close all accordions
+      if (window.innerWidth > 500) {
+        setOpenAccordion({});
+      }
+    };
 
-      <FooterSection>
-        <FooterSectionTitle>探索 MG</FooterSectionTitle>
-        <FooterLinkList>
-          <FooterLinkItem>
-            <FooterLink to="/explore#latest-news">最新活動消息</FooterLink>
-          </FooterLinkItem>{" "}
-          {/* Example with hash link */}
-          <FooterLinkItem>
-            <FooterLink to="/explore#offers">最新購車優惠</FooterLink>
-          </FooterLinkItem>
-          <FooterLinkItem>
-            <FooterLink to="/explore#owner-sharing">車主經驗分享</FooterLink>
-          </FooterLinkItem>
-        </FooterLinkList>
-      </FooterSection>
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-      <FooterSection>
-        <SocialLinks>
-          <SocialLink
-            href="https://www.facebook.com/MGTaiwan/"
-            target="_blank"
-            rel="noopener noreferrer"
+  const footerSections = [
+    {
+      title: "車款介紹",
+      links: [
+        { label: "HS", to: "/hs" },
+        { label: "ZS", to: "/zs" },
+      ],
+    },
+    {
+      title: "購車專區",
+      links: [
+        { label: "預約賞車/試乘", to: "/test-drive" },
+        { label: "車價試算與線上下訂", to: "/order" },
+      ],
+    },
+    {
+      title: "關於 MG",
+      links: [
+        { label: "品牌介紹", to: "/about" },
+        { label: "聯絡我們", to: "/contact" },
+        { label: "查詢據點", to: "/dealer" },
+      ],
+    },
+    {
+      title: "探索 MG",
+      links: [
+        { label: "最新活動消息", to: "/explore#latest-news" },
+        { label: "最新購車優惠", to: "/explore#offers" },
+        { label: "車主經驗分享", to: "/explore#owner-sharing" },
+      ],
+    },
+  ];
+
+  return (
+    <FooterContainer>
+      <FooterGrid>
+        {footerSections.map((section) => (
+          <FooterSection key={section.title}>
+            <FooterSectionTitle
+              isOpen={openAccordion[section.title] || !isMobile}
+              onClick={() => toggleAccordion(section.title)}
+            >
+              {section.title}
+            </FooterSectionTitle>
+            <FooterLinkList isOpen={openAccordion[section.title] || !isMobile}>
+              {section.links.map((link) => (
+                <FooterLinkItem key={link.label}>
+                  <FooterLink to={link.to}>{link.label}</FooterLink>
+                </FooterLinkItem>
+              ))}
+            </FooterLinkList>
+          </FooterSection>
+        ))}
+
+        <FooterSection>
+          {" "}
+          {/* Section for Social Links */}
+          {/* On mobile, SocialLinks might not need a title or it's handled differently */}
+          {/* <FooterSectionTitle>追蹤我們</FooterSectionTitle> */}
+          <SocialLinks>
+            <SocialLink
+              href="https://www.facebook.com/MGTaiwan/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FacebookIcon /> Facebook
+            </SocialLink>
+            <SocialLink
+              href="https://www.youtube.com/channel/UC_0UKN5V7P0QjX0mX0Y0q0A"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <YouTubeIcon /> YouTube
+            </SocialLink>
+            <SocialLink
+              href="https://www.instagram.com/mg_taiwan/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <InstagramIcon /> Instagram
+            </SocialLink>
+          </SocialLinks>
+        </FooterSection>
+      </FooterGrid>
+      <FooterRule />
+      <FooterBottom>
+        <CopyrightText>
+          Copyright©台灣英倫摩里斯汽車事業股份有限公司 |{" "}
+          <FooterLink to="/privacy-policy" style={{ color: "#6c757d" }}>
+            隱私權政策
+          </FooterLink>{" "}
+          |{" "}
+          <FooterLink to="/cookie-policy" style={{ color: "#6c757d" }}>
+            Cookie 政策
+          </FooterLink>{" "}
+          |{" "}
+          <FooterLink
+            to="/environmental-noise-policy"
+            style={{ color: "#6c757d" }}
           >
-            <FacebookIcon /> Facebook
-          </SocialLink>
-          <SocialLink
-            href="https://www.youtube.com/channel/UC_0UKN5V7P0QjX0mX0Y0q0A"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <YouTubeIcon /> YouTube
-          </SocialLink>
-          <SocialLink
-            href="https://www.instagram.com/mg_taiwan/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <InstagramIcon /> Instagram
-          </SocialLink>
-        </SocialLinks>
-      </FooterSection>
-    </FooterGrid>
-    <FooterRule />
-    <FooterBottom>
-      <CopyrightText>
-        Copyright©台灣英倫摩里斯汽車事業股份有限公司 |{" "}
-        <FooterLink to="/privacy-policy" style={{ color: "#6c757d" }}>
-          隱私權政策
-        </FooterLink>{" "}
-        |{" "}
-        <FooterLink to="/cookie-policy" style={{ color: "#6c757d" }}>
-          Cookie 政策
-        </FooterLink>{" "}
-        |{" "}
-        <FooterLink
-          to="/environmental-noise-policy"
-          style={{ color: "#6c757d" }}
-        >
-          環保署環境噪音政策宣導
-        </FooterLink>
-      </CopyrightText>
-    </FooterBottom>
-  </FooterContainer>
-);
+            環保署環境噪音政策宣導
+          </FooterLink>
+        </CopyrightText>
+      </FooterBottom>
+    </FooterContainer>
+  );
+};
 
 export default Footer;
