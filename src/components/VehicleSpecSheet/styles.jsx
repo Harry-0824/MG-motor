@@ -34,7 +34,11 @@ export const DropdownWrapper = styled.div`
   margin-right: 20px;
   position: relative;
   select {
+<<<<<<< HEAD
     padding: 15px 50px 15px 15px;
+=======
+    padding: 15px 200px 15px 15px;
+>>>>>>> c3f00afbd6efd9d528a63a1926a16e208bc8ddb9
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #fff;
@@ -77,7 +81,11 @@ export const TopSection = styled.div`
 
 export const MainContentContainer = styled.div`
   display: flex;
+<<<<<<< HEAD
   flex-direction: row-reverse;
+=======
+  flex-direction: row;
+>>>>>>> c3f00afbd6efd9d528a63a1926a16e208bc8ddb9
   gap: 30px; /* Adjust gap between columns as needed */
   margin-top: 20px;
 
