@@ -34,7 +34,7 @@ export const DropdownWrapper = styled.div`
   margin-right: 20px;
   position: relative;
   select {
-    padding: 15px 200px 15px 15px;
+    padding: 15px 50px 15px 15px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #fff;

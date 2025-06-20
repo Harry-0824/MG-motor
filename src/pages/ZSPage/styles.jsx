@@ -347,11 +347,10 @@ export const ContextualText = styled.h1`
   @media (max-width: 500px) {
     width: 100%;
     color: #000;
+    text-align: left;
     font-size: 24px;
-    right: 0;
-    bottom: 0;
+    padding-left: 15%;
     top: 190px;
-    left: 20px;
   }
 `;
 

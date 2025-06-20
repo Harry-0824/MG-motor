@@ -82,36 +82,56 @@ const ZSPage = () => {
       }
     };
 
-    const handleScroll = () => {
+    const handleNavScroll = () => {
       if (navRef.current) {
         const { scrollLeft, scrollWidth, clientWidth } = navRef.current;
         setShowLeftFade(scrollLeft > 0);
-        setShowRightFade(scrollLeft < scrollWidth - clientWidth - 1); // -1 to handle potential subpixel issues
-      }
-      const footer = document.getElementById("footer");
-      const nextStepForm = document.getElementById("next-step-form");
-      if (!footer || !nextStepForm) return;
-      const footerRect = footer.getBoundingClientRect();
-      if (footerRect.top < window.innerHeight) {
-        setStickyBarFixed(false);
-      } else {
-        setStickyBarFixed(true);
+        setShowRightFade(scrollLeft < scrollWidth - clientWidth - 1);
       }
     };
 
+    const handleWindowScroll = () => {
+      // Sticky bar logic
+      const footer = document.getElementById("footer");
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        if (footerRect.top < window.innerHeight) {
+          setStickyBarFixed(false);
+        } else {
+          setStickyBarFixed(true);
+        }
+      }
+
+      // Active nav item logic
+      let latestActiveIndex = 0;
+      sectionRefs.current.forEach((ref, index) => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          if (rect.top <= 150) {
+            // 150px offset for nav bar
+            latestActiveIndex = index;
+          }
+        }
+      });
+      setActiveIdx(latestActiveIndex);
+    };
+
     window.addEventListener("resize", handleResize);
-    handleResize(); // Initial check
+    window.addEventListener("scroll", handleWindowScroll);
+    handleResize();
+    handleWindowScroll();
 
     const currentNavRef = navRef.current;
     if (currentNavRef) {
-      currentNavRef.addEventListener("scroll", handleScroll);
-      handleScroll(); // Initial check for fades
+      currentNavRef.addEventListener("scroll", handleNavScroll);
+      handleNavScroll();
     }
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleWindowScroll);
       if (currentNavRef) {
-        currentNavRef.removeEventListener("scroll", handleScroll);
+        currentNavRef.removeEventListener("scroll", handleNavScroll);
       }
     };
   }, []);

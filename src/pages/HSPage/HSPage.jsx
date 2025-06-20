@@ -17,7 +17,7 @@ import {
   ExperienceTextWrapper, // 匯入 ExperienceTextWrapper
   ExperienceCarouselWrapperStyled, // 匯入 ExperienceCarouselWrapperStyled
 } from "./styles";
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 // Change to named import
 import {
   GalleryWithTextType1,
@@ -43,31 +43,69 @@ const NAV_ITEMS = [
 const HSPage = () => {
   const [activeIdx, setActiveIdx] = useState(0);
   const [stickyBarFixed, setStickyBarFixed] = useState(true);
-  const sectionRefs = NAV_ITEMS.map(() => useRef(null));
+  const navRef = useRef(null);
+  const [showLeftFade, setShowLeftFade] = useState(false);
+  const [showRightFade, setShowRightFade] = useState(true);
+  const sectionRefs = useRef(NAV_ITEMS.map(() => React.createRef()));
 
   const handleNavClick = (idx) => {
     setActiveIdx(idx);
-    sectionRefs[idx].current?.scrollIntoView({
+    sectionRefs.current[idx].current?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const footer = document.getElementById("footer");
-      const nextStepForm = document.getElementById("next-step-form");
-      if (!footer || !nextStepForm) return;
-      const footerRect = footer.getBoundingClientRect();
-      if (footerRect.top < window.innerHeight) {
-        setStickyBarFixed(false);
-      } else {
-        setStickyBarFixed(true);
+    const handleNavScroll = () => {
+      if (navRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = navRef.current;
+        setShowLeftFade(scrollLeft > 0);
+        setShowRightFade(scrollLeft < scrollWidth - clientWidth - 1);
       }
     };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const handleWindowScroll = () => {
+      // Sticky bar logic
+      const footer = document.getElementById("footer");
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        if (footerRect.top < window.innerHeight) {
+          setStickyBarFixed(false);
+        } else {
+          setStickyBarFixed(true);
+        }
+      }
+
+      // Active nav item logic
+      let latestActiveIndex = 0;
+      sectionRefs.current.forEach((ref, index) => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          if (rect.top <= 150) {
+            // 150px offset for nav bar
+            latestActiveIndex = index;
+          }
+        }
+      });
+      setActiveIdx(latestActiveIndex);
+    };
+
+    window.addEventListener("scroll", handleWindowScroll);
+    handleWindowScroll();
+
+    const currentNavRef = navRef.current;
+    if (currentNavRef) {
+      currentNavRef.addEventListener("scroll", handleNavScroll);
+      handleNavScroll();
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleWindowScroll);
+      if (currentNavRef) {
+        currentNavRef.removeEventListener("scroll", handleNavScroll);
+      }
+    };
   }, []);
 
   return (
@@ -78,11 +116,15 @@ const HSPage = () => {
           alt="HS Hero"
         />
       </HeroImageWrapper>
-      <HeroNavBar>
+      <HeroNavBar
+        ref={navRef}
+        $showLeftFade={showLeftFade}
+        $showRightFade={showRightFade}
+      >
         {NAV_ITEMS.map((item, idx) => (
           <HeroNavItem
             key={item.anchor}
-            active={activeIdx === idx}
+            $active={activeIdx === idx}
             onClick={() => handleNavClick(idx)}
           >
             {item.label}
@@ -94,7 +136,7 @@ const HSPage = () => {
         <SectionAnchor
           key={item.anchor}
           id={item.anchor}
-          ref={sectionRefs[idx]}
+          ref={sectionRefs.current[idx]}
         >
           {item.anchor === "design" ? (
             <>

@@ -43,11 +43,11 @@ export const HeroNavItem = styled.button`
   outline: none;
   font-size: 1.15rem;
   font-weight: 600;
-  color: ${({ active }) => (active ? "#222" : "#919399")};
+  color: ${({ $active }) => ($active ? "#222" : "#919399")};
   padding: 0 0.5em 0.5em 0.5em;
   position: relative;
   cursor: pointer;
-  border-bottom: ${({ active }) => (active ? "3px solid #000" : "none")};
+  border-bottom: ${({ $active }) => ($active ? "3px solid #000" : "none")};
   &::before {
     content: "";
     position: absolute;
@@ -57,7 +57,7 @@ export const HeroNavItem = styled.button`
     height: 2px;
     background: #e60012;
     z-index: -3;
-    display: ${({ active }) => (active ? "block" : "none")};
+    display: ${({ $active }) => ($active ? "block" : "none")};
   }
 
   @media (max-width: 768px) {

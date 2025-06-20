@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 export const GalleryContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   width: 100%;
   min-height: 420px;
   background: #fff;
   gap: ${(props) => (props.isType3 ? "4rem" : "0")};
+  align-items: center;
   @media (max-width: 900px) {
     flex-direction: column;
     min-height: 0;
@@ -18,6 +20,8 @@ export const GalleryLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  position: relative;
+  width: 100%;
   @media (max-width: 900px) {
     flex: none;
     width: 100%;
@@ -26,7 +30,6 @@ export const GalleryLeft = styled.div`
 `;
 
 export const GalleryRight = styled.div`
-  flex: 0 0 50%;
   height: fit-content;
   display: flex;
   flex-direction: column;
