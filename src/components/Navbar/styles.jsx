@@ -8,6 +8,18 @@ export const Nav = styled.nav`
   align-items: center;
   min-height: 64px;
   position: relative;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+
+  ${({ isSticky }) =>
+    isSticky &&
+    `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  `}
 `;
 
 // Brand 絕對定位於左上角
@@ -38,9 +50,16 @@ export const Brand = styled.div`
 // Logo 圖片樣式統一管理
 export const LogoImg = styled.img`
   width: 100%;
-  height: 130px;
+  height: 100px;
   object-fit: cover;
   display: block;
+  transition: height 0.3s ease-in-out;
+
+  ${({ isScrolled }) =>
+    isScrolled &&
+    `
+    height: 64px; // Match Nav height
+  `}
 
   @media (max-width: 500px) {
     height: 60px;

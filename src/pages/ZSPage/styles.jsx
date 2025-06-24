@@ -21,13 +21,12 @@ export const HeroImage = styled.img`
 
 export const HeroNavBar = styled.nav`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0 1rem;
   align-items: flex-end;
-  gap: 10rem;
   background: #fff;
   position: sticky;
-  top: 0;
+  top: 64px; // Adjust for main navbar height
   z-index: 10;
   height: 90px;
   border-bottom: 1.5px solid #e5e5e5;
@@ -78,7 +77,7 @@ export const HeroNavItem = styled.button`
   font-size: 1.15rem;
   font-weight: 600;
   color: ${({ $active }) => ($active ? "#222" : "#919399")};
-  padding: 0 0.5em 0.5em 0.5em;
+  padding: 0.5rem 0;
   position: relative;
   cursor: pointer;
   border-bottom: ${({ $active }) => ($active ? "3px solid #000" : "none")};

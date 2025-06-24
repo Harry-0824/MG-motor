@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop"; // 匯入 ScrollToTop
 import Home from "./pages/Home/Home";
 import Models from "./pages/Models/Models";
 import Contact from "./pages/Contact/Contact";
@@ -14,6 +15,7 @@ import DefaultPage from "./pages/DefaultPage/DefaultPage";
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <DefaultPage>
         <Switch>
           <Route path="/" exact component={Home} />

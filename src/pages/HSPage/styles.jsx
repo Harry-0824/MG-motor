@@ -21,13 +21,11 @@ export const HeroImage = styled.img`
 
 export const HeroNavBar = styled.nav`
   display: flex;
-  justify-content: space-between;
-  padding: 0 5rem;
+  justify-content: space-around;
   align-items: flex-end;
-  gap: 2.5rem;
   background: #fff;
   position: sticky;
-  top: 0;
+  top: 64px; // Adjust for main navbar height
   z-index: 10;
   height: 90px;
   border-bottom: 1.5px solid #e5e5e5;
@@ -109,7 +107,6 @@ export const HeroNavItem = styled.button`
 export const SectionAnchor = styled.div`
   scroll-margin-top: 110px;
   min-height: 400px;
-  border: 1px solid #eee;
   margin: 40px 0;
   @media (max-width: 768px) {
     min-height: 260px;

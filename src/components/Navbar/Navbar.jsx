@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // Import useState
+import React, { useState, useEffect } from "react"; // Import useState and useEffect
 import {
   Nav,
   Brand,
@@ -16,6 +16,31 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    // Sticky logic
+    if (scrollPosition > 0) {
+      setIsSticky(true);
+    } else {
+      setIsSticky(false);
+    }
+    // Scrolled logic (10% of viewport height)
+    if (scrollPosition > window.innerHeight * 0.1) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -48,10 +73,14 @@ const Navbar = () => {
   );
 
   return (
-    <Nav>
+    <Nav isSticky={isSticky}>
       <Brand>
         <Link to="/">
-          <LogoImg src="/media/navbar/logo.jpg" alt="MG Logo" />
+          <LogoImg
+            isScrolled={isScrolled}
+            src="/media/navbar/logo.jpg"
+            alt="MG Logo"
+          />
         </Link>
       </Brand>
 
