@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Carousel from "../../components/Carousel/Carousel";
 import {
   FlexRow,
@@ -23,64 +23,128 @@ import {
   BannerBgImage,
   InfoMainTitle,
   InfoBackText,
+  ActionRow,
 } from "./styles";
+
+const desktopSlides = [
+  {
+    image: "/media/banner/MG HS 限定版首頁Banner - PC 1920x960.jpg",
+    link: "https://www.mgmotor.com.tw/configuration/hs.html",
+    label: "MG HS 限定版",
+    h2: "限量登場",
+    h1: "MG HS 馭風前行版",
+    buttonText: "瞭解更多",
+  },
+  {
+    image: "/media/banner/官網HERO-Banner_1920x960.jpg",
+    link: "https://www.mgmotor.com.tw/configuration/zs.html",
+    label: "MG ZS 限定版",
+    h2: "和謝淑薇一起",
+    h1: "挑戰不可能！",
+    buttonText: "瞭解更多",
+    h1Color: "#ffffff",
+    h2Color: "#ffffff",
+  },
+  {
+    image: "/media/banner/首頁_KV_PC_HS介紹.jpg",
+    link: "https://www.mgmotor.com.tw/configuration/zs.html",
+    label: "MG HS",
+    h2: "MG HS",
+    h1: "有本事 讓世界心跳加速",
+    buttonText: "查看車款規格",
+    h1Color: "#000",
+    h2Color: "#000",
+  },
+  {
+    image: "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖1920x960_PC.jpg",
+    link: "https://www.mgmotor.com.tw/configuration/zs.html",
+    label: "MG HS",
+    h2: "MG HS",
+    h1: "有本事 讓世界心跳加速",
+    buttonText: "查看車款規格",
+    h1Color: "#ffffff",
+    h2Color: "#ffffff",
+  },
+];
+
+const mobileSlides = [
+  {
+    image: "/media/banner/首頁_KV_Mob_HS 介紹.jpg",
+    link: "https://www.mgmotor.com.tw/configuration/hs.html",
+    label: "MG HS",
+    h2: "MG HS",
+    h1: "有本事 讓世界心跳加速",
+    buttonText: "查看車款規格",
+    h1Color: "#000",
+    h2Color: "#000",
+  },
+  {
+    image: "/media/banner/官網首頁_750_1120_mo.jpg",
+    link: "https://www.mgmotor.com.tw/configuration/hs.html",
+    label: "MG ZS ",
+    h2: "同級唯一滿配",
+    h1: "MG ZS",
+    buttonText: "瞭解更多",
+    h1Color: "#fff",
+    h2Color: "#fff",
+  },
+  {
+    image: "/media/banner/官網HERO-Banner_750x1120.jpg",
+    link: "https://www.mgmotor.com.tw/configuration/hs.html",
+    label: "MG HS 限定版",
+    h2: "和謝淑薇一起",
+    h1: "挑戰不可能！",
+    buttonText: "瞭解更多",
+    h1Color: "#ffffff",
+    h2Color: "#ffffff",
+  },
+  {
+    image:
+      "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖750X1120_MB (1).jpg",
+    link: "https://www.mgmotor.com.tw/configuration/zs.html",
+    label: "MG ZS",
+    h2: "MG ZS",
+    h1: "天生出眾",
+    buttonText: "了解更多",
+  },
+];
 
 const Home = () => {
   const [model, setModel] = useState("HS");
+  const [slides, setSlides] = useState(desktopSlides);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 500) {
+        setSlides(mobileSlides);
+      } else {
+        setSlides(desktopSlides);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="home">
-      <Carousel
-        slides={[
-          {
-            image: "/media/banner/MG HS 限定版首頁Banner - PC 1920x960.jpg",
-            link: "https://www.mgmotor.com.tw/configuration/hs.html",
-            label: "MG HS 限定版",
-            h2: "限量登場",
-            h1: "MG HS 馭風前行版",
-            buttonText: "瞭解更多",
-          },
-          {
-            image: "/media/banner/官網HERO-Banner_1920x960.jpg",
-            link: "https://www.mgmotor.com.tw/configuration/zs.html",
-            label: "MG ZS 限定版",
-            h2: "和謝淑薇一起",
-            h1: "挑戰不可能！",
-            buttonText: "瞭解更多",
-            h1Color: "#ffffff",
-            h2Color: "#ffffff",
-          },
-          {
-            image: "/media/banner/首頁_KV_PC_HS介紹.jpg",
-            link: "https://www.mgmotor.com.tw/configuration/zs.html",
-            label: "MG HS",
-            h2: "MG HS",
-            h1: "有本事 讓世界心跳加速",
-            buttonText: "查看車款規格",
-            h1Color: "#000",
-            h2Color: "#000",
-          },
-          {
-            image:
-              "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖1920x960_PC.jpg",
-            link: "https://www.mgmotor.com.tw/configuration/zs.html",
-            label: "MG HS",
-            h2: "MG HS",
-            h1: "有本事 讓世界心跳加速",
-            buttonText: "查看車款規格",
-            h1Color: "#ffffff",
-            h2Color: "#ffffff",
-          },
-        ]}
-      />
+      <Carousel slides={slides} />
       <FlexRow>
         <StyledH1>立即體驗 MG 駕駛樂趣</StyledH1>
-        <StyledSelect value={model} onChange={(e) => setModel(e.target.value)}>
-          <option value="HS">HS</option>
-          <option value="ZS">ZS</option>
-        </StyledSelect>
-        <HomeLinkButton>
-          預約試乘<span>&rarr;</span>
-        </HomeLinkButton>
+        <ActionRow>
+          <StyledSelect
+            value={model}
+            onChange={(e) => setModel(e.target.value)}
+          >
+            <option value="HS">HS</option>
+            <option value="ZS">ZS</option>
+          </StyledSelect>
+          <HomeLinkButton>
+            預約試乘<span>&rarr;</span>
+          </HomeLinkButton>
+        </ActionRow>
       </FlexRow>
       <InfoSection>
         <InfoMainTitle>

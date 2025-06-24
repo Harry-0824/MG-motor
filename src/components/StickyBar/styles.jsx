@@ -13,6 +13,9 @@ export const StickyBarContainer = styled.div`
   height: 54px;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
   transition: position 0.2s;
+  @media (max-width: 500px) {
+    justify-content: space-between;
+  }
 `;
 
 export const StickyBarItem = styled.div`
@@ -27,6 +30,9 @@ export const StickyBarItem = styled.div`
   cursor: pointer;
   user-select: none;
   font-weight: 500;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const StickyBarDivider = styled.div`

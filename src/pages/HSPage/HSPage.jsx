@@ -112,7 +112,11 @@ const HSPage = () => {
     <div className="hs-page">
       <HeroImageWrapper>
         <HeroImage
-          src="/media/hs/MG HS 限定版車型頁Banner - PC 1920x480.jpg"
+          src={
+            window.innerWidth <= 500
+              ? "/media/hs/HS 1.5T MAX KV_MB_750x800.jpg"
+              : "/media/hs/MG HS 限定版車型頁Banner - PC 1920x480.jpg"
+          }
           alt="HS Hero"
         />
       </HeroImageWrapper>
@@ -372,24 +376,23 @@ const HSPage = () => {
                   {
                     title: "手機無線充電",
                     desc: "隨手放置即刻充電，全車搭配4個USB介面，滿足車上所有人的充電需求。",
-                    image: "/media/hs/車款介紹頁_HS_手機無線充電_PC.jpg", // 佔位圖片
+                    image: "/media/hs/車款介紹頁_HS_充電_PC.jpg", // 佔位圖片
                   },
                   {
                     title:
                       "10.1吋懸浮式觸控螢幕(標配Apple Carplay 與 Android Auto)",
                     desc: "人體工學搭配IPS廣視角設計，可視角度達170度，讓駕駛能直覺看到螢幕資料，保持視線於前方，維持行車安全，並採用低反光技術，讓使用者更加清晰閱讀。",
-                    image:
-                      "/media/hs/車款介紹頁_HS_10.1吋懸浮式觸控螢幕_PC.jpg", // 佔位圖片
+                    image: "/media/hs/車款介紹頁_HS_螢幕_PC.jpg", // 佔位圖片
                   },
                   {
                     title: "12.3吋數位儀表",
                     desc: "搭載大面積數位儀表，能清楚呈現車輛多樣資訊，並在不同的駕駛模式下，可呈現不同的儀錶設計，能帶來不同的駕駛氛圍。同時儀錶板可自動感應環境光源調節背光，資訊隨時清晰可視。",
-                    image: "/media/hs/車款介紹頁_HS_12.3吋數位儀表_PC.jpg", // 佔位圖片
+                    image: "/media/hs/車款介紹頁_HS_儀錶板_PC.jpg", // 佔位圖片
                   },
                   {
                     title: "銀翼電子排檔桿",
                     desc: "握感舒適，操作隨心所欲，吸睛的造型如飛翔羽翼，打破傳統SUV的工具感，每次排檔的瞬間，都讓你感覺愉悅。",
-                    image: "/media/hs/車款介紹頁_HS_銀翼電子排檔桿_PC.jpg", // 佔位圖片
+                    image: "/media/hs/車款介紹頁_HS_排檔桿_PC.jpg", // 佔位圖片
                   },
                 ]}
               />
