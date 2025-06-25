@@ -99,6 +99,19 @@ export const ExploreListItem = styled.li`
     );
     background-color: #fff;
   }
+
+  &:nth-child(2) {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 20px) 0,
+      calc(100% + 20px) 100%,
+      20px 100%
+    );
+  }
+
+  &:last-child {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%);
+  }
 `;
 
 export const ArticleSection = styled.section`

@@ -135,12 +135,12 @@ const Footer = () => {
         {footerSections.map((section) => (
           <FooterSection key={section.title}>
             <FooterSectionTitle
-              isOpen={openAccordion[section.title] || !isMobile}
+              $isOpen={openAccordion[section.title] || !isMobile}
               onClick={() => toggleAccordion(section.title)}
             >
               {section.title}
             </FooterSectionTitle>
-            <FooterLinkList isOpen={openAccordion[section.title] || !isMobile}>
+            <FooterLinkList $isOpen={openAccordion[section.title] || !isMobile}>
               {section.links.map((link) => (
                 <FooterLinkItem key={link.label}>
                   <FooterLink to={link.to}>{link.label}</FooterLink>

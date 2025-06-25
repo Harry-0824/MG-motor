@@ -23,7 +23,7 @@ export const HeroNavBar = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 0 1rem;
-  align-items: flex-end;
+  align-items: center;
   background: #fff;
   position: sticky;
   top: 64px; // Adjust for main navbar height

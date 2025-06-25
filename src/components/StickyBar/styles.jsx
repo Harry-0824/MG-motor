@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StickyBarContainer = styled.div`
-  position: ${({ $fixed }) => ($fixed ? "fixed" : "static")};
+  position: ${({ $fixed }) => ($fixed ? "sticky" : "static")};
   left: 0;
   right: 0;
   bottom: ${({ $fixed }) => ($fixed ? "0" : "unset")};

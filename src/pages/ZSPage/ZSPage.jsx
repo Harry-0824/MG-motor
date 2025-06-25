@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import {
   HeroImageWrapper,
@@ -173,6 +172,9 @@ const ZSPage = () => {
           id={item.anchor}
           // Access refs via sectionRefs.current
           ref={sectionRefs.current[idx]}
+          style={
+            item.anchor === "specifications" ? { marginBottom: 0 } : undefined
+          }
         >
           {item.anchor === "exterior_design" ? (
             <>
@@ -463,7 +465,7 @@ const ZSPage = () => {
           ) : null}
         </SectionAnchor>
       ))}
-      {/* StickyBar 預設fixed渲染在最外層 */}
+      {/* StickyBar 預設sticky渲染在最外層 */}
       {stickyBarFixed && (
         <StickyBar
           footerId="footer"

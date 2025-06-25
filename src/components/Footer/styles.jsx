@@ -46,7 +46,7 @@ export const FooterSectionTitle = styled.h5`
     position: relative; /* For arrow positioning */
 
     &::after {
-      content: "${(props) => (props.isOpen ? "-" : "+")}"; /* +/- icon */
+      content: "${(props) => (props.$isOpen ? "-" : "+")}"; /* +/- icon */
       font-size: 1.2rem; /* Adjusted font-size for better visibility of +/- */
       position: absolute;
       right: 15px; /* Position arrow to the right */
@@ -60,7 +60,7 @@ export const FooterLinkList = styled.ul`
   margin: 0;
 
   @media (max-width: 500px) {
-    display: ${(props) => (props.isOpen ? "block" : "none")};
+    display: ${(props) => (props.$isOpen ? "block" : "none")};
     padding-left: 0; /* Remove padding for centered items */
     text-align: center; /* Center link items */
   }
