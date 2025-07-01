@@ -155,6 +155,12 @@ export const ArticleTitle = styled.h2`
   color: #000;
   margin: 1rem 0 0 0;
   line-height: 1.3;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #e10012;
+  }
 `;
 
 export const ArticleDesc = styled.p`
@@ -171,6 +177,7 @@ export const ArticleTag = styled.div`
   border-radius: 2px;
   padding: 0.2em 0;
   margin-bottom: 0.5rem;
+  cursor: pointer;
   &::before {
     content: "";
     display: inline-block;
@@ -244,4 +251,71 @@ export const ArticleImage = styled.img`
   border-radius: 0;
   object-fit: cover;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+`;
+
+export const FourColumnSection = styled.section`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 2.5rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+`;
+
+export const FourColumnItem = styled.div`
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const FourColumnImage = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+`;
+
+export const FourColumnContent = styled.div`
+  padding: 1rem;
+`;
+
+export const FourColumnTitle = styled.h3`
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+  color: #000;
+`;
+
+export const FourColumnDesc = styled.p`
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0.5rem 0 1rem 0;
+`;
+
+export const FourColumnTag = styled.div`
+  font-size: 0.9rem;
+  color: #e10012;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+`;
+
+export const FourColumnDate = styled.div`
+  font-size: 0.8rem;
+  color: #888;
 `;
