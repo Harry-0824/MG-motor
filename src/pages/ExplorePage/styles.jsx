@@ -127,7 +127,7 @@ export const ArticleSection = styled.section`
 `;
 
 export const ArticleLeft = styled.div`
-  flex: 1.2;
+  flex: 0.7;
   padding: 0 2.5rem;
   display: flex;
   flex-direction: column;
@@ -138,7 +138,7 @@ export const ArticleLeft = styled.div`
 `;
 
 export const ArticleRight = styled.div`
-  flex: 1;
+  flex: 1.5;
   width: 100%;
   display: flex;
   align-items: center;
@@ -153,7 +153,7 @@ export const ArticleTitle = styled.h2`
   font-size: 2rem;
   font-weight: bold;
   color: #000;
-  margin: 1rem 0 0 0;
+  margin: 1rem 0;
   line-height: 1.3;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -318,4 +318,32 @@ export const FourColumnTag = styled.div`
 export const FourColumnDate = styled.div`
   font-size: 0.8rem;
   color: #888;
+`;
+
+export const PaginationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+
+  .ant-pagination-prev .ant-pagination-item-link,
+  .ant-pagination-next .ant-pagination-item-link {
+    color: #000 !important;
+  }
+
+  .ant-pagination-item-active {
+    font-weight: 600;
+    background-color: #000;
+    border-color: #000;
+    a {
+      color: #fff;
+    }
+  }
+
+  .ant-pagination-item:not(.ant-pagination-item-active):hover a {
+    color: rgba(0, 0, 0, 0.88);
+  }
+
+  .ant-pagination-item:not(.ant-pagination-item-active):hover {
+    border-color: #d9d9d9;
+  }
 `;

@@ -43,13 +43,13 @@ export const ArticleContent = styled.div`
   }
 `;
 
-export const DetailTag = styled.div`
+export const DetailTag = styled.span`
   display: inline-block;
   color: #e10012;
   font-size: 1rem;
   font-weight: 600;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  margin-right: 1rem; /* Add some space between tags */
+  margin-bottom: 1rem; /* Add space below tags */
 `;
 
 export const DetailDate = styled.div`
