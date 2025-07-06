@@ -21,51 +21,27 @@ export const HeroImage = styled.img`
 
 export const HeroNavBar = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 1rem;
   align-items: center;
   background: #fff;
   position: sticky;
-  top: 64px; // Adjust for main navbar height
+  top: 0;
   z-index: 10;
   height: 90px;
   border-bottom: 1.5px solid #e5e5e5;
   overflow-x: visible;
   @media (max-width: 500px) {
-    justify-content: flex-start; // 改為 flex-start 以便滾動
     gap: 0.5rem;
+    width: 100%;
     height: 48px;
-    overflow-x: auto;
+    overflow-x: hidden;
     white-space: nowrap;
     padding: 0 0.5rem;
     scrollbar-width: none;
     -ms-overflow-style: none;
     &::-webkit-scrollbar {
       display: none;
-    }
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 25px;
-      pointer-events: none;
-      transition: opacity 0.2s ease-in-out;
-      z-index: 1;
-    }
-
-    &::before {
-      left: 0;
-      background: linear-gradient(to right, #fff 70%, hsla(0, 0%, 100%, 0));
-      opacity: ${({ $showLeftFade }) => ($showLeftFade ? 1 : 0)};
-    }
-
-    &::after {
-      right: 0;
-      background: linear-gradient(to left, #fff 70%, hsla(0, 0%, 100%, 0));
-      opacity: ${({ $showRightFade }) => ($showRightFade ? 1 : 0)};
     }
   }
 `;
@@ -77,7 +53,7 @@ export const HeroNavItem = styled.button`
   font-size: 1.15rem;
   font-weight: 600;
   color: ${({ $active }) => ($active ? "#222" : "#919399")};
-  padding: 0.5rem 0;
+  padding: 0 0.5em 0.5em 0.5em;
   position: relative;
   cursor: pointer;
   border-bottom: ${({ $active }) => ($active ? "3px solid #000" : "none")};
@@ -263,25 +239,6 @@ export const SafetyCarouselWrapperStyled = styled.div`
       &:hover::after {
         color: #c00;
       }
-
-      @media (max-width: 500px) {
-        position: static; // 行動裝置版面改為靜態定位
-        width: 150px; // 根據圖片調整寬度 (基於內容)
-        max-width: 150px; // 進一步縮小最大寬度以獲得更小的按鈕
-        height: 46px; // 進一步縮小高度以獲得更小的按鈕
-        font-size: 1rem; // 進一步縮小字體大小以獲得更小的按鈕
-        padding: 0 10px; // 進一步縮小內邊距以獲得更小的按鈕
-        border: 1px solid #000; // 根據圖片設定邊框
-        border-right: 3px solid #e10012; // 調整右邊框以獲得更小的按鈕
-        color: #000; // 根據圖片設定文字顏色
-        margin: 1rem 0; // 增加一些邊距
-        margin-bottom: 2rem; // 移除底部邊距以適應小螢幕
-        justify-content: center; // 將文字和箭頭在按鈕中置中
-
-        &::after {
-          display: none; // 使箭頭不可見
-        }
-      }
     }
 
     @media (max-width: 500px) {
@@ -290,14 +247,13 @@ export const SafetyCarouselWrapperStyled = styled.div`
       left: auto;
       width: 100%;
       padding: 1rem; /* Add padding for spacing */
-      text-align: left; /* Center the text */
+      text-align: center; /* Center the text */
       gap: 0.5rem; /* Reduce gap for smaller screens */
 
       h1 {
         font-size: 1.5rem; /* Adjust font size for mobile */
         color: #333; /* Change color for visibility if background becomes light */
         text-shadow: none; /* Remove text shadow if not needed */
-        text-align: left;
       }
 
       /* Targeting DescriptionP specifically if its styles need overriding for mobile */
@@ -320,10 +276,6 @@ export const SafetyCarouselWrapperStyled = styled.div`
     bottom: 1rem;
     transform: translateX(-50%);
     z-index: 2;
-    @media (max-width: 500px) {
-      position: static;
-      padding: 0;
-    }
   }
 `;
 
@@ -353,22 +305,6 @@ export const ExperienceCarouselWrapperStyled = styled.div`
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       line-height: 1.2;
     }
-    @media (max-width: 500px) {
-      position: static; /* Change from absolute to static for stacking */
-      bottom: auto;
-      left: auto;
-      width: 100%;
-      padding: 1rem; /* Add padding for spacing */
-      text-align: left; /* Center the text */
-      gap: 0.5rem; /* Reduce gap for smaller screens */
-
-      h1 {
-        font-size: 1.5rem; /* Adjust font size for mobile */
-        color: #333; /* Change color for visibility if background becomes light */
-        text-shadow: none; /* Remove text shadow if not needed */
-        text-align: left;
-      }
-    }
   }
 
   .carousel-dots {
@@ -381,10 +317,6 @@ export const ExperienceCarouselWrapperStyled = styled.div`
     bottom: 1rem;
     transform: translateX(-50%);
     z-index: 2;
-    @media (max-width: 500px) {
-      position: static;
-      padding: 1rem 0;
-    }
   }
 `;
 
@@ -415,8 +347,9 @@ export const ContextualText = styled.h1`
   @media (max-width: 500px) {
     width: 100%;
     color: #000;
-    text-align: center;
     font-size: 24px;
+    right: 0;
+    bottom: 0;
     top: 190px;
   }
 `;
@@ -474,14 +407,13 @@ export const SpaceCarouselWrapper = styled.div`
       left: auto;
       width: 100%;
       padding: 1rem; /* Add padding for spacing */
-      text-align: left; /* Center the text */
+      text-align: center; /* Center the text */
       gap: 0.5rem; /* Reduce gap for smaller screens */
 
       h1 {
         font-size: 1.5rem; /* Adjust font size for mobile */
         color: #333; /* Change color for visibility if background becomes light */
         text-shadow: none; /* Remove text shadow if not needed */
-        text-align: left;
       }
 
       /* Targeting DescriptionP specifically if its styles need overriding for mobile */
@@ -503,10 +435,6 @@ export const SpaceCarouselWrapper = styled.div`
     bottom: 1rem;
     transform: translateX(-50%);
     z-index: 2;
-    @media (max-width: 500px) {
-      position: static;
-      padding: 1rem 0;
-    }
   }
 `;
 

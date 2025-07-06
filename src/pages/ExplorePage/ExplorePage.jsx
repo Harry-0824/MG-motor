@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { Pagination } from "antd";
 import {
   ExploreBanner,
   ExploreImg,
@@ -14,16 +16,58 @@ import {
   ArticleDate,
   ArticleButton,
   ArticleImage,
+  FourColumnSection,
+  FourColumnItem,
+  FourColumnImage,
+  FourColumnContent,
+  FourColumnTitle,
+  FourColumnDesc,
+  FourColumnTag,
+  FourColumnDate,
+  PaginationWrapper,
 } from "./styles";
+import { latestNews, purchaseOffers, ownerStories } from "../../data/articles";
 
 const navItems = [
-  { label: "最新活動訊息", href: "/explore/1" },
-  { label: "最新購車優惠", href: "/explore/2" },
-  { label: "車主經驗分享", href: "/explore/3" },
+  { label: "最新活動訊息", data: latestNews },
+  { label: "最新購車優惠", data: purchaseOffers },
+  { label: "車主經驗分享", data: ownerStories },
 ];
 
 const ExplorePage = () => {
   const [selectedIdx, setSelectedIdx] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const history = useHistory();
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedIdx]);
+
+  const handleNavigate = (article) => {
+    history.push(`/article/${article.id}`, { article });
+  };
+
+  const selectedCategoryData = navItems[selectedIdx].data;
+
+  const featuredArticle =
+    selectedCategoryData.length > 0 ? selectedCategoryData[0] : null;
+  const articles =
+    selectedCategoryData.length > 1 ? selectedCategoryData.slice(1) : [];
+
+  const articlesPerPage = 8;
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = articles.slice(
+    indexOfFirstArticle,
+    indexOfLastArticle
+  );
+
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="explore-page">
       <ExploreBanner>
@@ -36,47 +80,83 @@ const ExplorePage = () => {
       <ExploreList>
         {navItems.map((item, idx) => (
           <ExploreListItem
-            key={item.href}
+            key={item.label}
             className={selectedIdx === idx ? "selected" : ""}
             onClick={() => setSelectedIdx(idx)}
           >
-            <a href={item.href}>{item.label}</a>
+            <a href={item.href} onClick={(e) => e.preventDefault()}>
+              {item.label}
+            </a>
           </ExploreListItem>
         ))}
       </ExploreList>
-      <ArticleSection>
-        <ArticleLeft>
-          <ArticleTag>焦點推薦</ArticleTag>
-          <ArticleTitle>
-            MG史上最強檔購車優惠六月開跑！
-            <br />
-            HS、ZS最低入主價86.5萬／69.9萬起
-          </ArticleTitle>
-          <ArticleDesc>
-            MG HS車系推出MAX三車型升級配備不加價
-            再享貸款、配件金、空淨機多重好禮
-          </ArticleDesc>
-          <ArticleTag
-            className="no-dot"
-            style={{
-              color: "#007aff",
-              marginTop: "1rem",
-            }}
-          >
-            #行銷活動
-          </ArticleTag>
-          <ArticleDate>2025/05/29</ArticleDate>
-          <ArticleButton>
-            查看更多 <span>&rarr;</span>
-          </ArticleButton>
-        </ArticleLeft>
-        <ArticleRight>
-          <ArticleImage
-            src="/media/explore/0529news.thumb.960.480.png"
-            alt="活動主圖"
-          />
-        </ArticleRight>
-      </ArticleSection>
+      {featuredArticle ? (
+        <>
+          <ArticleSection onClick={() => handleNavigate(featuredArticle)}>
+            <ArticleLeft>
+              <ArticleTag>焦點推薦</ArticleTag>
+              <ArticleTitle>{featuredArticle.title}</ArticleTitle>
+              <ArticleDesc>{featuredArticle.desc}</ArticleDesc>
+              {featuredArticle.tags
+                .filter((t) => t !== "焦點推薦")
+                .map((tag) => (
+                  <ArticleTag
+                    key={tag}
+                    className="no-dot"
+                    style={{
+                      color: "#007aff",
+                      marginTop: "1rem",
+                    }}
+                  >
+                    {tag}
+                  </ArticleTag>
+                ))}
+
+              <ArticleDate>{featuredArticle.date}</ArticleDate>
+              <ArticleButton>
+                查看更多 <span>&rarr;</span>
+              </ArticleButton>
+            </ArticleLeft>
+            <ArticleRight>
+              <ArticleImage src={featuredArticle.heroImage} alt="活動主圖" />
+            </ArticleRight>
+          </ArticleSection>
+          <FourColumnSection>
+            {currentArticles.map((article) => (
+              <FourColumnItem
+                key={article.id}
+                onClick={() => handleNavigate(article)}
+              >
+                <FourColumnImage src={article.imgSrc} alt={article.title} />
+                <FourColumnContent>
+                  <FourColumnTitle>{article.title}</FourColumnTitle>
+                  {article.desc && (
+                    <FourColumnDesc>{article.desc}</FourColumnDesc>
+                  )}
+                  {article.tags.map((tag) => (
+                    <FourColumnTag key={tag}>{tag}</FourColumnTag>
+                  ))}
+                  <FourColumnDate>{article.date}</FourColumnDate>
+                </FourColumnContent>
+              </FourColumnItem>
+            ))}
+          </FourColumnSection>
+          {totalPages > 0 && (
+            <PaginationWrapper>
+              <Pagination
+                current={currentPage}
+                total={articles.length}
+                pageSize={articlesPerPage}
+                onChange={paginate}
+              />
+            </PaginationWrapper>
+          )}
+        </>
+      ) : (
+        <div style={{ textAlign: "center", padding: "2rem" }}>
+          該分類目前沒有文章。
+        </div>
+      )}
     </div>
   );
 };

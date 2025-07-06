@@ -7,6 +7,7 @@ import HSPage from "./pages/HSPage/HSPage";
 import ZSPage from "./pages/ZSPage/ZSPage";
 import DealerPage from "./pages/DealerPage/DealerPage";
 import ExplorePage from "./pages/ExplorePage/ExplorePage";
+import ArticleDetailPage from "./pages/ArticleDetailPage/ArticleDetailPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import TestDrivePage from "./pages/TestDrivePage/TestDrivePage";
 import OrderPage from "./pages/OrderPage/OrderPage";
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/zs" component={ZSPage} />
           <Route path="/dealer" component={DealerPage} />
           <Route path="/explore" component={ExplorePage} />
+          <Route path="/article/:id" component={ArticleDetailPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/test-drive" component={TestDrivePage} />
           <Route path="/order" component={OrderPage} />
