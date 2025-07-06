@@ -2,20 +2,13 @@ import styled from "styled-components";
 
 export const GalleryContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 100%;
   min-height: 420px;
   background: #fff;
   gap: ${(props) => (props.isType3 ? "4rem" : "0")};
-  align-items: center;
   @media (max-width: 900px) {
     flex-direction: column;
     min-height: 0;
-  }
-
-  @media (max-width: 500px) {
-    margin-top: ${(props) => (props.type1 ? "1rem" : "0")};
-    flex-direction: ${(props) => (props.type1 ? "column-reverse" : "column")};
   }
 `;
 
@@ -26,7 +19,6 @@ export const GalleryLeft = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
-  width: 100%;
   @media (max-width: 900px) {
     flex: none;
     width: 100%;
@@ -47,6 +39,7 @@ export const GalleryRight = styled.div`
     flex: none;
     width: 100%;
     align-items: center;
+    margin-top: 16px;
     padding: 0;
   }
 `;
