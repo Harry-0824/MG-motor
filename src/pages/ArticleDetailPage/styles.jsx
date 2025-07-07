@@ -57,3 +57,25 @@ export const DetailDate = styled.div`
   font-size: 0.9rem;
   margin-bottom: 2rem;
 `;
+
+export const ImageRow = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin: 1.5rem 0;
+
+  img {
+    flex: 1;
+    max-width: 50%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    img {
+      max-width: 100%;
+    }
+  }
+`;

@@ -6,6 +6,7 @@ import {
   ArticleContent,
   DetailTag,
   DetailDate,
+  ImageRow,
 } from "./styles";
 import { ExploreBanner, ExploreImg, ExploreTitle } from "../ExplorePage/styles";
 import { latestNews, purchaseOffers, ownerStories } from "../../data/articles";
@@ -21,6 +22,58 @@ const renderContent = (block) => {
       return <p>{block.text}</p>;
     case "image":
       return <img src={block.src} alt={block.alt || ""} />;
+    case "image-row":
+      return (
+        <ImageRow>
+          {block.images.map((image, index) => (
+            <img key={index} src={image.src} alt={image.alt || ""} />
+          ))}
+        </ImageRow>
+      );
+    case "ul":
+      return (
+        <ul>
+          {block.items.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      );
+    case "table":
+      return (
+        <table border="1" style={{ borderCollapse: "collapse", width: "100%" }}>
+          {block.title && <caption>{block.title}</caption>}
+          <thead>
+            <tr>
+              {block.headers.map((header, index) => (
+                <th
+                  key={index}
+                  style={{
+                    padding: "8px",
+                    border: "1px solid #ddd",
+                    textAlign: "left",
+                  }}
+                >
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {block.rows.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {row.map((cell, cellIndex) => (
+                  <td
+                    key={cellIndex}
+                    style={{ padding: "8px", border: "1px solid #ddd" }}
+                  >
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
     default:
       return null;
   }
