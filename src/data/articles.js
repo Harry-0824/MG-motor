@@ -6,7 +6,7 @@ export const latestNews = [
     title: "MG史上最強購車方案七月續航！HS、ZS享超值入主價86.5萬／69.9萬起",
     desc: "HS 2.0T & PHEV加碼送一年乙式車體險，保固內免費定保，堪稱業界最強售服保障！",
     tags: ["焦點推薦", "#行銷活動"],
-    date: "2025/07/01",
+    date: "2025-07-01",
     category: "最新購車優惠",
     heroImage: "/media/explore/tag/0701news.thumb.960.480.png",
     content: [
@@ -34,7 +34,7 @@ export const latestNews = [
       },
       {
         type: "image",
-        src: "/media/explore/0529news.thumb.960.480.jpg",
+        src: "/media/explore/0529news.thumb.960.480.png",
         alt: "MG HS ACC",
       },
       {
