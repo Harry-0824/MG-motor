@@ -28,7 +28,7 @@ import {
 
 const desktopSlides = [
   {
-    image: "/media/banner/MG HS 限定版首頁Banner - PC 1920x960.jpg",
+    image: "/media/banner/MG HS 限定版首頁Banner - PC 1920x960.webp",
     link: "https://www.mgmotor.com.tw/configuration/hs.html",
     label: "MG HS 限定版",
     h2: "限量登場",
@@ -36,7 +36,7 @@ const desktopSlides = [
     buttonText: "瞭解更多",
   },
   {
-    image: "/media/banner/官網HERO-Banner_1920x960.jpg",
+    image: "/media/banner/官網HERO-Banner_1920x960.webp",
     link: "https://www.mgmotor.com.tw/configuration/zs.html",
     label: "MG ZS 限定版",
     h2: "和謝淑薇一起",
@@ -46,7 +46,7 @@ const desktopSlides = [
     h2Color: "#ffffff",
   },
   {
-    image: "/media/banner/首頁_KV_PC_HS介紹.jpg",
+    image: "/media/banner/首頁_KV_PC_HS介紹.webp",
     link: "https://www.mgmotor.com.tw/configuration/zs.html",
     label: "MG HS",
     h2: "MG HS",
@@ -56,7 +56,7 @@ const desktopSlides = [
     h2Color: "#000",
   },
   {
-    image: "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖1920x960_PC.jpg",
+    image: "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖1920x960_PC.webp",
     link: "https://www.mgmotor.com.tw/configuration/zs.html",
     label: "MG HS",
     h2: "MG HS",
@@ -154,7 +154,7 @@ const Home = () => {
 
         <InfoBlock bg="#f8f8f8" direction="row">
           <InfoImage
-            src="/media/home/MG官網banner_0327_960x300(PC).jpg"
+            src="/media/home/MG官網banner_0327_960x300(PC).webp"
             alt="主視覺"
             imgWidth="60%"
           />
@@ -167,7 +167,7 @@ const Home = () => {
         </InfoBlock>
         <InfoBlock bg="#dd7870" direction="row">
           <InfoImage
-            src="/media/home/MG-ZS官網Resize_0904_官網首頁_車色路跑頁_960X300_PC.jpg"
+            src="/media/home/MG-ZS官網Resize_0904_官網首頁_車色路跑頁_960X300_PC.webp"
             alt="車款2"
           />
           <InfoText>
@@ -178,7 +178,7 @@ const Home = () => {
           </InfoText>
         </InfoBlock>
         <InfoBlock bg="#4db6e7" direction="row-reverse">
-          <InfoImage src="/media/home/0327_960x300.jpg" alt="車款3" />
+          <InfoImage src="/media/home/0327_960x300.webp" alt="車款3" />
           <InfoText>
             <InfoTitle style={{ color: "#fff" }}>充滿細節的運動風格</InfoTitle>
             <InfoDesc style={{ color: "#fff" }}>
@@ -188,7 +188,7 @@ const Home = () => {
           </InfoText>
         </InfoBlock>
         <InfoBlock bg="#dd7870" direction="row">
-          <InfoImage src="/media/home/0327_960x300-1.jpg" alt="車款4" />
+          <InfoImage src="/media/home/0327_960x300-1.webp" alt="車款4" />
           <InfoText>
             <InfoTitle style={{ color: "#fff" }}>
               遠離危險是人性，也是MG的天性
@@ -206,19 +206,19 @@ const Home = () => {
           <Carousel
             slides={[
               {
-                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_1.jpg",
+                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_1.webp",
               },
               {
-                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_2.jpg",
+                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_2.webp",
               },
               {
-                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_3.jpg",
+                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_3.webp",
               },
               {
-                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_4.jpg",
+                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_4.webp",
               },
               {
-                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_5.jpg",
+                image: "/media/home/首頁_Carousel_Teaser_ImageFull_PC_5.webp",
               },
 
               // 你可以自行加入更多圖片
@@ -227,7 +227,7 @@ const Home = () => {
         </BannerCarouselWrapper>
         <BannerFormWrapper>
           <BannerBgImage
-            src="/media/home/首頁_Carousel_Teaser_ImageFull_PC_1.jpg"
+            src="/media/home/首頁_Carousel_Teaser_ImageFull_PC_1.webp"
             alt="表單背景"
             className="cmc-image"
           />

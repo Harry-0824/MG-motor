@@ -97,7 +97,7 @@ const ArticleDetailPage = () => {
     <>
       <ExploreBanner>
         <ExploreImg
-          src="/media/explore/品牌介紹頁_Banner_PC.jpg"
+          src="/media/explore/品牌介紹頁_Banner_PC.webp"
           alt="Explore MG"
         />
       </ExploreBanner>

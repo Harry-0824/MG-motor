@@ -78,7 +78,7 @@ const Navbar = () => {
         <Link to="/">
           <LogoImg
             isScrolled={isScrolled}
-            src="/media/navbar/logo.jpg"
+            src="/media/navbar/logo.webp"
             alt="MG Logo"
           />
         </Link>

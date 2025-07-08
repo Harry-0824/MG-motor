@@ -21,7 +21,7 @@ export const HeroImage = styled.img`
 
 export const HeroNavBar = styled.nav`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   padding: 0 1rem;
   align-items: center;
   background: #fff;

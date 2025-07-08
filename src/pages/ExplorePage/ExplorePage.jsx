@@ -72,7 +72,7 @@ const ExplorePage = () => {
     <div className="explore-page">
       <ExploreBanner>
         <ExploreImg
-          src="/media/explore/品牌介紹頁_Banner_PC.jpg"
+          src="/media/explore/品牌介紹頁_Banner_PC.webp"
           alt="Explore MG"
         />
         <ExploreTitle>探索 MG 最新活動消息</ExploreTitle>

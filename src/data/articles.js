@@ -8,7 +8,7 @@ export const latestNews = [
     tags: ["焦點推薦", "#行銷活動"],
     date: "2025-07-01",
     category: "最新購車優惠",
-    heroImage: "/media/explore/tag/0701news.thumb.960.480.png",
+    heroImage: "/media/explore/tag/0701news.thumb.960.480.webp",
     content: [
       {
         type: "heading",
@@ -17,7 +17,7 @@ export const latestNews = [
       },
       {
         type: "image",
-        src: "/media/explore/news/01.jpg",
+        src: "/media/explore/news/01.webp",
         alt: "MG HS 情境圖",
       },
       {
@@ -34,7 +34,7 @@ export const latestNews = [
       },
       {
         type: "image",
-        src: "/media/explore/0529news.thumb.960.480.png",
+        src: "/media/explore/0529news.thumb.960.480.webp",
         alt: "MG HS ACC",
       },
       {
@@ -56,7 +56,7 @@ export const latestNews = [
       },
       {
         type: "image",
-        src: "/media/explore/news/03.png",
+        src: "/media/explore/news/03.webp",
         alt: "Electrolux雙效涼風循環頂級空淨機",
       },
       {
@@ -70,7 +70,7 @@ export const latestNews = [
       },
       {
         type: "image",
-        src: "/media/explore/news/04.jpg",
+        src: "/media/explore/news/04.webp",
         alt: "HS&ZS",
       },
       {
@@ -90,11 +90,11 @@ export const latestNews = [
         type: "image-row",
         images: [
           {
-            src: "/media/explore/news/05.jpg",
+            src: "/media/explore/news/05.webp",
             alt: "MG HS 黑色款於白色小屋前",
           },
           {
-            src: "/media/explore/news/07.jpg",
+            src: "/media/explore/news/07.webp",
             alt: "MG HS PHEV 白色款於橋下",
           },
         ],
@@ -110,7 +110,7 @@ export const latestNews = [
       },
       {
         type: "image",
-        src: "/media/explore/news/08.jpg",
+        src: "/media/explore/news/08.webp",
         alt: "MG ZS",
       },
       {
@@ -120,7 +120,7 @@ export const latestNews = [
       },
       {
         type: "image",
-        src: "/media/explore/news/官網用_page-0001.jpg",
+        src: "/media/explore/news/官網用_page-0001.webp",
         alt: "MG HS 車型六月購車優惠",
       },
       {
@@ -130,31 +130,32 @@ export const latestNews = [
       },
       {
         type: "image",
-        src: "/media/explore/news/官網用_page-0003.jpg",
+        src: "/media/explore/news/官網用_page-0003.webp",
         alt: "MG ZS 車型六月購車優惠",
       },
     ],
   },
   {
     id: "news-2",
-    imgSrc: "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖1920x960_PC.jpg",
+    imgSrc:
+      "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖1920x960_PC.webp",
     title: "2025年「HS 2.0T旗艦版、HS PHEV馭電版」最新銷售資訊公告",
     tags: ["#News"],
     date: "2025/04/18",
     category: "最新活動訊息",
     heroImage:
-      "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖1920x960_PC.jpg",
+      "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖1920x960_PC.webp",
     content: [{ type: "paragraph", text: "詳細內容建構中..." }],
   },
   {
     id: "news-3",
-    imgSrc: "/media/banner/官網HERO-Banner_1920x960.jpg",
+    imgSrc: "/media/banner/官網HERO-Banner_1920x960.webp",
     title: "MG HS 1.5T馭風前行版限量登場",
     desc: "三大升級套件不加價，制動、型格雙重升級",
     tags: ["#行銷活動"],
     date: "2025/04/02",
     category: "最新活動訊息",
-    heroImage: "/media/banner/官網HERO-Banner_1920x960.jpg",
+    heroImage: "/media/banner/官網HERO-Banner_1920x960.webp",
     content: [{ type: "paragraph", text: "詳細內容建構中..." }],
   },
 ];
@@ -162,13 +163,13 @@ export const latestNews = [
 export const purchaseOffers = [
   {
     id: "offer-1",
-    imgSrc: "/media/explore/tag/0701news.thumb.960.480.png",
+    imgSrc: "/media/explore/tag/0701news.thumb.960.480.webp",
     title: "MG HS / HS PHEV 購車優惠",
     desc: "HS全車系本月限定86.5萬元起",
     tags: ["焦點推薦", "#MG 新車資訊", "#MG 優惠資訊"],
     date: "2025/07/01",
     category: "最新購車優惠",
-    heroImage: "/media/explore/tag/0701news.thumb.960.480.png",
+    heroImage: "/media/explore/tag/0701news.thumb.960.480.webp",
     content: [
       {
         type: "heading",
@@ -177,7 +178,7 @@ export const purchaseOffers = [
       },
       {
         type: "image",
-        src: "/media/hs/車款介紹頁_HS_情境圖_PC.jpg",
+        src: "/media/hs/車款介紹頁_HS_情境圖_PC.webp",
         alt: "MG HS 情境圖",
       },
       {
@@ -186,7 +187,7 @@ export const purchaseOffers = [
       },
       {
         type: "image",
-        src: "/media/hs/車款介紹頁_ACC_PC.jpg",
+        src: "/media/hs/車款介紹頁_ACC_PC.webp",
         alt: "MG HS ACC",
       },
       {
@@ -200,7 +201,7 @@ export const purchaseOffers = [
       },
       {
         type: "image",
-        src: "/media/zs/MG-ZS官網Resize_0904_官網首頁_ZS車圖750X1120_MB (1).jpg",
+        src: "/media/zs/MG-ZS官網Resize_0904_官網首頁_ZS車圖750X1120_MB (1).webp",
         alt: "MG ZS 情境圖",
       },
       {
@@ -222,7 +223,7 @@ export const purchaseOffers = [
       },
       {
         type: "image",
-        src: "/media/home/0327_960x300.jpg",
+        src: "/media/home/0327_960x300.webp",
         alt: "MG 夏日應援",
       },
       {
@@ -236,7 +237,7 @@ export const purchaseOffers = [
       },
       {
         type: "image",
-        src: "/media/hs/車款介紹頁_PC_HS 2.0T動力.jpg",
+        src: "/media/hs/車款介紹頁_PC_HS 2.0T動力.webp",
         alt: "MG HS with a dog",
       },
       {
@@ -317,13 +318,13 @@ export const purchaseOffers = [
   },
   {
     id: "offer-2",
-    imgSrc: "/media/banner/MG HS 限定版首頁Banner - PC 1920x960.jpg",
+    imgSrc: "/media/banner/MG HS 限定版首頁Banner - PC 1920x960.webp",
     title: "MG五月購車超有感!",
     desc: "本月入主即享免繳首年牌燃稅再享購車豪禮任選",
     tags: ["#行銷活動"],
     date: "2025/05/02",
     category: "最新購車優惠",
-    heroImage: "/media/banner/MG HS 限定版首頁Banner - PC 1920x960.jpg",
+    heroImage: "/media/banner/MG HS 限定版首頁Banner - PC 1920x960.webp",
     content: [{ type: "paragraph", text: "詳細內容建構中..." }],
   },
 ];
@@ -331,24 +332,24 @@ export const purchaseOffers = [
 export const ownerStories = [
   {
     id: "story-1",
-    imgSrc: "/media/explore//tag/_ep25-HS-PHEV.thumb.960.480.png",
+    imgSrc: "/media/explore//tag/_ep25-HS-PHEV.thumb.960.480.webp",
     title: "HS車主分享：家庭與性能的完美結合",
     desc: "從Zinger換到HS，動力、安全、科技全方位升級，這才是我想要的車！",
     tags: ["#行銷活動"],
     date: "2025/06/15",
     category: "車主經驗分享",
-    heroImage: "/media/explore//tag/_ep25-HS-PHEV.thumb.960.480.png",
+    heroImage: "/media/explore//tag/_ep25-HS-PHEV.thumb.960.480.webp",
     content: [{ type: "paragraph", text: "詳細內容建構中..." }],
   },
   {
     id: "story-2",
-    imgSrc: "/media/hs/驚喜篇 PC 1920x1080.jpg",
+    imgSrc: "/media/hs/驚喜篇 PC 1920x1080.webp",
     title: "ZS車主：都市通勤的最佳選擇",
     desc: "小巧靈活，配備齊全，ZS讓我在城市中穿梭自如，每天的通勤都成為一種享受。",
     tags: ["#車主經驗分享"],
     date: "2025/05/20",
     category: "車主經驗分享",
-    heroImage: "/media/hs/驚喜篇 PC 1920x1080.jpg",
+    heroImage: "/media/hs/驚喜篇 PC 1920x1080.webp",
     content: [{ type: "paragraph", text: "詳細內容建構中..." }],
   },
 ];
