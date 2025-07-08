@@ -39,7 +39,8 @@ const VehicleSpecSheet = ({ vehicleData }) => {
   );
   const [activeColorHex, setActiveColorHex] = useState("");
   const [currentMainImageSrc, setCurrentMainImageSrc] = useState("");
-  const [dimensionsImageSrc, setDimensionsImageSrc] = useState(""); // New state for dimensions image
+  const [dimensionsImageSrc, setDimensionsImageSrc] = useState("");
+  const [dimensionsImageAlt, setDimensionsImageAlt] = useState("");
 
   useEffect(() => {
     const newSelectedTrim = vehicleData?.trims?.find(
@@ -55,33 +56,8 @@ const VehicleSpecSheet = ({ vehicleData }) => {
       setCurrentMainImageSrc(
         initialColor?.imageSrc || selectedTrimData.specImages?.main?.src || ""
       );
-
-      // Set initial dimensions image based on screen width
-      const updateDimensionsImage = () => {
-        if (
-          window.innerWidth <= 500 &&
-          selectedTrimData.specImages?.dimensionsDisplayImage?.mobileSrc
-        ) {
-          setDimensionsImageSrc(
-            selectedTrimData.specImages.dimensionsDisplayImage.mobileSrc
-          );
-        } else if (
-          selectedTrimData.specImages?.dimensionsDisplayImage?.desktopSrc
-        ) {
-          setDimensionsImageSrc(
-            selectedTrimData.specImages.dimensionsDisplayImage.desktopSrc
-          );
-        } else {
-          // Fallback if desktopSrc is also not available, though ideally one should be
-          setDimensionsImageSrc(
-            selectedTrimData.specImages?.dimensionsDisplayImage?.src || ""
-          );
-        }
-      };
-
-      updateDimensionsImage(); // Initial call
-      window.addEventListener("resize", updateDimensionsImage);
-      return () => window.removeEventListener("resize", updateDimensionsImage);
+      setDimensionsImageSrc(initialColor?.dimensionsDisplayImage?.src || "");
+      setDimensionsImageAlt(initialColor?.dimensionsDisplayImage?.alt || "");
     }
   }, [selectedTrimData]);
 
@@ -89,16 +65,16 @@ const VehicleSpecSheet = ({ vehicleData }) => {
     return <div>Loading vehicle data...</div>;
   }
 
-  const { modelName, trims } = vehicleData;
-  const {
-    name: trimName,
-    price,
-    colors,
-    equipment,
-    basicSpecs,
-    specImages,
-    disclaimer,
-  } = selectedTrimData;
+  // 只宣告一次，避免重複
+  const modelName = vehicleData.modelName;
+  const trims = vehicleData.trims;
+  const trimName = selectedTrimData.name;
+  const price = selectedTrimData.price;
+  const colors = selectedTrimData.colors;
+  const equipment = selectedTrimData.equipment;
+  const basicSpecs = selectedTrimData.basicSpecs;
+  const specImages = selectedTrimData.specImages;
+  const disclaimer = selectedTrimData.disclaimer;
 
   const handleTrimChange = (event) => {
     setSelectedTrimName(event.target.value);
@@ -109,6 +85,8 @@ const VehicleSpecSheet = ({ vehicleData }) => {
     setCurrentMainImageSrc(
       color.imageSrc || selectedTrimData.specImages?.main?.src || ""
     );
+    setDimensionsImageSrc(color.dimensionsDisplayImage?.src || "");
+    setDimensionsImageAlt(color.dimensionsDisplayImage?.alt || "");
   };
 
   return (
@@ -198,23 +176,23 @@ const VehicleSpecSheet = ({ vehicleData }) => {
         </ActionButton>
       </ActionButtons>
 
-      <ImageGallery>
-        {dimensionsImageSrc && ( // Use the new state variable here
+      {/* 尺寸圖顯示區塊，放在 ActionButtons 下方 */}
+      {dimensionsImageSrc && (
+        <ImageGallery>
           <MainImage
-            src={dimensionsImageSrc} // Use the new state variable here
-            alt={
-              selectedTrimData.specImages?.dimensionsDisplayImage?.alt ||
-              `${modelName} ${trimName} 車輛尺寸`
-            }
+            src={dimensionsImageSrc}
+            alt={dimensionsImageAlt}
             style={{
               maxWidth: "100%",
               height: "auto",
               display: "block",
-              margin: "20px auto 0", // Added top margin
+              margin: "20px auto 0",
             }}
           />
-        )}
-      </ImageGallery>
+        </ImageGallery>
+      )}
+
+      {/* 其他內容... */}
     </SpecSheetContainer>
   );
 };

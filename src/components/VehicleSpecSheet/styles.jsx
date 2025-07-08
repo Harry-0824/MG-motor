@@ -33,7 +33,9 @@ export const DropdownAndPriceContainer = styled.div`
 export const DropdownWrapper = styled.div`
   margin-right: 20px;
   position: relative;
+  width: 100%;
   select {
+    width: 100%;
     padding: 15px 0 15px 15px;
     border-radius: 5px;
     border: 1px solid #ccc;

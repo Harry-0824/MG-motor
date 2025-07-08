@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const SpecsContainer = styled.div`
   width: 100%;
-
   margin: 30px auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",

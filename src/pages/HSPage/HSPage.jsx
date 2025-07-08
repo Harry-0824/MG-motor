@@ -479,24 +479,40 @@ const hsSpecData = {
           hex: "#FFFFFF",
           imageSrc: "/media/hs/MG官網_共用圖_690x494_HS白.webp",
           swatchSrc: "/media/hs/2022_HS系列_白_color pic.webp",
+          dimensionsDisplayImage: {
+            src: "/media/hs/車款介紹頁_HS_三視圖_PC_白.webp",
+            alt: "HS 1.5T 旗艦版 車輛尺寸-白",
+          },
         },
         {
           name: "掠影黑",
           hex: "#2B2B2B",
           imageSrc: "/media/hs/MG官網_共用圖_690x494_HS黑.webp",
           swatchSrc: "/media/hs/2022_HS系列_黑_color pic.webp",
+          dimensionsDisplayImage: {
+            src: "/media/hs/車款介紹頁_HS_三視圖_PC_黑.webp",
+            alt: "HS 1.5T 旗艦版 車輛尺寸-黑",
+          },
         },
         {
           name: "沉穩灰",
-          hex: "#808080", // Changed from #2B2B2B to a more standard grey
+          hex: "#808080",
           imageSrc: "/media/hs/MG官網_共用圖_690x494_EHS灰.webp",
           swatchSrc: "/media/hs/2022_HS系列_灰_color pic.webp",
+          dimensionsDisplayImage: {
+            src: "/media/hs/車款介紹頁_HS PHEV_三視圖_PC_灰.webp",
+            alt: "HS 1.5T 旗艦版 車輛尺寸-灰",
+          },
         },
         {
           name: "風馳紅",
           hex: "#A30000",
           imageSrc: "/media/hs/MG官網_共用圖_690x494_HS紅.webp",
           swatchSrc: "/media/hs/2022_HS系列_紅_color pic.webp",
+          dimensionsDisplayImage: {
+            src: "/media/hs/車款介紹頁_HS_三視圖_PC_紅.webp",
+            alt: "HS 1.5T 旗艦版 車輛尺寸-紅",
+          },
         },
         // { name: "電光銀", hex: "#A9A9A9" }, // 假設的顏色，如果HS 1.5T有此顏色
       ],
@@ -558,10 +574,6 @@ const hsSpecData = {
           src: "/media/hs/MG官網_共用圖_690x494_EHS灰.webp",
           alt: "HS 1.5T 旗艦版",
         }, // 請替換為實際主圖
-        dimensionsDisplayImage: {
-          src: "/media/hs/車款介紹頁_HS PHEV_三視圖_PC_灰.webp",
-          alt: "HS 1.5T 旗艦版 車輛尺寸",
-        }, // 新增的尺寸展示圖片
       },
       disclaimer: "免責聲明: 此車輛尺寸為標準尺寸, 實際尺寸以交車為準",
       bookingLink: "https://www.mgmotor.com.tw/testdrive.html",
