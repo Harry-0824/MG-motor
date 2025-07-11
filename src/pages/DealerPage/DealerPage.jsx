@@ -1,5 +1,6 @@
 import React from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { MapOptionsWrapper, MapOptionsInner, MapOptionButton } from "./styles"; // 引入 styled-components
 
 const allLocations = {
   show: [
@@ -28,7 +29,7 @@ const center = { lat: 24.5, lng: 121 };
 
 const DealerPage = () => {
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyBNoDHY5er5O98zs6ftkdFDzJCeuWUClx8",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
   const [type, setType] = React.useState("show");
   const locations = allLocations[type];
@@ -47,71 +48,29 @@ const DealerPage = () => {
         </GoogleMap>
       )}
       {/* 地圖下方選項區塊 */}
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          position: "relative",
-          marginTop: "-70px",
-          zIndex: 10,
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            background: "#fff",
-            borderRadius: "6px",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-            overflow: "hidden",
-          }}
-        >
-          <button
-            style={{
-              background: type === "show" ? "#000" : "#fff",
-              color: type === "show" ? "#fff" : "#222",
-              border: "none",
-              padding: "16px 32px",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              cursor: "pointer",
-              borderRight: "1px solid #eee",
-            }}
+      <MapOptionsWrapper>
+        <MapOptionsInner>
+          <MapOptionButton
+            active={type === "show"}
             onClick={() => setType("show")}
           >
             展示中心
-          </button>
-          <button
-            style={{
-              background: type === "service" ? "#000" : "#fff",
-              color: type === "service" ? "#fff" : "#222",
-              border: "none",
-              padding: "16px 32px",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              cursor: "pointer",
-              borderRight: "1px solid #eee",
-            }}
+          </MapOptionButton>
+          <MapOptionButton
+            active={type === "service"}
             onClick={() => setType("service")}
           >
             服務中心
-          </button>
-          <button
-            style={{
-              background: type === "charge" ? "#000" : "#fff",
-              color: type === "charge" ? "#fff" : "#222",
-              border: "none",
-              padding: "16px 32px",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              cursor: "pointer",
-            }}
+          </MapOptionButton>
+          <MapOptionButton
+            active={type === "charge"}
+            last
             onClick={() => setType("charge")}
           >
             充電站
-          </button>
-        </div>
-      </div>
+          </MapOptionButton>
+        </MapOptionsInner>
+      </MapOptionsWrapper>
     </div>
   );
 };
