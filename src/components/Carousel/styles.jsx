@@ -163,10 +163,12 @@ export const DotsWrapper = styled.div`
   justify-content: flex-start; // 根據圖片靠左對齊
   align-items: center; // 垂直置中
   gap: 8px; // 根據圖片調整間距
-  position: static; // 行動裝置版面改為靜態定位
+  position: absolute; // 行動裝置版面改為靜態定位
   z-index: 2; // 堆疊順序
   padding: 1rem 0; // 增加內邊距以與按鈕分隔
   margin-left: 0; // 與文字內容對齊
+  left: 40%;
+  top: 85%; // 根據圖片調整位置
 
   @media (max-width: 500px) {
     // 桌機版樣式

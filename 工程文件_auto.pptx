@@ -1,0 +1,58 @@
+<ppt>
+<slide title="MG Motor React 專案工程文件">
+  <ul>
+    <li>專案名稱：MG Motor React Site</li>
+    <li>技術棧：React, styled-components, Ant Design, React Router</li>
+    <li>主要功能：車款展示、規格查詢、預約試乘、品牌故事、最新消息</li>
+    <li>部署環境：靜態網頁伺服器 (如 Vercel, Netlify)</li>
+  </ul>
+</slide>
+<slide title="專案目錄結構">
+  <pre>
+mgm-react-site
+├── src
+│   ├── index.jsx
+│   ├── App.jsx
+│   ├── components
+│   ├── pages
+│   ├── styles
+├── public
+│   └── index.html
+├── package.json
+└── README.md
+  </pre>
+</slide>
+<slide title="主要頁面與元件">
+  <ul>
+    <li>首頁 (Home)：品牌形象、Banner、最新消息</li>
+    <li>HSPage / ZSPage：車款特色、規格、圖文、試乘預約</li>
+    <li>AboutPage：品牌代言人故事、形象影片</li>
+    <li>BookingForm：預約賞車/試乘表單 (Ant Design/自訂元件)</li>
+    <li>VehicleSpecSheet / DetailedVehicleSpecs：車輛規格表</li>
+    <li>Accordion / Carousel / GalleryWithText：互動式內容展示</li>
+  </ul>
+</slide>
+<slide title="資料流與 API 串接">
+  <ul>
+    <li>車輛規格、詳細資料：本地 JS 檔案 (如 hsSpecData, zsSpecData)</li>
+    <li>預約表單：可串接後端 API (目前為前端驗證/console.log)</li>
+    <li>圖片、影片：public/media 資料夾靜態資源</li>
+  </ul>
+</slide>
+<slide title="頁面設計重點">
+  <ul>
+    <li>響應式設計，支援桌機與行動裝置</li>
+    <li>主導覽列 + Sticky HeroNavBar，提升使用者體驗</li>
+    <li>Accordion/Carousel/SpecSheet 提供豐富互動</li>
+    <li>品牌故事、代言人形象、YouTube 影片嵌入</li>
+  </ul>
+</slide>
+<slide title="部署與維護建議">
+  <ul>
+    <li>建議使用 Vercel/Netlify 部署，支援 CI/CD</li>
+    <li>靜態資源集中於 public/media，易於管理</li>
+    <li>元件化設計，方便擴充與維護</li>
+    <li>可依需求串接後端 API，支援資料動態更新</li>
+  </ul>
+</slide>
+</ppt>
