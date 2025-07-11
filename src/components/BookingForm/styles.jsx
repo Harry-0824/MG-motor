@@ -122,10 +122,10 @@ export const CheckboxLabel = styled.label`
 `;
 
 export const NoteText = styled.p`
-  font-size: 0.8rem;
-  color: #777;
+  font-size: 1rem;
+  color: #e10012;
   margin-top: 1.5rem;
-  text-align: center;
+  text-align: left;
   line-height: 1.4;
 `;
 
