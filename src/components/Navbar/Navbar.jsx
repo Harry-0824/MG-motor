@@ -73,11 +73,11 @@ const Navbar = () => {
   );
 
   return (
-    <Nav isSticky={isSticky}>
+    <Nav $isSticky={isSticky}>
       <Brand>
         <Link to="/">
           <LogoImg
-            isScrolled={isScrolled}
+            $isScrolled={isScrolled}
             src="/media/navbar/logo.webp"
             alt="MG Logo"
           />
@@ -102,7 +102,7 @@ const Navbar = () => {
           <Link to="/about">品牌介紹</Link>
         </LinkItem>
       </MainLinks>
-      <Links right>
+      <Links $right>
         <LinkItem>
           <Link to="/test-drive">預約賞車/試乘</Link>
         </LinkItem>

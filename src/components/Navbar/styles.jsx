@@ -11,8 +11,8 @@ export const Nav = styled.nav`
   transition: all 0.3s ease-in-out;
   z-index: 1000;
 
-  ${({ isSticky }) =>
-    isSticky &&
+  ${({ $isSticky }) =>
+    $isSticky &&
     `
     position: fixed;
     top: 0;
@@ -55,11 +55,11 @@ export const LogoImg = styled.img`
   display: block;
   transition: height 0.3s ease-in-out;
 
-  ${({ isScrolled }) =>
-    isScrolled &&
+  ${({ $isScrolled }) =>
+    $isScrolled &&
     `
-    height: 64px; // Match Nav height
-  `}
+      height: 60px;
+    `}
 
   @media (max-width: 500px) {
     height: 60px;
@@ -70,17 +70,17 @@ export const LogoImg = styled.img`
 // 第一區塊與第二區塊共用 Links，透過 props 控制對齊
 export const Links = styled.ul`
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  flex: ${(props) => props.flex || "unset"};
-  justify-content: ${(props) => (props.right ? "flex-end" : "flex-start")};
   align-items: center;
-  flex-grow: ${(props) => (props.flex ? 1 : 0)};
-
-  @media (max-width: 500px) {
-    display: none;
-  }
+  list-style: none;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 0;
+  ${({ $right }) =>
+    $right &&
+    `
+      margin-left: auto;
+      margin-right: 0;
+    `}
 `;
 
 // LinkItem 樣式
