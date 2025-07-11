@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  max-width: 600px; /* Adjust as needed */
+  width: 100%;
+  height: auto;
+  max-width: 1400px; /* Adjust as needed */
   margin: 2rem auto;
   padding: 2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
   font-family: Arial, sans-serif; /* Example font */
 `;
 
@@ -21,6 +21,7 @@ export const FormGroup = styled.div`
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
+  width: 100%;
   flex: ${(props) => props.flex || "unset"};
 `;
 
@@ -37,6 +38,7 @@ export const Label = styled.label`
   font-weight: bold;
   color: #555;
   font-size: 0.9rem;
+  text-align: left; /* Align label text to the left */
 `;
 
 export const Input = styled.input`
@@ -128,8 +130,39 @@ export const NoteText = styled.p`
 `;
 
 export const CarImage = styled.img`
-  width: 150px; /* Adjust as needed */
+  width: 400px; /* Adjust as needed */
   height: auto;
   object-fit: contain;
   margin-left: 1rem; /* Add some space if it's next to a form group */
+`;
+
+export const FormMainRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+`;
+
+export const FormLeft = styled.div`
+  flex: 1.2;
+  min-width: 320px;
+  max-width: 600px;
+`;
+
+export const FormRight = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 280px;
+  @media (max-width: 900px) {
+    justify-content: flex-start;
+    margin-top: 24px;
+  }
 `;

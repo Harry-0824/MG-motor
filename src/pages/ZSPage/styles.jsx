@@ -22,26 +22,52 @@ export const HeroImage = styled.img`
 export const HeroNavBar = styled.nav`
   display: flex;
   justify-content: space-around;
-  padding: 0 1rem;
-  align-items: center;
+  align-items: flex-end;
   background: #fff;
   position: sticky;
-  top: 0;
+  top: 64px; // 與 HSPage 一致，固定在主導覽列下方
   z-index: 10;
-  height: 90px;
+  height: 70px;
   border-bottom: 1.5px solid #e5e5e5;
-  overflow-x: visible;
-  @media (max-width: 500px) {
-    gap: 0.5rem;
-    width: 100%;
+  @media (max-width: 768px) {
+    gap: 1.2rem;
     height: 48px;
-    overflow-x: hidden;
-    white-space: nowrap;
     padding: 0 0.5rem;
+  }
+  @media (max-width: 500px) {
+    justify-content: flex-start;
+    overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
     &::-webkit-scrollbar {
       display: none;
+    }
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      background: linear-gradient(to right, white, transparent);
+      pointer-events: none;
+      opacity: ${({ $showLeftFade }) => ($showLeftFade ? 1 : 0)};
+      transition: opacity 0.3s;
+      z-index: 1;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50px;
+      background: linear-gradient(to left, white, transparent);
+      pointer-events: none;
+      opacity: ${({ $showRightFade }) => ($showRightFade ? 1 : 0)};
+      transition: opacity 0.3s;
+      z-index: 1;
     }
   }
 `;

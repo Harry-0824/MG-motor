@@ -35,7 +35,9 @@ const Accordion = ({ items }) => {
               <>
                 <Content>
                   {item.content.map((text, i) => (
-                    <p key={i}>{text}</p>
+                    <p key={i} style={{ textAlign: "left" }}>
+                      {text}
+                    </p>
                   ))}
                 </Content>
                 {item.image && (

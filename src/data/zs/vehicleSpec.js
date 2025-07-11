@@ -10,30 +10,50 @@ export const zsSpecData = {
           hex: "#0000FF",
           imageSrc: "/media/zs/MG ZS官網_BLUE_FA.webp", // Placeholder - Update with ZS specific image
           swatchSrc: "/media/zs/ZS_官網車色-blue.webp", // Placeholder - Update with ZS specific image
+          dimensionsDisplayImage: {
+            src: "/media/zs/MG-ZS官網網頁_三視圖_PC-1440x375_藍.webp", // Placeholder - Update with ZS specific image
+            alt: "ZS 1.5L 旗艦版 車輛尺寸",
+          },
         },
         {
           name: "炫彩橘",
           hex: "#FF7F50",
           imageSrc: "/media/zs/2023_ZS_Orange_FA.webp", // Placeholder - Update with ZS specific image
           swatchSrc: "/media/zs/ZS_官網車色-orange.webp", // Placeholder - Update with ZS specific image
+          dimensionsDisplayImage: {
+            src: "/media/zs/MG-ZS官網網頁_三視圖_PC-1440x375_橘.webp", // Placeholder - Update with ZS specific image
+            alt: "ZS 1.5L 旗艦版 車輛尺寸",
+          },
         },
         {
           name: "亮眼銀",
           hex: "#C0C0C0",
           imageSrc: "/media/zs/2023_ZS_Silver_FA.webp", // Placeholder - Update with ZS specific image
           swatchSrc: "/media/zs/ZS_官網車色-silver.webp", // Placeholder - Update with ZS specific image
+          dimensionsDisplayImage: {
+            src: "/media/zs/MG-ZS官網網頁_三視圖_PC-1440x375_銀.webp", // Placeholder - Update with ZS specific image
+            alt: "ZS 1.5L 旗艦版 車輛尺寸",
+          },
         },
         {
           name: "電掣白",
           hex: "#FFFFFF",
           imageSrc: "/media/zs/2023_ZS_White_FA.webp", // Placeholder - Update with ZS specific image
           swatchSrc: "/media/zs/ZS_官網車色-white.webp", // Placeholder - Update with ZS specific image
+          dimensionsDisplayImage: {
+            src: "/media/zs/MG-ZS官網網頁_三視圖_PC-1440x375_白.webp", // Placeholder - Update with ZS specific image
+            alt: "ZS 1.5L 旗艦版 車輛尺寸",
+          },
         },
         {
           name: "鋼鐵黑",
           hex: "#000000",
           imageSrc: "/media/zs/2023_ZS_Black_FA.webp", // Placeholder - Update with ZS specific image
           swatchSrc: "/media/zs/ZS_官網車色-black.webp", // Placeholder - Update with ZS specific image
+          dimensionsDisplayImage: {
+            src: "/media/zs/MG-ZS官網網頁_三視圖_PC-1440x375_黑.webp", // Placeholder - Update with ZS specific image
+            alt: "ZS 1.5L 旗艦版 車輛尺寸",
+          },
         },
         // Add other ZS colors
       ],

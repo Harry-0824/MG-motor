@@ -27,7 +27,7 @@ export const HeroNavBar = styled.nav`
   position: sticky;
   top: 64px; // Adjust for main navbar height
   z-index: 10;
-  height: 90px;
+  height: 70px;
   border-bottom: 1.5px solid #e5e5e5;
   @media (max-width: 768px) {
     gap: 1.2rem;

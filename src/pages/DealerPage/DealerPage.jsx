@@ -1,10 +1,20 @@
 import React from "react";
+import { HeroImageWrapper, HeroImage } from "./styles";
 
 const DealerPage = () => {
   return (
-    <div>
-      <h1>Dealer Locations</h1>
-      <p>Find MG dealers near you.</p>
+    <div className="dealer-page">
+      {" "}
+      <HeroImageWrapper>
+        <HeroImage
+          src={
+            window.innerWidth <= 500
+              ? "/media/zs/車型頁_750_800_mo.webp"
+              : "/media/zs/車型頁_2160_540_pc.webp"
+          }
+          alt="ZS Hero"
+        />
+      </HeroImageWrapper>
     </div>
   );
 };
