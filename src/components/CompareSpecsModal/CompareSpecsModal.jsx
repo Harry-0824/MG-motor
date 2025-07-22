@@ -11,7 +11,6 @@ const CompareSpecsModal = ({
   detailedSpecs,
   specName,
 }) => {
-  if (!detailedSpecs || !detailedSpecs[specName]) return null;
   const specData = detailedSpecs[specName];
   return (
     <Modal

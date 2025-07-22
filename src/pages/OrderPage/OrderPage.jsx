@@ -21,10 +21,12 @@ import { zsDetailedSpecs } from "../../data/zs/detailedSpecs";
 // 車型資料
 const carOptions = [
   {
+    id: 0,
     name: "MG HS",
     desc: "有本事 讓世界心跳加速",
     img: "/media/order/2022_HS_車款圖_灰.webp",
     to: "/order/hs",
+    detail: hsDetailedSpecs,
     colors: [
       {
         label: "黑",
@@ -81,10 +83,12 @@ const carOptions = [
     ],
   },
   {
+    id: 1,
     name: "MG ZS",
     desc: "天生出眾",
     img: "/media/order/MG ZS官網_BLUE_FA.webp",
     to: "/order/zs",
+    detail: zsDetailedSpecs,
     colors: [
       {
         label: "藍",
@@ -124,7 +128,7 @@ const carOptions = [
     ],
     specs: [
       {
-        name: "ZS 1.5L 豪華版",
+        name: "ZS 1.5L 旗艦版",
         price: 799000,
         features: [
           "最大馬力 120ps 最大扭力 15.3kg-m",
@@ -195,6 +199,7 @@ const OrderPage = () => {
   const [spec, setSpec] = useState(0);
   const [showSpecsModal, setShowSpecsModal] = useState(false);
   const [step, setStep] = useState(1); // 1: 車款選擇/規格, 2: 內裝選擇
+  const [modelData, setModelData] = useState(null);
 
   // 解析網址 carId 參數，自動顯示對應車款詳情
   useEffect(() => {
@@ -372,12 +377,8 @@ const OrderPage = () => {
                     padding: 0,
                   }}
                   onClick={() => {
-                    if (
-                      selectedCar.name === "MG HS" ||
-                      selectedCar.name === "MG ZS"
-                    ) {
-                      setShowSpecsModal(true);
-                    }
+                    setModelData(selectedCar.detail);
+                    setShowSpecsModal(true);
                   }}
                 >
                   詳細規格比較
@@ -851,9 +852,7 @@ const OrderPage = () => {
             visible={showSpecsModal}
             onClose={() => setShowSpecsModal(false)}
             carName={selectedCar.name}
-            detailedSpecs={
-              selectedCar.name === "MG HS" ? hsDetailedSpecs : zsDetailedSpecs
-            }
+            detailedSpecs={modelData}
             specName={selectedCar.specs[spec].name}
           />
         )}
