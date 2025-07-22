@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import { Typography, Radio, Button, Card, Checkbox, Divider } from "antd";
 import {
   Container,
-  Title,
   OptionBlock,
   CarImg,
   CarName,
   CarDesc,
   Arrow,
-  CheckboxBlackStyle,
   HomeLinkButton,
+  CheckboxBlackStyle,
 } from "./styles";
-import { Typography, Radio, Card, Checkbox, Button, Divider } from "antd";
 import CompareSpecsModal from "../../components/CompareSpecsModal/CompareSpecsModal";
 import { hsDetailedSpecs } from "../../data/hs/detailedSpecs";
-
+import { zsDetailedSpecs } from "../../data/zs/detailedSpecs";
+// Removed invalid object property fragments
+// ...existing code...
+// ...existing code...
+// ...existing code...
+// 車型資料
 const carOptions = [
   {
     name: "MG HS",
@@ -144,6 +148,43 @@ const carOptions = [
   },
 ];
 
+// Collapse Section for price details
+function PriceCollapseSection({
+  title,
+  price,
+  priceStyle,
+  children,
+  defaultOpen,
+}) {
+  const [open, setOpen] = React.useState(!!defaultOpen);
+  return (
+    <div style={{ borderBottom: "1px solid #eee", background: "#fff" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          cursor: "pointer",
+          padding: "12px 20px",
+          fontWeight: 700,
+          fontSize: 16,
+          background: "#fff",
+        }}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span style={{ display: "flex", alignItems: "center" }}>
+          {title}
+          <span style={{ marginLeft: 8, fontSize: 18, color: "#888" }}>
+            {open ? "▲" : "▼"}
+          </span>
+        </span>
+        <span style={priceStyle}>{price}</span>
+      </div>
+      {open && <div>{children}</div>}
+    </div>
+  );
+}
+
 const { Title: AntTitle, Text } = Typography;
 
 const OrderPage = () => {
@@ -179,7 +220,7 @@ const OrderPage = () => {
   if (!selectedCar) {
     return (
       <Container>
-        <Title>選擇車款</Title>
+        <AntTitle>選擇車款</AntTitle>
         {carOptions.map((car) => (
           <OptionBlock
             key={car.name}
@@ -206,7 +247,7 @@ const OrderPage = () => {
       <CheckboxBlackStyle />
       <Container style={{ maxWidth: 1400 }}>
         {/* 上半部：車輛資訊與選項（左右分布） */}
-        {step === 1 ? (
+        {step === 1 && (
           <div
             style={{
               display: "flex",
@@ -242,7 +283,7 @@ const OrderPage = () => {
               <div
                 style={{
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "flex-end",
                   marginBottom: 8,
                 }}
               >
@@ -310,21 +351,38 @@ const OrderPage = () => {
               >
                 {selectedCar.colors.find((c) => c.value === color)?.name}
               </span>
-              <AntTitle level={4} style={{ marginBottom: 8 }}>
-                車款規格
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-end",
+                  marginBottom: 8,
+                }}
+              >
+                <AntTitle
+                  level={4}
+                  style={{ marginBottom: 0, marginRight: 12 }}
+                >
+                  車款規格
+                </AntTitle>
                 <Button
                   type="link"
                   style={{
-                    marginLeft: 12,
                     fontWeight: 400,
                     fontSize: 16,
                     padding: 0,
                   }}
-                  onClick={() => setShowSpecsModal(true)}
+                  onClick={() => {
+                    if (
+                      selectedCar.name === "MG HS" ||
+                      selectedCar.name === "MG ZS"
+                    ) {
+                      setShowSpecsModal(true);
+                    }
+                  }}
                 >
                   詳細規格比較
                 </Button>
-              </AntTitle>
+              </div>
               <Card
                 style={{ marginBottom: 16, border: "1px solid #000000" }}
                 title={
@@ -377,7 +435,8 @@ const OrderPage = () => {
               </div>
             </div>
           </div>
-        ) : (
+        )}
+        {step === 2 && (
           <div
             style={{
               display: "flex",
@@ -511,6 +570,7 @@ const OrderPage = () => {
                 </div>
                 <HomeLinkButton
                   style={{ minWidth: 140, fontSize: 18, height: 48 }}
+                  onClick={() => setStep(3)}
                 >
                   預覽訂單
                 </HomeLinkButton>
@@ -518,9 +578,259 @@ const OrderPage = () => {
             </div>
           </div>
         )}
+        {step === 3 && (
+          <div
+            style={{
+              background: "#fff",
+              borderRadius: 8,
+              padding: "32px 0 0 0",
+              minHeight: 700,
+            }}
+          >
+            {/* 預覽訂單標題與車圖 */}
+            <div style={{ textAlign: "center", marginBottom: 24 }}>
+              <AntTitle level={2} style={{ fontWeight: 700, marginBottom: 8 }}>
+                預覽訂單
+              </AntTitle>
+              <img
+                src={
+                  selectedCar.colors.find((c) => c.value === color)?.img ||
+                  selectedCar.img
+                }
+                alt={selectedCar.name}
+                style={{
+                  margin: "0 auto 16px",
+                  display: "block",
+                }}
+              />
+            </div>
+            {/* 車型/規格/價格明細 */}
+            <div style={{ maxWidth: 800, margin: "0 auto" }}>
+              <AntTitle level={3} style={{ fontWeight: 700, marginBottom: 0 }}>
+                {selectedCar.specs[spec].name}
+                {selectedCar.specs[spec].subname && (
+                  <span
+                    style={{
+                      fontWeight: 400,
+                      fontSize: 16,
+                      marginLeft: 8,
+                      color: "#888",
+                    }}
+                  >
+                    {selectedCar.specs[spec].subname}
+                  </span>
+                )}
+                <span style={{ color: "#b00", fontSize: 20, marginLeft: 16 }}>
+                  總價{" "}
+                  <span style={{ fontWeight: 700, fontSize: 22 }}>
+                    NT${selectedCar.specs[spec].price.toLocaleString()}
+                  </span>
+                </span>
+              </AntTitle>
+              <div
+                style={{ color: "#888", fontSize: 16, margin: "8px 0 16px 0" }}
+              >
+                <span>操作車型試算</span>
+              </div>
+              {/* 價格明細展開選單 */}
+              <div
+                style={{
+                  marginBottom: 24,
+                  borderRadius: 6,
+                  border: "1px solid #eee",
+                  overflow: "hidden",
+                }}
+              >
+                {/* 車型售價 */}
+                <PriceCollapseSection
+                  title="車型售價"
+                  price={`$${selectedCar.specs[spec].price.toLocaleString()}`}
+                  defaultOpen={true}
+                >
+                  <div
+                    style={{
+                      padding: "0 20px 12px 20px",
+                      color: "#222",
+                      fontSize: 15,
+                    }}
+                  >
+                    <div style={{ marginBottom: 2 }}>
+                      {selectedCar.specs[spec].name}
+                    </div>
+                    {selectedCar.specs[spec].subname && (
+                      <div
+                        style={{ color: "#888", fontSize: 14, marginBottom: 2 }}
+                      >
+                        {selectedCar.specs[spec].subname}
+                      </div>
+                    )}
+                    <div style={{ marginBottom: 2 }}>
+                      車身塗裝
+                      {selectedCar.colors.find((c) => c.value === color)
+                        ?.name || ""}
+                    </div>
+                    <a
+                      style={{
+                        color: "#1a5cff",
+                        fontSize: 14,
+                        marginRight: 12,
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setShowSpecsModal(true)}
+                    >
+                      查看詳細規格
+                    </a>
+                    <a
+                      style={{
+                        color: "#1a5cff",
+                        fontSize: 14,
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setStep(1)}
+                    >
+                      更換
+                    </a>
+                  </div>
+                </PriceCollapseSection>
+                {/* 內裝選項 */}
+                <PriceCollapseSection
+                  title="內裝選配"
+                  price="$-"
+                  defaultOpen={false}
+                >
+                  <div
+                    style={{
+                      padding: "0 20px 12px 20px",
+                      color: "#222",
+                      fontSize: 15,
+                    }}
+                  >
+                    夜幕黑搭配一體式賽車座椅
+                    <div>
+                      <a
+                        style={{
+                          color: "#1a5cff",
+                          fontSize: 14,
+                          cursor: "pointer",
+                        }}
+                        onClick={() => setStep(2)}
+                      >
+                        更換
+                      </a>
+                    </div>
+                  </div>
+                </PriceCollapseSection>
+                {/* 總折扣金額 */}
+                <PriceCollapseSection
+                  title="總折扣金額"
+                  price="-$24,000"
+                  priceStyle={{ color: "#b00" }}
+                  defaultOpen={false}
+                >
+                  <div
+                    style={{
+                      padding: "0 20px 12px 20px",
+                      color: "#222",
+                      fontSize: 15,
+                    }}
+                  >
+                    心動購車金
+                    <div style={{ color: "#b00", fontSize: 14 }}>-$24,000</div>
+                  </div>
+                </PriceCollapseSection>
+                {/* 總價 */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "12px 20px",
+                    fontWeight: 700,
+                    fontSize: 18,
+                    borderTop: "1px solid #eee",
+                    background: "#fafbfc",
+                  }}
+                >
+                  <span>總價</span>
+                  <span style={{ color: "#b00" }}>
+                    NT$
+                    {(selectedCar.specs[spec].price - 24000).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+              {/* 訂金與下訂按鈕 */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  marginBottom: 32,
+                }}
+              >
+                <Button
+                  type="primary"
+                  style={{
+                    fontWeight: 700,
+                    minWidth: 120,
+                    height: 40,
+                    fontSize: 16,
+                    background: "#000",
+                    borderColor: "#000",
+                  }}
+                >
+                  預約試駕/賞車
+                </Button>
+                <Button
+                  style={{
+                    fontWeight: 500,
+                    minWidth: 180,
+                    height: 40,
+                    fontSize: 16,
+                    border: "1.5px solid #b00",
+                    color: "#b00",
+                    background: "#fff",
+                  }}
+                >
+                  $3,000 訂金 立即下訂
+                </Button>
+              </div>
+            </div>
+            {/* 規格特色/注意事項 */}
+            <div style={{ maxWidth: 800, margin: "0 auto 32px" }}>
+              <div
+                style={{
+                  fontWeight: 700,
+                  fontSize: 18,
+                  margin: "24px 0 8px 0",
+                }}
+              >
+                購車優惠
+              </div>
+              <div style={{ color: "#222", fontSize: 15, marginBottom: 8 }}>
+                {selectedCar.specs[spec].name}
+                {selectedCar.specs[spec].subname && (
+                  <span style={{ color: "#888", fontSize: 14, marginLeft: 8 }}>
+                    {selectedCar.specs[spec].subname}
+                  </span>
+                )}
+              </div>
+              <ul
+                style={{
+                  paddingLeft: 20,
+                  margin: 0,
+                  color: "#222",
+                  fontSize: 15,
+                }}
+              >
+                {selectedCar.specs[spec].features.map((f, i) => (
+                  <li key={i}>{f}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
         {/* 下半部：notice 區塊 */}
         <Divider />
-        <div style={{ maxWidth: 700, margin: "0 auto" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
           {selectedCar.notice.map((n, i) => (
             <div
               key={i}
@@ -536,12 +846,14 @@ const OrderPage = () => {
           ))}
         </div>
         {/* 詳細規格比較彈窗 */}
-        {selectedCar.name === "MG HS" && (
+        {showSpecsModal && (
           <CompareSpecsModal
             visible={showSpecsModal}
             onClose={() => setShowSpecsModal(false)}
             carName={selectedCar.name}
-            detailedSpecs={hsDetailedSpecs}
+            detailedSpecs={
+              selectedCar.name === "MG HS" ? hsDetailedSpecs : zsDetailedSpecs
+            }
             specName={selectedCar.specs[spec].name}
           />
         )}

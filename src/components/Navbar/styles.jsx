@@ -1,4 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const hideMobile = css`
+  @media (max-width: 500px) {
+    display: none !important;
+  }
+`;
+// ...existing code...
 
 // Nav 設為相對定位
 export const Nav = styled.nav`
@@ -72,18 +79,8 @@ export const Links = styled.ul`
   display: flex;
   align-items: center;
   list-style: none;
-  margin-left: auto;
-  margin-right: 0;
-  padding: 0;
-  ${({ $right }) =>
-    $right &&
-    `
-      margin-left: auto;
-      margin-right: 0;
-    `}
 `;
 
-// LinkItem 樣式
 export const LinkItem = styled.li`
   margin: 0 15px;
   a {
@@ -94,6 +91,9 @@ export const LinkItem = styled.li`
     padding: 6px 10px;
     border-radius: 4px;
     transition: background 0.2s;
+  }
+  &.hide-mobile {
+    ${hideMobile}
   }
 `;
 

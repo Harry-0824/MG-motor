@@ -145,7 +145,7 @@ const BookingForm = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="填寫範例: 0912345678"
-                style={{ flex: 2, marginRight: "10px" }}
+                style={{ flex: "2 1 200%", marginRight: "10px" }}
               />
               <S.Button type="button" variant="outline">
                 取得驗證碼

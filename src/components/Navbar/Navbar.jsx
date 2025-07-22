@@ -103,10 +103,10 @@ const Navbar = () => {
         </LinkItem>
       </MainLinks>
       <Links $right>
-        <LinkItem>
+        <LinkItem className="hide-mobile">
           <Link to="/test-drive">預約賞車/試乘</Link>
         </LinkItem>
-        <LinkItem>
+        <LinkItem className="hide-mobile">
           <Link to="/order">線上訂車</Link>
         </LinkItem>
       </Links>
