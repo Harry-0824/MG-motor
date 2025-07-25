@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // Import useState and useEffect
+import React, { useState, useEffect, useCallback } from "react"; // Import useState and useEffect
 import {
   Nav,
   Brand,
@@ -42,9 +42,9 @@ const Navbar = () => {
     };
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((open) => !open);
+  }, []);
 
   const navLinks = (
     <>
@@ -129,4 +129,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

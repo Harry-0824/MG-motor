@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import * as S from "./styles";
 
 const BookingForm = () => {
@@ -16,19 +16,22 @@ const BookingForm = () => {
     agreeTerms: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === "checkbox" ? checked : value,
     }));
-  };
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
-  };
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      // Handle form submission logic here
+      console.log(formData);
+    },
+    [formData]
+  );
 
   return (
     <S.FormContainer>
@@ -207,4 +210,4 @@ const BookingForm = () => {
   );
 };
 
-export default BookingForm;
+export default React.memo(BookingForm);

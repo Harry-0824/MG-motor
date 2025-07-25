@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   FormContainer,
   FormContent,
@@ -33,4 +33,4 @@ const NextStepForm = ({ backgroundImage }) => {
   );
 };
 
-export default NextStepForm;
+export default memo(NextStepForm);

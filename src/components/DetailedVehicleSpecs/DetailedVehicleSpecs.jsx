@@ -150,4 +150,4 @@ const DetailedVehicleSpecs = ({
   );
 };
 
-export default DetailedVehicleSpecs;
+export default React.memo(DetailedVehicleSpecs);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   SpecSheetContainer,
   Title,
@@ -76,18 +76,21 @@ const VehicleSpecSheet = ({ vehicleData }) => {
   const specImages = selectedTrimData.specImages;
   const disclaimer = selectedTrimData.disclaimer;
 
-  const handleTrimChange = (event) => {
+  const handleTrimChange = useCallback((event) => {
     setSelectedTrimName(event.target.value);
-  };
+  }, []);
 
-  const handleColorClick = (color) => {
-    setActiveColorHex(color.hex);
-    setCurrentMainImageSrc(
-      color.imageSrc || selectedTrimData.specImages?.main?.src || ""
-    );
-    setDimensionsImageSrc(color.dimensionsDisplayImage?.src || "");
-    setDimensionsImageAlt(color.dimensionsDisplayImage?.alt || "");
-  };
+  const handleColorClick = useCallback(
+    (color) => {
+      setActiveColorHex(color.hex);
+      setCurrentMainImageSrc(
+        color.imageSrc || selectedTrimData.specImages?.main?.src || ""
+      );
+      setDimensionsImageSrc(color.dimensionsDisplayImage?.src || "");
+      setDimensionsImageAlt(color.dimensionsDisplayImage?.alt || "");
+    },
+    [selectedTrimData]
+  );
 
   return (
     <SpecSheetContainer>
@@ -197,4 +200,4 @@ const VehicleSpecSheet = ({ vehicleData }) => {
   );
 };
 
-export default VehicleSpecSheet;
+export default React.memo(VehicleSpecSheet);

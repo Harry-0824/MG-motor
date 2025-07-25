@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 import {
   StickyBarContainer,
   StickyBarItem,
@@ -59,4 +59,4 @@ const StickyBar = ({
   );
 };
 
-export default StickyBar;
+export default memo(StickyBar);

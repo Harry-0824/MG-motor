@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   Container,
   List,
@@ -13,9 +13,9 @@ import {
 const Accordion = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0); // Keep first item open by default
 
-  const handleToggle = (idx) => {
+  const handleToggle = useCallback((idx) => {
     setActiveIndex((prev) => (prev === idx ? null : idx));
-  };
+  }, []);
 
   return (
     <Container>
@@ -65,4 +65,4 @@ const Accordion = ({ items }) => {
   );
 };
 
-export default Accordion;
+export default React.memo(Accordion);

@@ -60,4 +60,4 @@ const CompareSpecsModal = ({
   );
 };
 
-export default CompareSpecsModal;
+export default React.memo(CompareSpecsModal);

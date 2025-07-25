@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import {
   GalleryContainer,
   GalleryLeft,
@@ -20,7 +20,9 @@ import {
   GalleryActionButton, // Import the new styled component
 } from "./styles";
 
-export const GalleryWithTextType1 = ({ slides }) => {
+export const GalleryWithTextType1 = memo(function GalleryWithTextType1({
+  slides,
+}) {
   const [index, setIndex] = useState(0);
   const total = slides.length;
   const prev = () => setIndex((idx) => (idx === 0 ? total - 1 : idx - 1));
@@ -59,9 +61,11 @@ export const GalleryWithTextType1 = ({ slides }) => {
       </GalleryRight>
     </GalleryContainer>
   );
-};
+});
 
-export const GalleryWithTextType2 = ({ slides }) => {
+export const GalleryWithTextType2 = memo(function GalleryWithTextType2({
+  slides,
+}) {
   const [index, setIndex] = useState(0);
   const total = slides.length;
   const prev = () => setIndex((idx) => (idx === 0 ? total - 1 : idx - 1));
@@ -143,9 +147,11 @@ export const GalleryWithTextType2 = ({ slides }) => {
       </GalleryLeft>
     </GalleryContainer>
   );
-};
+});
 
-export const GalleryWithTextType3 = ({ slides }) => {
+export const GalleryWithTextType3 = memo(function GalleryWithTextType3({
+  slides,
+}) {
   const [index, setIndex] = useState(0);
   const total = slides.length;
   const prev = () => setIndex((idx) => (idx === 0 ? total - 1 : idx - 1));
@@ -225,7 +231,7 @@ export const GalleryWithTextType3 = ({ slides }) => {
       </GalleryRight>
     </GalleryContainer>
   );
-};
+});
 
 // You can choose a default export if you like, or none
 // export default GalleryWithTextType1;
