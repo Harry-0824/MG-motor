@@ -10,6 +10,14 @@ import {
   Arrow,
   HomeLinkButton,
   CheckboxBlackStyle,
+  NoticeBlock,
+  FlexRowBlock,
+  SpecCard,
+  SpecSubName,
+  SpecFeatureList,
+  TotalPriceBlock,
+  RightPanel,
+  InteriorFlexBlock,
 } from "./styles";
 import CompareSpecsModal from "../../components/CompareSpecsModal/CompareSpecsModal";
 import { hsDetailedSpecs } from "../../data/hs/detailedSpecs";
@@ -60,6 +68,7 @@ const carOptions = [
     specs: [
       {
         name: "HS 1.5T 旗艦版",
+        // ...existing code...
         subname: "MEGA Tech 1.5T缸內直噴渦輪增壓引擎",
         price: 939000,
         features: [
@@ -253,15 +262,7 @@ const OrderPage = () => {
       <Container style={{ maxWidth: 1400 }}>
         {/* 上半部：車輛資訊與選項（左右分布） */}
         {step === 1 && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginBottom: 32,
-              gap: 32,
-            }}
-          >
+          <FlexRowBlock>
             {/* 左側：標題與車圖 */}
             <div style={{ flex: 1, textAlign: "center" }}>
               <AntTitle level={4} style={{ marginTop: 16, marginBottom: 0 }}>
@@ -284,7 +285,7 @@ const OrderPage = () => {
               />
             </div>
             {/* 右側：顏色選項與規格資訊 */}
-            <div style={{ flex: 1, minWidth: 320 }}>
+            <RightPanel>
               <div
                 style={{
                   display: "flex",
@@ -384,7 +385,7 @@ const OrderPage = () => {
                   詳細規格比較
                 </Button>
               </div>
-              <Card
+              <SpecCard
                 style={{ marginBottom: 16, border: "1px solid #000000" }}
                 title={
                   <span>
@@ -418,35 +419,21 @@ const OrderPage = () => {
                     <li key={i}>{f}</li>
                   ))}
                 </ul>
-              </Card>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  marginBottom: 24,
-                }}
-              >
+              </SpecCard>
+
+              <TotalPriceBlock>
                 <Text strong style={{ fontSize: 18, color: "#b00" }}>
                   目前總價：NT${selectedCar.specs[spec].price.toLocaleString()}
                 </Text>
                 <HomeLinkButton onClick={() => setStep(2)}>
                   繼續選擇
                 </HomeLinkButton>
-              </div>
-            </div>
-          </div>
+              </TotalPriceBlock>
+            </RightPanel>
+          </FlexRowBlock>
         )}
         {step === 2 && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "flex-start",
-              marginBottom: 32,
-              gap: 32,
-            }}
-          >
+          <InteriorFlexBlock>
             {/* 左側：內裝大圖 */}
             <div style={{ flex: "1 1 100%", textAlign: "center" }}>
               <img
@@ -577,7 +564,7 @@ const OrderPage = () => {
                 </HomeLinkButton>
               </div>
             </div>
-          </div>
+          </InteriorFlexBlock>
         )}
         {step === 3 && (
           <div
@@ -831,7 +818,7 @@ const OrderPage = () => {
         )}
         {/* 下半部：notice 區塊 */}
         <Divider />
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+        <NoticeBlock>
           {selectedCar.notice.map((n, i) => (
             <div
               key={i}
@@ -845,9 +832,9 @@ const OrderPage = () => {
               {n}
             </div>
           ))}
-        </div>
+        </NoticeBlock>
         {/* 詳細規格比較彈窗 */}
-        {showSpecsModal && (
+        {showSpecsModal && modelData && selectedCar?.specs?.[spec]?.name && (
           <CompareSpecsModal
             visible={showSpecsModal}
             onClose={() => setShowSpecsModal(false)}

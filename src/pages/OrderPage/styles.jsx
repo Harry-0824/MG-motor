@@ -1,4 +1,88 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { Card } from "antd";
+
+export const InteriorFlexBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 32px;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+`;
+
+export const RightPanel = styled.div`
+  flex: 1;
+  min-width: 320px;
+  @media (max-width: 500px) {
+    margin: 0 0.5rem;
+  }
+`;
+
+export const TotalPriceBlock = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+`;
+
+export const FlexRowBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 32px;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+`;
+
+export const SpecCard = styled(Card)`
+  && {
+    margin-bottom: 16px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+  .ant-card-head {
+    border-bottom: 1px solid #eee;
+    background: #fafbfc;
+    border-radius: 8px 8px 0 0;
+  }
+  .ant-card-head-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+  }
+  .spec-price {
+    color: #b00;
+    font-size: 18px;
+    font-weight: bold;
+  }
+`;
+
+export const SpecSubName = styled.div`
+  font-size: 16px;
+  color: #000000;
+  font-weight: 400;
+  margin-top: 2px;
+`;
+
+export const SpecFeatureList = styled.ul`
+  padding-left: 20px;
+  margin: 0;
+`;
+export const NoticeBlock = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  @media (max-width: 500px) {
+    padding: 0 0.5rem;
+  }
+`;
 
 export const CheckboxBlackStyle = createGlobalStyle`
   .checkbox-black .ant-checkbox-inner {

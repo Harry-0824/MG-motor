@@ -150,7 +150,7 @@ const BookingForm = () => {
                 placeholder="填寫範例: 0912345678"
                 style={{ flex: "2 1 200%", marginRight: "10px" }}
               />
-              <S.Button type="button" variant="outline">
+              <S.Button type="button" $variant="outline">
                 取得驗證碼
               </S.Button>
             </S.FormRow>
@@ -176,6 +176,9 @@ const BookingForm = () => {
               onChange={handleChange}
             >
               <option value="">請選擇</option>
+              <option value="morning">上午09:00-12:00</option>
+              <option value="afternoon">下午13:00-17:00</option>
+              <option value="evening">晚上18:00-21:00</option>
               {/* Add time slot options here */}
             </S.Select>
           </S.FormGroup>
@@ -203,7 +206,11 @@ const BookingForm = () => {
           </S.NoteText>
         </S.FormLeft>
         <S.FormRight>
-          <S.CarImage src="/media/2022_HS_車款圖_灰.webp" alt="MG HS Car" />
+          {formData.carModel === "MG HS" ? (
+            <S.CarImage src="/media/2022_HS_車款圖_灰.webp" alt="MG HS Car" />
+          ) : formData.carModel === "MG ZS" ? (
+            <S.CarImage src="/media/MG ZS官網_BLUE_FA.webp" alt="MG ZS Car" />
+          ) : null}
         </S.FormRight>
       </S.FormMainRow>
     </S.FormContainer>

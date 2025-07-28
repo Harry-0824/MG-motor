@@ -185,11 +185,13 @@ export const Button = styled.button`
   &:hover {
     background: #b00;
   }
-  &[variant="outline"] {
+  ${(props) =>
+    props.$variant === "outline" &&
+    `
     background: #fff;
     color: #000;
     border: 1.5px solid #b00;
-  }
+  `}
   @media (max-width: 500px) {
     font-size: 1rem;
     padding: 10px;

@@ -20,8 +20,8 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <DefaultPage>
-        <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <DefaultPage>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/models" component={Models} />
@@ -35,8 +35,8 @@ const App = () => {
             <Route path="/test-drive" component={TestDrivePage} />
             <Route path="/order" component={OrderPage} />
           </Switch>
-        </Suspense>
-      </DefaultPage>
+        </DefaultPage>
+      </Suspense>
     </Router>
   );
 };
