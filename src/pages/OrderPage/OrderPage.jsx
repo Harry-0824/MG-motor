@@ -18,6 +18,9 @@ import {
   TotalPriceBlock,
   RightPanel,
   InteriorFlexBlock,
+  PreviewBlock,
+  PreviewInnerBlock,
+  PreviewCarImg,
 } from "./styles";
 import CompareSpecsModal from "../../components/CompareSpecsModal/CompareSpecsModal";
 import { hsDetailedSpecs } from "../../data/hs/detailedSpecs";
@@ -567,33 +570,22 @@ const OrderPage = () => {
           </InteriorFlexBlock>
         )}
         {step === 3 && (
-          <div
-            style={{
-              background: "#fff",
-              borderRadius: 8,
-              padding: "32px 0 0 0",
-              minHeight: 700,
-            }}
-          >
+          <PreviewBlock>
             {/* 預覽訂單標題與車圖 */}
             <div style={{ textAlign: "center", marginBottom: 24 }}>
               <AntTitle level={2} style={{ fontWeight: 700, marginBottom: 8 }}>
                 預覽訂單
               </AntTitle>
-              <img
+              <PreviewCarImg
                 src={
                   selectedCar.colors.find((c) => c.value === color)?.img ||
                   selectedCar.img
                 }
                 alt={selectedCar.name}
-                style={{
-                  margin: "0 auto 16px",
-                  display: "block",
-                }}
               />
             </div>
             {/* 車型/規格/價格明細 */}
-            <div style={{ maxWidth: 800, margin: "0 auto" }}>
+            <PreviewInnerBlock>
               <AntTitle level={3} style={{ fontWeight: 700, marginBottom: 0 }}>
                 {selectedCar.specs[spec].name}
                 {selectedCar.specs[spec].subname && (
@@ -781,40 +773,44 @@ const OrderPage = () => {
                   $3,000 訂金 立即下訂
                 </Button>
               </div>
-            </div>
-            {/* 規格特色/注意事項 */}
-            <div style={{ maxWidth: 800, margin: "0 auto 32px" }}>
-              <div
-                style={{
-                  fontWeight: 700,
-                  fontSize: 18,
-                  margin: "24px 0 8px 0",
-                }}
-              >
-                購車優惠
+            </PreviewInnerBlock>
+            <PreviewInnerBlock style={{ marginBottom: 32 }}>
+              {/* 規格特色/注意事項 */}
+              <div style={{ maxWidth: 800, margin: "0 auto 32px" }}>
+                <div
+                  style={{
+                    fontWeight: 700,
+                    fontSize: 18,
+                    margin: "24px 0 8px 0",
+                  }}
+                >
+                  購車優惠
+                </div>
+                <div style={{ color: "#222", fontSize: 15, marginBottom: 8 }}>
+                  {selectedCar.specs[spec].name}
+                  {selectedCar.specs[spec].subname && (
+                    <span
+                      style={{ color: "#888", fontSize: 14, marginLeft: 8 }}
+                    >
+                      {selectedCar.specs[spec].subname}
+                    </span>
+                  )}
+                </div>
+                <ul
+                  style={{
+                    paddingLeft: 20,
+                    margin: 0,
+                    color: "#222",
+                    fontSize: 15,
+                  }}
+                >
+                  {selectedCar.specs[spec].features.map((f, i) => (
+                    <li key={i}>{f}</li>
+                  ))}
+                </ul>
               </div>
-              <div style={{ color: "#222", fontSize: 15, marginBottom: 8 }}>
-                {selectedCar.specs[spec].name}
-                {selectedCar.specs[spec].subname && (
-                  <span style={{ color: "#888", fontSize: 14, marginLeft: 8 }}>
-                    {selectedCar.specs[spec].subname}
-                  </span>
-                )}
-              </div>
-              <ul
-                style={{
-                  paddingLeft: 20,
-                  margin: 0,
-                  color: "#222",
-                  fontSize: 15,
-                }}
-              >
-                {selectedCar.specs[spec].features.map((f, i) => (
-                  <li key={i}>{f}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+            </PreviewInnerBlock>
+          </PreviewBlock>
         )}
         {/* 下半部：notice 區塊 */}
         <Divider />
