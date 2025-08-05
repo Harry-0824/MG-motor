@@ -41,7 +41,7 @@ export const desktopSlides = [
 
 export const mobileSlides = [
   {
-    image: "/media/banner/首頁_KV_Mob_HS 介紹.jpg",
+    image: "/media/banner/首頁_KV_Mob_HS 介紹.webp",
     link: "https://www.mgmotor.com.tw/configuration/hs.html",
     label: "MG HS",
     h2: "MG HS",
@@ -51,7 +51,7 @@ export const mobileSlides = [
     h2Color: "#000",
   },
   {
-    image: "/media/banner/官網首頁_750_1120_mo.jpg",
+    image: "/media/banner/官網首頁_750_1120_mo.webp",
     link: "https://www.mgmotor.com.tw/configuration/hs.html",
     label: "MG ZS ",
     h2: "同級唯一滿配",
@@ -61,7 +61,7 @@ export const mobileSlides = [
     h2Color: "#fff",
   },
   {
-    image: "/media/banner/官網HERO-Banner_750x1120.jpg",
+    image: "/media/banner/官網HERO-Banner_750x1120.webp",
     link: "https://www.mgmotor.com.tw/configuration/hs.html",
     label: "MG HS 限定版",
     h2: "和謝淑薇一起",
@@ -72,7 +72,7 @@ export const mobileSlides = [
   },
   {
     image:
-      "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖750X1120_MB (1).jpg",
+      "/media/banner/MG-ZS官網Resize_0904_官網首頁_ZS車圖750X1120_MB (1).webp",
     link: "https://www.mgmotor.com.tw/configuration/zs.html",
     label: "MG ZS",
     h2: "MG ZS",
