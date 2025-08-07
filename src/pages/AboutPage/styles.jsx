@@ -1,3 +1,28 @@
+// HeroImage 動態切換圖片（桌機/手機）
+// 這部分建議在 AboutPage.jsx 內用 JS 控制 src，樣式不需動
+
+// AboutPage 內部圖片（如 KV、橫幅）
+export const FullWidthImage = styled.img`
+  width: 100%;
+  height: auto;
+  display: block;
+`;
+
+// 影片區塊 iframe 樣式
+export const FeatureIframe = styled.iframe`
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border: none;
+  @media (max-width: 900px) {
+    height: 260px;
+  }
+`;
+
+// BookingForm 外層區塊
+export const BookingFormWrapper = styled.div`
+  width: 100%;
+`;
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -89,6 +114,10 @@ export const AboutFeatureText = styled.div`
     font-size: 1.1rem;
     line-height: 1.7;
     color: #222;
+    text-align: left;
+    @media (max-width: 500px) {
+      padding: 0 16px;
+    }
   }
 `;
 

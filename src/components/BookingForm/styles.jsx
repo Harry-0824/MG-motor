@@ -184,6 +184,7 @@ export const Button = styled.button`
   transition: background 0.2s;
   &:hover {
     background: #b00;
+    color: #fff;
   }
   ${(props) =>
     props.$variant === "outline" &&

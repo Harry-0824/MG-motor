@@ -54,7 +54,11 @@ const AboutPage = () => {
           </AboutFeatureText>
         </AboutFeatureBlock>
         {/* 右圖左文 */}
-        <AboutFeatureBlock style={{ flexDirection: "row-reverse" }}>
+        <AboutFeatureBlock
+          style={{
+            flexDirection: window.innerWidth <= 500 ? "column" : "row-reverse",
+          }}
+        >
           <AboutFeatureImage
             src="/media/about/TeaserImage_謝淑薇故事02_PC.webp"
             alt="逆境之中奮戰到底"
@@ -81,7 +85,11 @@ const AboutPage = () => {
         </AboutFeatureBlock>
         {/* 右圖左文 */}
       </AboutFeatureSection>
-      <img src="/media/about/TeaserImage_KV_PC.webp" alt="謝淑薇" />
+      <img
+        src="/media/about/TeaserImage_KV_PC.webp"
+        style={{ width: "100%", height: "auto" }}
+        alt="謝淑薇"
+      />
       <AboutFeatureSection>
         <AboutFeatureBlock>
           <iframe
@@ -136,7 +144,11 @@ const AboutPage = () => {
         ]}
       />
       <AboutFeatureSection>
-        <AboutFeatureBlock style={{ flexDirection: "row-reverse" }}>
+        <AboutFeatureBlock
+          style={{
+            flexDirection: window.innerWidth <= 500 ? "column" : "row-reverse",
+          }}
+        >
           <iframe
             width="100%"
             height="500px"
@@ -154,7 +166,11 @@ const AboutPage = () => {
           </AboutFeatureText>
         </AboutFeatureBlock>
       </AboutFeatureSection>
-      <img src="/media/about/carouselKV_中間banner_PC.webp" alt="謝淑薇" />
+      <img
+        src="/media/about/carouselKV_中間banner_PC.webp"
+        style={{ width: "100%", height: "auto" }}
+        alt="謝淑薇"
+      />
       {/* 預約賞車/試乘表單區塊 */}
       <div style={{ width: "100%" }}>
         <BookingForm />
