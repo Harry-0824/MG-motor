@@ -14,23 +14,21 @@ import {
   SafetyImageBlock,
   SafetyImage,
   SafetyText,
-  ExperienceTextWrapper, // 匯入 ExperienceTextWrapper
-  ExperienceCarouselWrapperStyled, // 匯入 ExperienceCarouselWrapperStyled
+  ExperienceTextWrapper,
+  ExperienceCarouselWrapperStyled,
 } from "./styles";
 import React, { useRef, useState, useEffect } from "react";
-// Change to named import
+import { getTrimsByModel } from "../../services/api";
 import {
   GalleryWithTextType1,
   GalleryWithTextType2,
 } from "../../components/GalleryWithText/GalleryWithText";
 import Accordion from "../../components/Accordion/Accordion";
 import Carousel from "../../components/Carousel/Carousel";
-import VehicleSpecSheet from "../../components/VehicleSpecSheet/VehicleSpecSheet"; // 匯入 VehicleSpecSheet
-import DetailedVehicleSpecs from "../../components/DetailedVehicleSpecs/DetailedVehicleSpecs"; // 匯入 DetailedVehicleSpecs
-import { hsDetailedSpecs } from "../../data/hs/detailedSpecs.js"; // 匯入 zsDetailedSpecs
-import { hsSpecData } from "../../data/hs/vehicleSpec.js"; // 匯入 hsSpecData
-import NextStepForm from "../../components/NextStepForm/NextStepForm"; // 匯入 NextStepForm
-import StickyBar from "../../components/StickyBar/StickyBar"; // 匯入 StickyBar
+import VehicleSpecSheet from "../../components/VehicleSpecSheet/VehicleSpecSheet";
+import DetailedVehicleSpecs from "../../components/DetailedVehicleSpecs/DetailedVehicleSpecs";
+import NextStepForm from "../../components/NextStepForm/NextStepForm";
+import StickyBar from "../../components/StickyBar/StickyBar";
 
 const NAV_ITEMS = [
   { label: "流線運動風格", anchor: "design" },
@@ -44,10 +42,54 @@ const NAV_ITEMS = [
 const HSPage = () => {
   const [activeIdx, setActiveIdx] = useState(0);
   const [stickyBarFixed, setStickyBarFixed] = useState(true);
+  const [hsSpecData, setHsSpecData] = useState(null);
+  const [hsDetailedSpecs, setHsDetailedSpecs] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
   const navRef = useRef(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(true);
   const sectionRefs = useRef(NAV_ITEMS.map(() => React.createRef()));
+
+  useEffect(() => {
+    const fetchVehicleData = async () => {
+      try {
+        const trims = await getTrimsByModel("hs");
+        console.log("Fetched HS trims:", trims);
+        if (trims && trims.length > 0) {
+          // Map backend trims to the expected format for VehicleSpecSheet
+          const formattedSpecData = {
+            modelName: "MG HS",
+            trims: trims.map(t => ({
+              name: t.name,
+              price: t.price_display,
+              basicSpecs: t.basic_specs_json,
+              specImages: { main: { src: t.main_image, alt: t.name } },
+              disclaimer: t.disclaimer,
+              bookingLink: t.booking_link,
+              onlineOrderLink: t.online_order_link,
+              // Note: colors and equipment might need more backend fields later
+              colors: [], 
+              equipment: { column1: [], column2: [] }
+            }))
+          };
+          setHsSpecData(formattedSpecData);
+
+          // Map backend trims to the expected format for DetailedVehicleSpecs
+          const formattedDetailedSpecs = {};
+          trims.forEach(t => {
+            formattedDetailedSpecs[t.name] = t.detailed_specs_json;
+          });
+          setHsDetailedSpecs(formattedDetailedSpecs);
+        }
+      } catch (error) {
+        console.error("Failed to fetch HS data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchVehicleData();
+  }, []);
 
   const handleNavClick = (idx) => {
     setActiveIdx(idx);
@@ -433,14 +475,22 @@ const HSPage = () => {
             </>
           ) : item.anchor === "spec" ? (
             <>
-              <VehicleSpecSheet vehicleData={hsSpecData} />
-              <DetailedVehicleSpecs
-                trimOptions={Object.keys(hsDetailedSpecs).map((trimName) => ({
-                  label: trimName,
-                  value: trimName,
-                }))}
-                detailedSpecsData={hsDetailedSpecs}
-              />
+              {loading ? (
+                <div style={{ textAlign: "center", padding: "3rem" }}>規格資料載入中...</div>
+              ) : hsSpecData && hsDetailedSpecs ? (
+                <>
+                  <VehicleSpecSheet vehicleData={hsSpecData} />
+                  <DetailedVehicleSpecs
+                    trimOptions={Object.keys(hsDetailedSpecs).map((trimName) => ({
+                      label: trimName,
+                      value: trimName,
+                    }))}
+                    detailedSpecsData={hsDetailedSpecs}
+                  />
+                </>
+              ) : (
+                <div style={{ textAlign: "center", padding: "3rem" }}>暫無規格資料。</div>
+              )}
               <div id="next-step-form">
                 <NextStepForm backgroundImage="/media/hs/首頁_SimpleForm_背景圖.webp" />
               </div>

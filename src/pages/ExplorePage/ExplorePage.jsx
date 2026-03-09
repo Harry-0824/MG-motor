@@ -26,18 +26,31 @@ import {
   FourColumnDate,
   PaginationWrapper,
 } from "./styles";
-import { latestNews, purchaseOffers, ownerStories } from "../../data/articles";
+import { getArticles } from "../../services/api";
 
-const navItems = [
-  { label: "最新活動訊息", data: latestNews },
-  { label: "最新購車優惠", data: purchaseOffers },
-  { label: "車主經驗分享", data: ownerStories },
-];
+const categories = ["最新活動訊息", "最新購車優惠", "車主經驗分享"];
 
 const ExplorePage = () => {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategoryData, setSelectedCategoryData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      setLoading(true);
+      try {
+        const data = await getArticles(categories[selectedIdx]);
+        setSelectedCategoryData(data);
+      } catch (error) {
+        console.error("Failed to fetch articles:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchArticles();
+  }, [selectedIdx]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -46,8 +59,6 @@ const ExplorePage = () => {
   const handleNavigate = (article) => {
     history.push(`/article/${article.id}`, { article });
   };
-
-  const selectedCategoryData = navItems[selectedIdx].data;
 
   const featuredArticle =
     selectedCategoryData.length > 0 ? selectedCategoryData[0] : null;
@@ -78,19 +89,21 @@ const ExplorePage = () => {
         <ExploreTitle>探索 MG 最新活動消息</ExploreTitle>
       </ExploreBanner>
       <ExploreList>
-        {navItems.map((item, idx) => (
+        {categories.map((item, idx) => (
           <ExploreListItem
-            key={item.label}
+            key={item}
             className={selectedIdx === idx ? "selected" : ""}
             onClick={() => setSelectedIdx(idx)}
           >
-            <a href={item.href} onClick={(e) => e.preventDefault()}>
-              {item.label}
+            <a href="#" onClick={(e) => e.preventDefault()}>
+              {item}
             </a>
           </ExploreListItem>
         ))}
       </ExploreList>
-      {featuredArticle ? (
+      {loading ? (
+        <div style={{ textAlign: "center", padding: "2rem" }}>載入中...</div>
+      ) : featuredArticle ? (
         <>
           <ArticleSection onClick={() => handleNavigate(featuredArticle)}>
             <ArticleLeft>

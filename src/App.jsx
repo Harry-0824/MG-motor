@@ -14,6 +14,9 @@ const ArticleDetailPage = lazy(() =>
 const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
 const TestDrivePage = lazy(() => import("./pages/TestDrivePage/TestDrivePage"));
 const OrderPage = lazy(() => import("./pages/OrderPage/OrderPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
+const ForgotPasswordPage = lazy(() => import("./pages/ForgotPasswordPage/ForgotPasswordPage"));
 const DefaultPage = lazy(() => import("./pages/DefaultPage/DefaultPage"));
 
 const App = () => {
@@ -34,6 +37,9 @@ const App = () => {
             <Route path="/about" component={AboutPage} />
             <Route path="/test-drive" component={TestDrivePage} />
             <Route path="/order" component={OrderPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/forgot-password" component={ForgotPasswordPage} />
           </Switch>
         </DefaultPage>
       </Suspense>

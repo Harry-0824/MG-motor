@@ -25,30 +25,53 @@ import {
   InfoBackText,
   ActionRow,
 } from "./styles";
-import { desktopSlides, mobileSlides } from "../../data/home/slides";
+import { getHomeSlides } from "../../services/api";
 
 const Home = () => {
   const [model, setModel] = useState("HS");
-  const [slides, setSlides] = useState(desktopSlides);
+  const [allSlides, setAllSlides] = useState([]);
+  const [currentSlides, setCurrentSlides] = useState([]);
+
+  useEffect(() => {
+    const fetchSlides = async () => {
+      try {
+        const data = await getHomeSlides();
+        console.log("Fetched slides:", data);
+        // Map backend fields to frontend component expectations
+        const mappedData = data.map(slide => ({
+          ...slide,
+          h1: slide.title,
+          h2: slide.subtitle,
+          // other fields are already mapped or have defaults
+        }));
+        setAllSlides(mappedData);
+      } catch (error) {
+        console.error("Failed to fetch slides:", error);
+      }
+    };
+    fetchSlides();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 500) {
-        setSlides(mobileSlides);
-      } else {
-        setSlides(desktopSlides);
-      }
+      const isMobile = window.innerWidth <= 500;
+      const filtered = allSlides.filter(s => s.type === (isMobile ? "mobile" : "desktop"));
+      setCurrentSlides(filtered.length > 0 ? filtered : allSlides);
     };
 
     window.addEventListener("resize", handleResize);
     handleResize(); // Initial check
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [allSlides]);
 
   return (
     <div className="home">
-      <Carousel slides={slides} />
+      {currentSlides.length > 0 ? (
+        <Carousel slides={currentSlides} />
+      ) : (
+        <div style={{ height: "400px", background: "#eee" }}>載入中...</div>
+      )}
       <FlexRow>
         <StyledH1>立即體驗 MG 駕駛樂趣</StyledH1>
         <ActionRow>

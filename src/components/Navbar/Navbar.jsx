@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react"; // Import useState and useEffect
+import React, { useState, useEffect, useCallback, useRef } from "react"; // Import useState and useEffect
+import { ChevronDown } from "lucide-react";
 import {
   Nav,
   Brand,
@@ -11,6 +12,10 @@ import {
   CloseIcon, // Import CloseIcon
   MenuLinks, // Import MenuLinks
   MenuItem, // Import MenuItem
+  DropdownContainer,
+  DropdownButton,
+  DropdownMenu,
+  DropdownItem,
 } from "./styles";
 import { Link } from "react-router-dom";
 
@@ -18,6 +23,9 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -36,11 +44,32 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    // Check for login status on mount
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("scroll", handleScroll);
     return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleAuthClick = () => {
+    if (isLoggedIn) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setIsLoggedIn(false);
+      alert("已登出");
+      window.location.reload();
+    }
+  };
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((open) => !open);
@@ -68,6 +97,41 @@ const Navbar = () => {
       </MenuItem>
       <MenuItem onClick={toggleMenu}>
         <Link to="/order">線上訂車</Link>
+      </MenuItem>
+      
+      {/* Mobile 車主服務 */}
+      <MenuItem>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+          <div 
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '15px 0', fontSize: '1.2rem', cursor: 'pointer' }}
+          >
+            車主服務 <ChevronDown size={20} />
+          </div>
+          {isDropdownOpen && (
+            <div style={{ paddingLeft: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+              <DropdownItem onClick={() => { 
+                if (isLoggedIn) {
+                  handleAuthClick();
+                } else {
+                  setIsMenuOpen(false); 
+                  setIsDropdownOpen(false); 
+                }
+              }}>
+                {isLoggedIn ? (
+                  "登出"
+                ) : (
+                  <Link to="/login" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    請先登入或註冊
+                  </Link>
+                )}
+              </DropdownItem>
+              <DropdownItem $isDisabled={!isLoggedIn}>維修保養</DropdownItem>
+              <DropdownItem $isDisabled={!isLoggedIn}>會員資料</DropdownItem>
+              <DropdownItem $isDisabled={!isLoggedIn}>車輛管理</DropdownItem>
+            </div>
+          )}
+        </div>
       </MenuItem>
     </>
   );
@@ -109,6 +173,33 @@ const Navbar = () => {
         <LinkItem className="hide-mobile">
           <Link to="/order">線上訂車</Link>
         </LinkItem>
+        
+        {/* 車主服務 Dropdown */}
+        <DropdownContainer className="hide-mobile">
+          <DropdownButton onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            車主服務 <ChevronDown size={16} />
+          </DropdownButton>
+          <DropdownMenu $isOpen={isDropdownOpen}>
+            <DropdownItem onClick={() => {
+              if (isLoggedIn) {
+                handleAuthClick();
+              } else {
+                setIsDropdownOpen(false);
+              }
+            }}>
+              {isLoggedIn ? (
+                "登出"
+              ) : (
+                <Link to="/login" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  請先登入或註冊
+                </Link>
+              )}
+            </DropdownItem>
+            <DropdownItem $isDisabled={!isLoggedIn}>維修保養</DropdownItem>
+            <DropdownItem $isDisabled={!isLoggedIn}>會員資料</DropdownItem>
+            <DropdownItem $isDisabled={!isLoggedIn}>車輛管理</DropdownItem>
+          </DropdownMenu>
+        </DropdownContainer>
       </Links>
 
       {/* Hamburger Icon */}

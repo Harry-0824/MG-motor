@@ -9,9 +9,7 @@ import {
   ImageRow,
 } from "./styles";
 import { ExploreBanner, ExploreImg, ExploreTitle } from "../ExplorePage/styles";
-import { latestNews, purchaseOffers, ownerStories } from "../../data/articles";
-
-const allArticles = [...latestNews, ...purchaseOffers, ...ownerStories];
+import { getArticleById } from "../../services/api";
 
 // Helper function to render content blocks
 const renderContent = (block) => {
@@ -82,15 +80,31 @@ const renderContent = (block) => {
 const ArticleDetailPage = () => {
   const { id } = useParams();
   const location = useLocation();
-  let { article } = location.state || {}; // Safely access state
+  const [article, setArticle] = React.useState(location.state?.article || null);
+  const [loading, setLoading] = React.useState(!article);
 
-  if (!article) {
-    article = allArticles.find((a) => a.id === id);
+  React.useEffect(() => {
+    if (!article) {
+      const fetchArticle = async () => {
+        try {
+          const data = await getArticleById(id);
+          setArticle(data);
+        } catch (error) {
+          console.error("Failed to fetch article:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchArticle();
+    }
+  }, [id, article]);
+
+  if (loading) {
+    return <div style={{ textAlign: "center", padding: "5rem" }}>載入中...</div>;
   }
 
   if (!article) {
-    // TODO: Fetch article data from an API if not passed in state
-    return <div>文章不存在或無法讀取。</div>;
+    return <div style={{ textAlign: "center", padding: "5rem" }}>文章不存在或無法讀取。</div>;
   }
 
   return (

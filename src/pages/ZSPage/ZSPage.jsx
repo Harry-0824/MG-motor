@@ -35,10 +35,9 @@ import Accordion from "../../components/Accordion/Accordion";
 import Carousel from "../../components/Carousel/Carousel";
 import VehicleSpecSheet from "../../components/VehicleSpecSheet/VehicleSpecSheet"; // 引入 VehicleSpecSheet
 import DetailedVehicleSpecs from "../../components/DetailedVehicleSpecs/DetailedVehicleSpecs"; // 匯入 DetailedVehicleSpecs
-import { zsDetailedSpecs } from "../../data/zs/detailedSpecs.js"; // 匯入 zsDetailedSpecs
-import { zsSpecData } from "../../data/zs/vehicleSpec.js"; // 匯入 zsSpecData
 import NextStepForm from "../../components/NextStepForm/NextStepForm"; // 匯入 NextStepForm
 import StickyBar from "../../components/StickyBar/StickyBar"; // 匯入 StickyBar
+import { getTrimsByModel } from "../../services/api";
 
 const NAV_ITEMS = [
   { label: "天生出眾外觀", anchor: "exterior_design" },
@@ -60,6 +59,9 @@ const ZSPage = () => {
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(true);
   const [stickyBarFixed, setStickyBarFixed] = useState(true);
+  const [zsSpecData, setZsSpecData] = useState(null);
+  const [zsDetailedSpecs, setZsDetailedSpecs] = useState(null);
+  const [loading, setLoading] = useState(true);
   const stickyBarPortalRef = useRef(null);
 
   // Initialize sectionRefs as an array of refs
@@ -135,6 +137,42 @@ const ZSPage = () => {
         currentNavRef.removeEventListener("scroll", handleNavScroll);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchVehicleData = async () => {
+      try {
+        const trims = await getTrimsByModel("zs");
+        if (trims && trims.length > 0) {
+          const formattedSpecData = {
+            modelName: "MG ZS",
+            trims: trims.map(t => ({
+              name: t.name,
+              price: t.price_display,
+              basicSpecs: t.basic_specs_json,
+              specImages: { main: { src: t.main_image, alt: t.name } },
+              disclaimer: t.disclaimer,
+              bookingLink: t.booking_link,
+              onlineOrderLink: t.online_order_link,
+              colors: [], 
+              equipment: { column1: [], column2: [] }
+            }))
+          };
+          setZsSpecData(formattedSpecData);
+
+          const formattedDetailedSpecs = {};
+          trims.forEach(t => {
+            formattedDetailedSpecs[t.name] = t.detailed_specs_json;
+          });
+          setZsDetailedSpecs(formattedDetailedSpecs);
+        }
+      } catch (error) {
+        console.error("Failed to fetch ZS data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchVehicleData();
   }, []);
 
   return (
@@ -443,14 +481,22 @@ const ZSPage = () => {
             </>
           ) : item.anchor === "specifications" ? ( // Create specifications section
             <>
-              <VehicleSpecSheet vehicleData={zsSpecData} />
-              <DetailedVehicleSpecs
-                trimOptions={Object.keys(zsDetailedSpecs).map((trimName) => ({
-                  label: trimName,
-                  value: trimName,
-                }))}
-                detailedSpecsData={zsDetailedSpecs}
-              />
+              {loading ? (
+                <div style={{ textAlign: "center", padding: "3rem" }}>規格資料載入中...</div>
+              ) : zsSpecData && zsDetailedSpecs ? (
+                <>
+                  <VehicleSpecSheet vehicleData={zsSpecData} />
+                  <DetailedVehicleSpecs
+                    trimOptions={Object.keys(zsDetailedSpecs).map((trimName) => ({
+                      label: trimName,
+                      value: trimName,
+                    }))}
+                    detailedSpecsData={zsDetailedSpecs}
+                  />
+                </>
+              ) : (
+                <div style={{ textAlign: "center", padding: "3rem" }}>暫無規格資料。</div>
+              )}
               <div id="next-step-form">
                 <NextStepForm backgroundImage="/media/zs/首頁_SimpleForm_背景圖.webp" />
               </div>
