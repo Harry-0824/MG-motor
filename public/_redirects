@@ -1,2 +1,2 @@
-/api/* https://mg-backend-api-218707552235.asia-east1.run.app/:splat 200
+/api/* https://mg-backend-api-218707552235.asia-east1.run.app/api/:splat 200
 /*    /index.html   200
