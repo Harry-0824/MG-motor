@@ -32,10 +32,10 @@ import {
 
 const VehicleSpecSheet = ({ vehicleData }) => {
   const [selectedTrimName, setSelectedTrimName] = useState(
-    vehicleData?.trims?.[0]?.name || ""
+    vehicleData?.trims?.[0]?.name || "",
   );
   const [selectedTrimData, setSelectedTrimData] = useState(
-    vehicleData?.trims?.[0]
+    vehicleData?.trims?.[0],
   );
   const [activeColorHex, setActiveColorHex] = useState("");
   const [currentMainImageSrc, setCurrentMainImageSrc] = useState("");
@@ -44,7 +44,7 @@ const VehicleSpecSheet = ({ vehicleData }) => {
 
   useEffect(() => {
     const newSelectedTrim = vehicleData?.trims?.find(
-      (trim) => trim.name === selectedTrimName
+      (trim) => trim.name === selectedTrimName,
     );
     setSelectedTrimData(newSelectedTrim);
   }, [selectedTrimName, vehicleData]);
@@ -54,7 +54,7 @@ const VehicleSpecSheet = ({ vehicleData }) => {
       const initialColor = selectedTrimData.colors?.[0];
       setActiveColorHex(initialColor?.hex || "");
       setCurrentMainImageSrc(
-        initialColor?.imageSrc || selectedTrimData.specImages?.main?.src || ""
+        initialColor?.imageSrc || selectedTrimData.specImages?.main?.src || "",
       );
       setDimensionsImageSrc(initialColor?.dimensionsDisplayImage?.src || "");
       setDimensionsImageAlt(initialColor?.dimensionsDisplayImage?.alt || "");
@@ -84,12 +84,12 @@ const VehicleSpecSheet = ({ vehicleData }) => {
     (color) => {
       setActiveColorHex(color.hex);
       setCurrentMainImageSrc(
-        color.imageSrc || selectedTrimData.specImages?.main?.src || ""
+        color.imageSrc || selectedTrimData.specImages?.main?.src || "",
       );
       setDimensionsImageSrc(color.dimensionsDisplayImage?.src || "");
       setDimensionsImageAlt(color.dimensionsDisplayImage?.alt || "");
     },
-    [selectedTrimData]
+    [selectedTrimData],
   );
 
   return (
@@ -120,7 +120,7 @@ const VehicleSpecSheet = ({ vehicleData }) => {
                   key={color.name}
                   title={color.name}
                   onClick={() => handleColorClick(color)}
-                  isActive={color.hex === activeColorHex}
+                  $isActive={color.hex === activeColorHex}
                 >
                   <ColorSwatchInner>
                     <ColorSwatchImage
@@ -171,7 +171,7 @@ const VehicleSpecSheet = ({ vehicleData }) => {
       </MainContentContainer>
 
       <ActionButtons>
-        <ActionButton href={selectedTrimData.bookingLink || "#"} primary>
+        <ActionButton href={selectedTrimData.bookingLink || "#"} $primary>
           預約賞車/試乘
         </ActionButton>
         <ActionButton href={selectedTrimData.onlineOrderLink || "#"}>

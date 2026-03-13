@@ -159,7 +159,7 @@ export const ColorSwatchOuter = styled.div`
   margin-right: 4px;
   margin-bottom: 4px; /* Added for spacing if they wrap */
   padding: 5px; /* Adjusted padding, original 5px 8px 11px seems too much for 40x40 */
-  border: 1px solid ${(props) => (props.isActive ? "#000" : "transparent")}; /* Active border */
+  border: 1px solid ${(props) => (props.$isActive ? "#000" : "transparent")}; /* Active border */
   border-radius: 50%; /* Rounded corners */
   cursor: pointer;
   box-sizing: border-box; /* Ensure padding and border are within width/height */
@@ -339,10 +339,12 @@ export const ActionButton = styled.a`
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 
   ${(props) =>
-    props.primary
+    props.$primary
       ? `
     background-color: #000; /* Black background for primary */
     color: #fff;

@@ -27,7 +27,7 @@ const Accordion = ({ items }) => {
               data-open={activeIndex === idx}
             >
               <span>{item.title}</span>
-              <AccordionIcon active={activeIndex === idx}>
+              <AccordionIcon $active={activeIndex === idx}>
                 {activeIndex === idx ? "−" : "+"}
               </AccordionIcon>
             </Title>

@@ -98,7 +98,7 @@ export const Img = styled.img`
 `;
 export const AccordionIcon = styled.span`
   font-size: 1.5rem;
-  color: ${({ active }) => (active ? "#222" : "#222")};
+  color: ${({ $active }) => ($active ? "#222" : "#222")};
   font-weight: 400;
   min-width: 24px;
   display: inline-block;

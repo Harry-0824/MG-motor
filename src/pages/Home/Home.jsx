@@ -38,7 +38,7 @@ const Home = () => {
         const data = await getHomeSlides();
         console.log("Fetched slides:", data);
         // Map backend fields to frontend component expectations
-        const mappedData = data.map(slide => ({
+        const mappedData = data.map((slide) => ({
           ...slide,
           h1: slide.title,
           h2: slide.subtitle,
@@ -55,7 +55,9 @@ const Home = () => {
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 500;
-      const filtered = allSlides.filter(s => s.type === (isMobile ? "mobile" : "desktop"));
+      const filtered = allSlides.filter(
+        (s) => s.type === (isMobile ? "mobile" : "desktop"),
+      );
       setCurrentSlides(filtered.length > 0 ? filtered : allSlides);
     };
 
@@ -97,9 +99,9 @@ const Home = () => {
           <InfoImage
             src="/media/home/MG官網banner_0327_960x300(PC).webp"
             alt="主視覺"
-            imgWidth="60%"
+            $imgWidth="60%"
           />
-          <InfoText textWidth="40%">
+          <InfoText $textWidth="40%">
             <InfoTitle>Always Beyond 誰說不可能</InfoTitle>
             <InfoDesc>
               MG相信打破舊規則的挑戰者才是創造新規則的領先者！總是擁抱新事物，開創新道路，不止於思考，而是超越想像、付諸行動、持續自我進化的有機體。用最快的速度，追著自己跑，世界，應該在自己腳下；時代，應該由自己推進；價值，不由他人定義，而是由相信實現不可能的自己主宰！

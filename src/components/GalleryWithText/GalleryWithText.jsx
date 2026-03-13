@@ -30,10 +30,10 @@ export const GalleryWithTextType1 = memo(function GalleryWithTextType1({
   const current = slides[index];
 
   return (
-    <GalleryContainer type1>
+    <GalleryContainer $type1>
       <GalleryLeft>
         <GalleryArrowRow>
-          <GalleryArrowButton left onClick={prev}>
+          <GalleryArrowButton $left onClick={prev}>
             &lt;
           </GalleryArrowButton>
           <GalleryIndex>
@@ -89,7 +89,7 @@ export const GalleryWithTextType2 = memo(function GalleryWithTextType2({
       </GalleryRight>
       <GalleryLeft>
         <GalleryArrowRow>
-          <GalleryArrowButton left onClick={prev}>
+          <GalleryArrowButton $left onClick={prev}>
             &lt;
           </GalleryArrowButton>
           <GalleryIndex>
@@ -100,7 +100,7 @@ export const GalleryWithTextType2 = memo(function GalleryWithTextType2({
           <GalleryArrowButton onClick={next}>&gt;</GalleryArrowButton>
         </GalleryArrowRow>
         <GalleryTitle>{current.title}</GalleryTitle>
-        <GalleryDesc isType2>{current.desc}</GalleryDesc>
+        <GalleryDesc $isType2>{current.desc}</GalleryDesc>
         {/* New additional info section */}
         {current.additionalInfo && (
           <AdditionalInfoWrapper>
@@ -175,7 +175,7 @@ export const GalleryWithTextType3 = memo(function GalleryWithTextType3({
       </GalleryLeft>
       <GalleryRight>
         <GalleryArrowRow>
-          <GalleryArrowButton left onClick={prev}>
+          <GalleryArrowButton $left onClick={prev}>
             &lt;
           </GalleryArrowButton>
           <GalleryIndex>
@@ -186,7 +186,7 @@ export const GalleryWithTextType3 = memo(function GalleryWithTextType3({
           <GalleryArrowButton onClick={next}>&gt;</GalleryArrowButton>
         </GalleryArrowRow>
         <GalleryTitle>{current.title}</GalleryTitle>
-        <GalleryDesc isType2>{current.desc}</GalleryDesc>
+        <GalleryDesc $isType2>{current.desc}</GalleryDesc>
         {current.additionalInfo && (
           <AdditionalInfoWrapper>
             {current.additionalInfo.paragraph1 && (

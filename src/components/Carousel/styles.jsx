@@ -25,8 +25,8 @@ export const ArrowButton = styled.button`
   padding: 0; // 無內邊距
   cursor: pointer; // 滑鼠指標為手形
   border-radius: 50%; // 圓角
-  ${({ left }) =>
-    left ? "left: 20px;" : "right: 20px;"} // 根據 left prop 決定左右位置
+  ${({ $left }) =>
+    $left ? "left: 20px;" : "right: 20px;"} // 根據 left prop 決定左右位置
   z-index: 1;
   &::before {
     display: block;
@@ -36,7 +36,7 @@ export const ArrowButton = styled.button`
   }
   &::after {
     display: block;
-    content: "${({ left }) => (left ? "<" : ">")}";
+    content: "${({ $left }) => ($left ? "<" : ">")}";
     position: absolute;
     top: 50%;
     left: 50%;

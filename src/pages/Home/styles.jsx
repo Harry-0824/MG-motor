@@ -46,7 +46,9 @@ export const HomeLinkButton = styled.button`
   border: 2px solid #111;
   border-right: 6px solid #e10012;
   box-sizing: border-box;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
   letter-spacing: 1px;
   cursor: pointer;
   position: static;
@@ -136,7 +138,7 @@ export const InfoBlock = styled.div`
 `;
 
 export const InfoImage = styled.img`
-  width: ${({ imgWidth }) => imgWidth || "66.66666667%"};
+  width: ${({ $imgWidth }) => $imgWidth || "66.66666667%"};
   object-fit: cover;
   @media (max-width: 900px) {
     width: 100%;
@@ -145,7 +147,7 @@ export const InfoImage = styled.img`
 `;
 
 export const InfoText = styled.div`
-  width: ${({ textWidth }) => textWidth || "33.33333333%"};
+  width: ${({ $textWidth }) => $textWidth || "33.33333333%"};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

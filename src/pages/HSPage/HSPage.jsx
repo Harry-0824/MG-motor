@@ -45,7 +45,7 @@ const HSPage = () => {
   const [hsSpecData, setHsSpecData] = useState(null);
   const [hsDetailedSpecs, setHsDetailedSpecs] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   const navRef = useRef(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(true);
@@ -60,24 +60,25 @@ const HSPage = () => {
           // Map backend trims to the expected format for VehicleSpecSheet
           const formattedSpecData = {
             modelName: "MG HS",
-            trims: trims.map(t => ({
+            trims: trims.map((t) => ({
               name: t.name,
               price: t.price_display,
               basicSpecs: t.basic_specs_json,
-              specImages: { main: { src: t.main_image, alt: t.name } },
+              specImages: t.specImages || {
+                main: { src: t.main_image, alt: t.name },
+              },
               disclaimer: t.disclaimer,
               bookingLink: t.booking_link,
               onlineOrderLink: t.online_order_link,
-              // Note: colors and equipment might need more backend fields later
-              colors: [], 
-              equipment: { column1: [], column2: [] }
-            }))
+              colors: t.colors || [],
+              equipment: t.equipment || { column1: [], column2: [] },
+            })),
           };
           setHsSpecData(formattedSpecData);
 
           // Map backend trims to the expected format for DetailedVehicleSpecs
           const formattedDetailedSpecs = {};
-          trims.forEach(t => {
+          trims.forEach((t) => {
             formattedDetailedSpecs[t.name] = t.detailed_specs_json;
           });
           setHsDetailedSpecs(formattedDetailedSpecs);
@@ -476,20 +477,26 @@ const HSPage = () => {
           ) : item.anchor === "spec" ? (
             <>
               {loading ? (
-                <div style={{ textAlign: "center", padding: "3rem" }}>規格資料載入中...</div>
+                <div style={{ textAlign: "center", padding: "3rem" }}>
+                  規格資料載入中...
+                </div>
               ) : hsSpecData && hsDetailedSpecs ? (
                 <>
                   <VehicleSpecSheet vehicleData={hsSpecData} />
                   <DetailedVehicleSpecs
-                    trimOptions={Object.keys(hsDetailedSpecs).map((trimName) => ({
-                      label: trimName,
-                      value: trimName,
-                    }))}
+                    trimOptions={Object.keys(hsDetailedSpecs).map(
+                      (trimName) => ({
+                        label: trimName,
+                        value: trimName,
+                      }),
+                    )}
                     detailedSpecsData={hsDetailedSpecs}
                   />
                 </>
               ) : (
-                <div style={{ textAlign: "center", padding: "3rem" }}>暫無規格資料。</div>
+                <div style={{ textAlign: "center", padding: "3rem" }}>
+                  暫無規格資料。
+                </div>
               )}
               <div id="next-step-form">
                 <NextStepForm backgroundImage="/media/hs/首頁_SimpleForm_背景圖.webp" />

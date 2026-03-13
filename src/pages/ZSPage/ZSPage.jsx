@@ -52,7 +52,7 @@ const NAV_ITEMS = [
 const ZSPage = () => {
   const [activeIdx, setActiveIdx] = useState(0);
   const [heroImageSrc, setHeroImageSrc] = useState(
-    "/media/zs/車型頁_2160_540_pc.webp"
+    "/media/zs/車型頁_2160_540_pc.webp",
   );
   const [selectedTrim, setSelectedTrim] = useState("旗艦版");
   const navRef = useRef(null);
@@ -146,22 +146,24 @@ const ZSPage = () => {
         if (trims && trims.length > 0) {
           const formattedSpecData = {
             modelName: "MG ZS",
-            trims: trims.map(t => ({
+            trims: trims.map((t) => ({
               name: t.name,
               price: t.price_display,
               basicSpecs: t.basic_specs_json,
-              specImages: { main: { src: t.main_image, alt: t.name } },
+              specImages: t.specImages || {
+                main: { src: t.main_image, alt: t.name },
+              },
               disclaimer: t.disclaimer,
               bookingLink: t.booking_link,
               onlineOrderLink: t.online_order_link,
-              colors: [], 
-              equipment: { column1: [], column2: [] }
-            }))
+              colors: t.colors || [],
+              equipment: t.equipment || { column1: [], column2: [] },
+            })),
           };
           setZsSpecData(formattedSpecData);
 
           const formattedDetailedSpecs = {};
-          trims.forEach(t => {
+          trims.forEach((t) => {
             formattedDetailedSpecs[t.name] = t.detailed_specs_json;
           });
           setZsDetailedSpecs(formattedDetailedSpecs);
@@ -482,20 +484,26 @@ const ZSPage = () => {
           ) : item.anchor === "specifications" ? ( // Create specifications section
             <>
               {loading ? (
-                <div style={{ textAlign: "center", padding: "3rem" }}>規格資料載入中...</div>
+                <div style={{ textAlign: "center", padding: "3rem" }}>
+                  規格資料載入中...
+                </div>
               ) : zsSpecData && zsDetailedSpecs ? (
                 <>
                   <VehicleSpecSheet vehicleData={zsSpecData} />
                   <DetailedVehicleSpecs
-                    trimOptions={Object.keys(zsDetailedSpecs).map((trimName) => ({
-                      label: trimName,
-                      value: trimName,
-                    }))}
+                    trimOptions={Object.keys(zsDetailedSpecs).map(
+                      (trimName) => ({
+                        label: trimName,
+                        value: trimName,
+                      }),
+                    )}
                     detailedSpecsData={zsDetailedSpecs}
                   />
                 </>
               ) : (
-                <div style={{ textAlign: "center", padding: "3rem" }}>暫無規格資料。</div>
+                <div style={{ textAlign: "center", padding: "3rem" }}>
+                  暫無規格資料。
+                </div>
               )}
               <div id="next-step-form">
                 <NextStepForm backgroundImage="/media/zs/首頁_SimpleForm_背景圖.webp" />

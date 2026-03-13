@@ -5,7 +5,7 @@ export const GalleryContainer = styled.div`
   width: 100%;
   min-height: 420px;
   background: #fff;
-  gap: ${(props) => (props.isType3 ? "4rem" : "0")};
+  gap: ${(props) => (props.$isType3 ? "4rem" : "0")};
   @media (max-width: 900px) {
     flex-direction: column;
     min-height: 0;
@@ -14,7 +14,7 @@ export const GalleryContainer = styled.div`
 
 export const GalleryLeft = styled.div`
   flex: 0 0 50%;
-  padding: ${(props) => (props.isType2 ? "48px" : "24px")};
+  padding: ${(props) => (props.$isType2 ? "48px" : "24px")};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,7 +34,7 @@ export const GalleryRight = styled.div`
   align-items: flex-start;
   justify-content: center;
   position: relative;
-  padding: ${(props) => (props.isType3 ? "24px" : "24px")};
+  padding: ${(props) => (props.$isType3 ? "24px" : "24px")};
   @media (max-width: 900px) {
     flex: none;
     width: 100%;
@@ -81,11 +81,11 @@ export const GalleryTitle = styled.h2`
 
 export const GalleryDesc = styled.p`
   font-size: 1.08rem;
-  color: ${(props) => (props.isType2 ? "#000" : "#444")};
+  color: ${(props) => (props.$isType2 ? "#000" : "#444")};
   margin: ${(props) =>
-    props.isType2 ? "0" : "0 0 1.5rem 0"}; // Conditional margin
+    props.$isType2 ? "0" : "0 0 1.5rem 0"}; // Conditional margin
   padding: ${(props) =>
-    props.isType2 ? "0 3rem 0 0" : "0 "}; // Conditional padding
+    props.$isType2 ? "0 3rem 0 0" : "0 "}; // Conditional padding
   line-height: 1.7;
 `;
 

@@ -99,7 +99,7 @@ const Carousel = ({
 
   return (
     <Container ref={carouselRef}>
-      <ArrowButton left onClick={prev}></ArrowButton>
+      <ArrowButton $left onClick={prev}></ArrowButton>
       <img
         src={current.image}
         alt={current.label || `Slide ${index + 1}`}
