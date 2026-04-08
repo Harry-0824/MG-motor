@@ -104,6 +104,8 @@ const Carousel = ({
         src={current.image}
         alt={current.label || `Slide ${index + 1}`}
         style={{ width: "100%", height: "auto", display: "block" }}
+        fetchPriority={index === 0 ? "high" : undefined}
+        loading={index === 0 ? "eager" : "lazy"}
       />
       {!hideTextContent &&
         (bottomLeftClassName ? (

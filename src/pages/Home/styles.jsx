@@ -139,10 +139,11 @@ export const InfoBlock = styled.div`
 
 export const InfoImage = styled.img`
   width: ${({ $imgWidth }) => $imgWidth || "66.66666667%"};
+  height: 300px;
   object-fit: cover;
   @media (max-width: 900px) {
     width: 100%;
-    min-height: 180px;
+    height: 200px;
   }
 `;
 

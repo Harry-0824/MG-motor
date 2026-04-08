@@ -1,10 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MG汽車</title>
-    <link rel="stylesheet" href="%PUBLIC_URL%/index.css" />
+    <!-- 提前與 API 伺服器建立連線，改善 LCP -->
+    <link
+      rel="preconnect"
+      href="https://mg-backend-api-218707552235.asia-east1.run.app"
+    />
+    <!-- 非封鎖式載入 CSS，移除 400ms 渲染阻塞 -->
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/index.css"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript><link rel="stylesheet" href="%PUBLIC_URL%/index.css" /></noscript>
   </head>
   <body>
     <div id="root"></div>
