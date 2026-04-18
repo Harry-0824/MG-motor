@@ -26,6 +26,12 @@ export const apiRequest = async (endpoint, options = {}) => {
       throw new Error(data.message || "發生錯誤");
     }
 
+    // 解包 { success, data } 格式
+    if (data.success !== undefined) {
+      if (!data.success) throw new Error(data.message || "發生錯誤");
+      return data.data;
+    }
+
     return data;
   } catch (error) {
     console.error("API 請求失敗:", error);

@@ -19,12 +19,17 @@ const renderContent = (block) => {
     case "paragraph":
       return <p>{block.text}</p>;
     case "image":
-      return <img src={block.src} alt={block.alt || ""} />;
+      return <img src={block.src} alt={block.alt || ""} loading="lazy" />;
     case "image-row":
       return (
         <ImageRow>
           {block.images.map((image, index) => (
-            <img key={index} src={image.src} alt={image.alt || ""} />
+            <img
+              key={index}
+              src={image.src}
+              alt={image.alt || ""}
+              loading="lazy"
+            />
           ))}
         </ImageRow>
       );
@@ -100,11 +105,17 @@ const ArticleDetailPage = () => {
   }, [id, article]);
 
   if (loading) {
-    return <div style={{ textAlign: "center", padding: "5rem" }}>載入中...</div>;
+    return (
+      <div style={{ textAlign: "center", padding: "5rem" }}>載入中...</div>
+    );
   }
 
   if (!article) {
-    return <div style={{ textAlign: "center", padding: "5rem" }}>文章不存在或無法讀取。</div>;
+    return (
+      <div style={{ textAlign: "center", padding: "5rem" }}>
+        文章不存在或無法讀取。
+      </div>
+    );
   }
 
   return (

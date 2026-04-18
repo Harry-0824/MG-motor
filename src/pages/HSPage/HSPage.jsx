@@ -55,7 +55,6 @@ const HSPage = () => {
     const fetchVehicleData = async () => {
       try {
         const trims = await getTrimsByModel("hs");
-        console.log("Fetched HS trims:", trims);
         if (trims && trims.length > 0) {
           // Map backend trims to the expected format for VehicleSpecSheet
           const formattedSpecData = {

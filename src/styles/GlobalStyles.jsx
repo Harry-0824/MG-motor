@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: #007bff;
+    color: #1A1A2E;
   }
 
   a:hover {
@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .button {
-    background-color: #007bff;
+    background-color: #CC0000;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .button:hover {
-    background-color: #0056b3;
+    background-color: #a30000;
   }
 `;
 

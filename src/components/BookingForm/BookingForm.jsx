@@ -28,9 +28,8 @@ const BookingForm = () => {
     (e) => {
       e.preventDefault();
       // Handle form submission logic here
-      console.log(formData);
     },
-    [formData]
+    [formData],
   );
 
   return (

@@ -89,6 +89,7 @@ const AboutPage = () => {
         src="/media/about/TeaserImage_KV_PC.webp"
         style={{ width: "100%", height: "auto" }}
         alt="謝淑薇"
+        loading="lazy"
       />
       <AboutFeatureSection>
         <AboutFeatureBlock>
@@ -170,6 +171,7 @@ const AboutPage = () => {
         src="/media/about/carouselKV_中間banner_PC.webp"
         style={{ width: "100%", height: "auto" }}
         alt="謝淑薇"
+        loading="lazy"
       />
       {/* 預約賞車/試乘表單區塊 */}
       <div style={{ width: "100%" }}>

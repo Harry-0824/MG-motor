@@ -219,7 +219,7 @@ const OrderPage = () => {
     const carId = params.get("carId");
     if (carId) {
       const car = carOptions.find((c) =>
-        c.name.replace(/\s/g, "").toLowerCase().includes(carId.toLowerCase())
+        c.name.replace(/\s/g, "").toLowerCase().includes(carId.toLowerCase()),
       );
       if (car) {
         setSelectedCar(car);
@@ -280,6 +280,7 @@ const OrderPage = () => {
                   selectedCar.img
                 }
                 alt={selectedCar.name}
+                loading="lazy"
                 style={{
                   width: "90%",
                   maxWidth: 480,
@@ -446,6 +447,7 @@ const OrderPage = () => {
                     : "/media/order/InteriorColor_black1.webp"
                 }
                 alt="內裝"
+                loading="lazy"
                 style={{
                   width: "100%",
                   margin: "0 auto",

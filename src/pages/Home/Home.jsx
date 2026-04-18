@@ -36,7 +36,6 @@ const Home = () => {
     const fetchSlides = async () => {
       try {
         const data = await getHomeSlides();
-        console.log("Fetched slides:", data);
         // Map backend fields to frontend component expectations
         const mappedData = data.map((slide) => ({
           ...slide,
