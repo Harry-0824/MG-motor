@@ -31,6 +31,16 @@ AI coding work in this repository must stay small, issue-driven, and scoped to t
 - `fix/*`: bug fixes and regressions.
 - `docs/*`: documentation-only changes.
 
+## UI and Design Rules
+
+For UI-related changes, always read and follow `DESIGN.md`.
+
+Do not introduce unrelated visual styles, new UI libraries, or broad redesigns unless explicitly requested by the GitHub Issue.
+
+Each UI task should stay limited to the page, section, or component group described in the Issue.
+
+Do not copy visual references pixel-by-pixel. Use them only as design direction and convert them into maintainable implementation.
+
 ## Development Commands
 
 - `npm start`: run the local development server on port 3000.
