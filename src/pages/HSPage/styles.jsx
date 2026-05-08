@@ -16,18 +16,18 @@ export const Container = styled.div`
 export const HeroImageWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 480px;
+  height: clamp(260px, 48vw, 480px);
 
   @media (max-width: 1024px) {
-    height: 420px;
+    height: clamp(240px, 48vw, 420px);
   }
 
   @media (max-width: 768px) {
-    height: 360px;
+    height: clamp(220px, 48vw, 360px);
   }
 
   @media (max-width: 500px) {
-    height: 480px;
+    height: clamp(240px, 72vw, 480px);
   }
 `;
 
@@ -37,6 +37,7 @@ export const HeroImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
 `;
 
 export const HeroNavBar = styled.nav`

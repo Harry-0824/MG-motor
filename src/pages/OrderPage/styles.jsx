@@ -31,6 +31,52 @@ export const RightPanel = styled.div`
   }
 `;
 
+export const ColorSwatchRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+`;
+
+export const ColorSwatchButton = styled.button`
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+
+  &[data-active="true"] {
+    border-color: #111;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #1a5cff;
+    outline-offset: 2px;
+  }
+`;
+
+export const ColorSwatchInner = styled.span`
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: ${({ $color }) => $color};
+  border: 2px solid #eee;
+  box-sizing: border-box;
+`;
+
 export const TotalPriceBlock = styled.div`
   display: flex;
   align-items: center;
@@ -88,9 +134,8 @@ export const SpecFeatureList = styled.ul`
 export const NoticeBlock = styled.div`
   max-width: 800px;
   margin: 0 auto;
-  @media (max-width: 500px) {
-    padding: 0 0.5rem;
-  }
+  padding: 0 1rem;
+  box-sizing: border-box;
 `;
 
 export const CheckboxBlackStyle = createGlobalStyle`
@@ -160,7 +205,7 @@ export const Arrow = styled.div`
 export const HomeLinkButton = styled.button`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: auto;
   height: 40px;
   background: #fff;
@@ -176,6 +221,8 @@ export const HomeLinkButton = styled.button`
   transition: border-color 0.2s, color 0.2s;
   letter-spacing: 1px;
   cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
   position: static;
   gap: 0.5rem; /* 增加文字與箭頭間距 */
   background-color: #000000;

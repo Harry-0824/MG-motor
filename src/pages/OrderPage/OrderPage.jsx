@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { Typography, Radio, Button, Card, Checkbox, Divider } from "antd";
+import { Typography, Button, Card, Checkbox, Divider } from "antd";
 import {
   Container,
   OptionBlock,
@@ -21,6 +21,9 @@ import {
   PreviewBlock,
   PreviewInnerBlock,
   PreviewCarImg,
+  ColorSwatchRow,
+  ColorSwatchButton,
+  ColorSwatchInner,
 } from "./styles";
 import CompareSpecsModal from "../../components/CompareSpecsModal/CompareSpecsModal";
 import { hsDetailedSpecs } from "../../data/hs/detailedSpecs";
@@ -308,48 +311,23 @@ const OrderPage = () => {
                 >
                   車款顏色
                 </AntTitle>
-                <Radio.Group
-                  value={color}
-                  onChange={(e) => setColor(e.target.value)}
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                  }}
-                >
-                  {selectedCar.colors.map((c) => (
-                    <Radio.Button
-                      key={c.value}
-                      value={c.value}
-                      style={{
-                        marginRight: 8,
-                        padding: 0,
-                        width: 32,
-                        height: 32,
-                        borderRadius: "50%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        border: "2px solid #ccc",
-                        boxShadow: "none",
-                        background: "#fff",
-                        transition: "border-color 0.2s",
-                      }}
-                    >
-                      <span
-                        style={{
-                          display: "inline-block",
-                          width: 20,
-                          height: 20,
-                          borderRadius: "50%",
-                          background: c.color,
-                          border: "2px solid #eee",
-                          verticalAlign: "middle",
-                          boxSizing: "border-box",
-                        }}
-                      />
-                    </Radio.Button>
-                  ))}
-                </Radio.Group>
+                <ColorSwatchRow role="radiogroup" aria-label="車款顏色選擇">
+                  {selectedCar.colors.map((c) => {
+                    const isActive = c.value === color;
+                    return (
+                      <ColorSwatchButton
+                        key={c.value}
+                        type="button"
+                        data-active={isActive}
+                        aria-pressed={isActive}
+                        aria-label={c.label || c.name}
+                        onClick={() => setColor(c.value)}
+                      >
+                        <ColorSwatchInner $color={c.color} />
+                      </ColorSwatchButton>
+                    );
+                  })}
+                </ColorSwatchRow>
               </div>
               <span
                 style={{
@@ -501,35 +479,20 @@ const OrderPage = () => {
               >
                 質感黑內裝
               </div>
-              <Radio.Group value={"black"} style={{ marginBottom: 32 }}>
-                <Radio.Button
-                  value="black"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    border: "2px solid #222",
-                    background: "#fff",
-                    boxShadow: "none",
-                    marginRight: 16,
-                  }}
+              <ColorSwatchRow
+                role="radiogroup"
+                aria-label="車內配色選擇"
+                style={{ marginBottom: 32 }}
+              >
+                <ColorSwatchButton
+                  type="button"
+                  data-active="true"
+                  aria-pressed="true"
+                  aria-label="黑色"
                 >
-                  <span
-                    style={{
-                      display: "inline-block",
-                      width: 24,
-                      height: 24,
-                      borderRadius: "50%",
-                      background: "#222",
-                      border: "2px solid #888",
-                      marginTop: 10,
-                    }}
-                  />
-                </Radio.Button>
-              </Radio.Group>
+                  <ColorSwatchInner $color="#222" />
+                </ColorSwatchButton>
+              </ColorSwatchRow>
 
               {/* 目前總價與預覽訂單按鈕 */}
               <div
@@ -562,7 +525,7 @@ const OrderPage = () => {
                   </span>
                 </div>
                 <HomeLinkButton
-                  style={{ minWidth: 140, fontSize: 18, height: 48 }}
+                  style={{ minWidth: 160, fontSize: 18, height: 48 }}
                   onClick={() => setStep(3)}
                 >
                   預覽訂單

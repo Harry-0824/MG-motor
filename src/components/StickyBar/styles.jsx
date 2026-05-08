@@ -15,6 +15,7 @@ export const StickyBarContainer = styled.div`
   transition: position 0.2s;
   @media (max-width: 500px) {
     justify-content: space-between;
+    padding: 0 0.25rem;
   }
 `;
 
@@ -31,7 +32,10 @@ export const StickyBarItem = styled.div`
   user-select: none;
   font-weight: 500;
   @media (max-width: 500px) {
-    width: 100%;
+    width: auto;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -45,8 +49,14 @@ export const StickyBarDivider = styled.div`
 export const StickyBarIcon = styled.span`
   font-size: 1.2em;
   margin-right: 0.5em;
+  line-height: 1;
 `;
 
 export const StickyBarText = styled.span`
   font-size: 1em;
+  white-space: nowrap;
+  line-height: 1;
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+  }
 `;

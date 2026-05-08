@@ -51,6 +51,8 @@ export const HomeLinkButton = styled.button`
     color 0.2s;
   letter-spacing: 1px;
   cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
   position: static;
   gap: 0.5rem; /* 增加文字與箭頭間距 */
   &:hover {
