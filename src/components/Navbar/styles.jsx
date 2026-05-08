@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 const hideMobile = css`
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     display: none !important;
   }
 `;
@@ -19,6 +19,15 @@ export const Nav = styled.nav`
   position: relative;
   transition: all 0.3s ease-in-out;
   z-index: 1000;
+
+  @media (max-width: 1024px) {
+    padding: 0 1.5rem;
+    min-height: 72px;
+  }
+
+  @media (min-width: 1025px) and (max-width: 1180px) {
+    padding: 0.75rem 1.5rem;
+  }
 
   ${({ $isSticky }) =>
     $isSticky &&
@@ -39,6 +48,10 @@ export const Brand = styled.div`
   transform: translateY(-50%);
   display: flex;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    left: 1.5rem;
+  }
 
   @media (max-width: 425px) {
     left: 20px;
@@ -70,6 +83,18 @@ export const LogoImg = styled.img`
       height: 60px;
     `}
 
+  @media (min-width: 1025px) and (max-width: 1180px) {
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
+  }
+
+  @media (max-width: 1024px) {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+  }
+
   @media (max-width: 500px) {
     height: 60px;
     width: 60px;
@@ -100,6 +125,15 @@ export const LinkItem = styled.li`
   &.hide-mobile {
     ${hideMobile}
   }
+
+  @media (min-width: 1025px) and (max-width: 1180px) {
+    margin: 0 5px;
+
+    a {
+      font-size: 0.92rem;
+      padding: 6px 7px;
+    }
+  }
 `;
 
 export const MainLinks = styled(Links)`
@@ -108,7 +142,11 @@ export const MainLinks = styled(Links)`
   display: flex;
   justify-content: center; // Center the main links
 
-  @media (max-width: 900px) {
+  @media (min-width: 1025px) and (max-width: 1180px) {
+    margin-left: 96px;
+  }
+
+  @media (max-width: 1024px) {
     display: none; // Hide earlier to prevent squeezing/wrapping
   }
 `;
@@ -127,10 +165,10 @@ export const HamburgerIcon = styled.div`
     transition: 0.4s;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     display: block; // Show on tablet/mobile screens
     position: absolute;
-    right: 2rem;
+    right: 1.5rem;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -159,12 +197,21 @@ export const MenuOverlay = styled.div`
   &.open {
     transform: translateX(0);
   }
+
+  @media (max-width: 1024px) {
+    padding-top: 76px;
+    padding-bottom: 32px;
+  }
+
+  @media (max-width: 500px) {
+    padding-top: 72px;
+  }
 `;
 
 export const CloseIcon = styled.div`
   position: absolute;
   top: 20px;
-  right: 80px;
+  right: clamp(20px, 4vw, 48px);
   cursor: pointer;
   font-size: 2rem;
   color: #333;
@@ -191,6 +238,11 @@ export const MenuItem = styled(LinkItem)`
     padding: 15px 0; // Larger padding
     font-size: 1.2rem; // Larger font size
   }
+
+  @media (max-width: 1024px) {
+    width: min(82%, 480px);
+    margin: 12px 0;
+  }
 `;
 // Dropdown Styles
 export const DropdownContainer = styled.div`
@@ -202,8 +254,8 @@ export const DropdownContainer = styled.div`
     ${hideMobile}
   }
 
-  @media (max-width: 900px) {
-    width: 80%;
+  @media (max-width: 1024px) {
+    width: min(82%, 480px);
     margin: 15px 0;
   }
 `;
@@ -224,7 +276,7 @@ export const DropdownButton = styled.button`
     color: #e30613;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     font-size: 1.2rem;
     width: 100%;
     justify-content: center;
@@ -257,7 +309,7 @@ export const DropdownMenu = styled.ul`
     }
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     position: static;
     box-shadow: none;
     width: 100%;
@@ -293,7 +345,7 @@ export const DropdownItem = styled.li`
     }
   `}
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     width: 100%;
     text-align: center;
     padding: 12px 0;

@@ -3,12 +3,32 @@ import { HomeLinkButton } from "../Home/styles";
 
 export const Container = styled.div`
   padding: 2rem;
+
+  @media (max-width: 1024px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const HeroImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 480px;
+
+  @media (max-width: 1024px) {
+    height: 420px;
+  }
+
+  @media (max-width: 768px) {
+    height: 360px;
+  }
+
+  @media (max-width: 500px) {
+    height: 480px;
+  }
 `;
 
 export const HeroImage = styled.img`
@@ -29,19 +49,28 @@ export const HeroNavBar = styled.nav`
   z-index: 10;
   height: 70px;
   border-bottom: 1.5px solid #e5e5e5;
-  @media (max-width: 768px) {
-    gap: 1.2rem;
-    height: 48px;
-    padding: 0 0.5rem;
-  }
-  @media (max-width: 500px) {
+
+  @media (max-width: 1024px) {
     justify-content: flex-start;
+    gap: 1.5rem;
+    height: 60px;
+    top: 72px;
+    padding: 0 1.5rem;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
+
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    height: 52px;
+    padding: 0 1rem;
+  }
+  @media (max-width: 500px) {
     position: relative;
     &::before {
       content: "";
@@ -79,6 +108,7 @@ export const HeroNavItem = styled.button`
   font-size: 1.15rem;
   font-weight: 600;
   color: ${({ $active }) => ($active ? "#222" : "#919399")};
+  flex: 0 0 auto;
   padding: 0 0.5em 0.5em 0.5em;
   position: relative;
   cursor: pointer;
@@ -98,6 +128,18 @@ export const HeroNavItem = styled.button`
     z-index: -3;
     display: ${({ $active }) => ($active ? "block" : "none")};
   }
+
+  @media (max-width: 1024px) {
+    font-size: 1.05rem;
+    min-width: 104px;
+    padding: 0 0.4em 0.45em 0.4em;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.98rem;
+    min-width: 110px;
+  }
+
   @media (max-width: 500px) {
     font-size: 1rem;
     min-width: 110px;
@@ -111,6 +153,13 @@ export const SectionAnchor = styled.div`
   scroll-margin-top: 110px;
   min-height: 400px;
   margin: 40px 0;
+
+  @media (max-width: 1024px) {
+    scroll-margin-top: 104px;
+    min-height: 320px;
+    margin: 32px 0;
+  }
+
   @media (max-width: 768px) {
     min-height: 260px;
     margin: 24px 0;
@@ -123,6 +172,12 @@ export const DesignSectionTitle = styled.h2`
   font-weight: 700;
   margin: 3rem 0 5rem 0;
   letter-spacing: 2px;
+
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+    margin: 2.5rem 0 3rem 0;
+  }
+
   @media (max-width: 500px) {
     font-size: 24px;
     line-height: 32px;
@@ -132,6 +187,14 @@ export const DesignSectionTitle = styled.h2`
 
 export const DetailSectionWrapper = styled.div`
   margin-top: 4rem;
+
+  @media (max-width: 1024px) {
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+  }
 `;
 
 export const DetailSectionTitle = styled.h2`
@@ -140,6 +203,15 @@ export const DetailSectionTitle = styled.h2`
   font-weight: 700;
   margin-bottom: 2.5rem;
   letter-spacing: 1.5px;
+
+  @media (max-width: 1024px) {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const PowerImage = styled.img`
@@ -149,6 +221,16 @@ export const PowerImage = styled.img`
 export const ExperienceTextWrapper = styled.div`
   text-align: center;
   margin-bottom: 3rem;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 2rem;
+    padding: 0 1.5rem;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0 1rem;
+    text-align: left;
+  }
 `;
 
 export const PowerAccordionWrapper = styled.div`
@@ -157,6 +239,14 @@ export const PowerAccordionWrapper = styled.div`
 
 export const SafetySectionWrapper = styled.div`
   margin: 4rem 0;
+
+  @media (max-width: 1024px) {
+    margin: 3rem 0;
+  }
+
+  @media (max-width: 500px) {
+    margin: 1rem 0;
+  }
 `;
 
 export const SafetyCarouselWrapper = styled.div`
@@ -174,6 +264,14 @@ export const SafetyImageBlock = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 2.5rem;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 500px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const SafetyImage = styled.img`
@@ -193,6 +291,11 @@ export const SafetyText = styled.p`
   line-height: 1.6; // 行高
   padding: 0 2rem; // 區塊內部的左右內邊距
   box-sizing: border-box; // 確保 padding 被包含在寬度計算之內
+
+  @media (max-width: 1024px) {
+    padding: 0 1.5rem;
+    width: 86%;
+  }
 
   @media (max-width: 768px) {
     font-size: 1rem;
@@ -265,6 +368,34 @@ export const SafetyCarouselWrapperStyled = styled.div`
       &:hover::after {
         color: #c00;
       }
+
+      @media (max-width: 1024px) {
+        width: 190px;
+        height: 50px;
+        padding: 0 18px;
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      bottom: 48px;
+      left: 48px;
+      gap: 1rem;
+      max-width: 480px;
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      bottom: 36px;
+      left: 32px;
+      max-width: 420px;
+
+      h1 {
+        font-size: 1.55rem;
+      }
     }
 
     @media (max-width: 500px) {
@@ -302,6 +433,11 @@ export const SafetyCarouselWrapperStyled = styled.div`
     bottom: 1rem;
     transform: translateX(-50%);
     z-index: 2;
+
+    @media (max-width: 1024px) {
+      gap: 22px;
+      bottom: 0.75rem;
+    }
   }
 `;
 
@@ -331,6 +467,27 @@ export const ExperienceCarouselWrapperStyled = styled.div`
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       line-height: 1.2;
     }
+
+    @media (max-width: 1024px) {
+      bottom: 48px;
+      left: 48px;
+      gap: 1rem;
+      max-width: 480px;
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      bottom: 36px;
+      left: 32px;
+      max-width: 420px;
+
+      h1 {
+        font-size: 1.55rem;
+      }
+    }
   }
 
   .carousel-dots {
@@ -343,6 +500,11 @@ export const ExperienceCarouselWrapperStyled = styled.div`
     bottom: 1rem;
     transform: translateX(-50%);
     z-index: 2;
+
+    @media (max-width: 1024px) {
+      gap: 22px;
+      bottom: 0.75rem;
+    }
   }
 `;
 
@@ -370,6 +532,22 @@ export const ContextualText = styled.h1`
   font-weight: 400;
   letter-spacing: 0.3px;
   color: #fff;
+
+  @media (max-width: 1024px) {
+    width: 40%;
+    right: 36px;
+    bottom: 64px;
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  @media (max-width: 768px) {
+    width: 46%;
+    right: 28px;
+    bottom: 48px;
+    font-size: 1.5rem;
+  }
+
   @media (max-width: 500px) {
     width: 100%;
     color: #000;
@@ -390,6 +568,23 @@ export const OverlayText = styled.h1`
   font-size: 1rem;
   line-height: 24px;
   font-weight: 400;
+
+  @media (max-width: 1024px) {
+    width: 42%;
+    left: 36px;
+    top: 64px;
+    font-size: 0.95rem;
+    line-height: 22px;
+  }
+
+  @media (max-width: 768px) {
+    width: 50%;
+    left: 28px;
+    top: 48px;
+    font-size: 0.9rem;
+    line-height: 21px;
+  }
+
   @media (max-width: 500px) {
     width: 100%;
     color: #6d6f73;
@@ -427,6 +622,27 @@ export const SpaceCarouselWrapper = styled.div`
       line-height: 1.2;
     }
 
+    @media (max-width: 1024px) {
+      bottom: 48px;
+      left: 48px;
+      gap: 1rem;
+      max-width: 480px;
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      bottom: 36px;
+      left: 32px;
+      max-width: 420px;
+
+      h1 {
+        font-size: 1.55rem;
+      }
+    }
+
     @media (max-width: 500px) {
       position: static; /* Change from absolute to static for stacking */
       bottom: auto;
@@ -461,6 +677,11 @@ export const SpaceCarouselWrapper = styled.div`
     bottom: 1rem;
     transform: translateX(-50%);
     z-index: 2;
+
+    @media (max-width: 1024px) {
+      gap: 22px;
+      bottom: 0.75rem;
+    }
   }
 `;
 
@@ -470,6 +691,18 @@ export const SafetyTextOverlayWrapper = styled.div`
   left: 48px; /* Adjust as needed */
   z-index: 1;
   width: 40%; /* Adjust as needed */
+
+  @media (max-width: 1024px) {
+    top: 56px;
+    left: 36px;
+    width: 46%;
+  }
+
+  @media (max-width: 768px) {
+    top: 40px;
+    left: 28px;
+    width: 52%;
+  }
 
   @media (max-width: 500px) {
     position: static;
@@ -488,6 +721,11 @@ export const SafetyHeaderText = styled.h1`
   color: #333; /* Assuming white text on a dark image, adjust if image is light */
   margin-bottom: 1rem; /* Space between H1 and P */
 
+  @media (max-width: 1024px) {
+    font-size: 1.75rem;
+    line-height: 34px;
+  }
+
   @media (max-width: 500px) {
     font-size: 1.5rem; /* Adjust font size for mobile */
     line-height: 1.3;
@@ -500,6 +738,11 @@ export const SafetyParagraphText = styled.p`
   font-size: 1rem;
   line-height: 24px;
   color: #6d6f73; /* Assuming white text on a dark image, adjust if image is light */
+
+  @media (max-width: 1024px) {
+    font-size: 0.95rem;
+    line-height: 22px;
+  }
 
   @media (max-width: 500px) {
     font-size: 0.9rem; /* Adjust font size for mobile */

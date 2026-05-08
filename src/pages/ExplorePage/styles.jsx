@@ -2,6 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 2rem;
+
+  @media (max-width: 1024px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const ExploreBanner = styled.div`
@@ -29,6 +37,16 @@ export const ExploreTitle = styled.h2`
   margin: 0;
   white-space: pre-line;
   text-align: center;
+
+  @media (max-width: 1024px) {
+    font-size: 1.35rem;
+    line-height: 28px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+    line-height: 26px;
+  }
 `;
 
 export const ExploreList = styled.ul`
@@ -120,9 +138,16 @@ export const ArticleSection = styled.section`
   align-items: stretch;
   padding: 2.5rem 1rem;
   background: #fff;
+
+  @media (max-width: 1024px) {
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
   @media (max-width: 900px) {
     flex-direction: column;
     min-height: unset;
+    gap: 0;
   }
 `;
 
@@ -132,6 +157,12 @@ export const ArticleLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 1024px) {
+    flex: 0.9;
+    padding: 0 1.5rem;
+  }
+
   @media (max-width: 900px) {
     padding: 1.5rem 1rem 0 1rem;
   }
@@ -144,6 +175,11 @@ export const ArticleRight = styled.div`
   align-items: center;
   justify-content: center;
   background: #f7f7f7;
+
+  @media (max-width: 1024px) {
+    flex: 1.25;
+  }
+
   @media (max-width: 900px) {
     padding: 1rem 0 2rem 0;
   }
@@ -161,12 +197,25 @@ export const ArticleTitle = styled.h2`
   &:hover {
     color: #e10012;
   }
+
+  @media (max-width: 1024px) {
+    font-size: 1.7rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.45rem;
+  }
 `;
 
 export const ArticleDesc = styled.p`
   font-size: 1.1rem;
   color: #222;
   margin-bottom: 1.5rem;
+
+  @media (max-width: 1024px) {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 `;
 
 export const ArticleTag = styled.div`
@@ -235,6 +284,12 @@ export const ArticleButton = styled.button`
     color: #fff;
     text-decoration: none;
   }
+  @media (max-width: 1024px) {
+    width: 190px;
+    height: 50px;
+    padding: 0 18px;
+    font-size: 1.05rem;
+  }
   @media (max-width: 500px) {
     width: 150px;
     max-width: 150px;
@@ -251,6 +306,20 @@ export const ArticleImage = styled.img`
   border-radius: 0;
   object-fit: cover;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+
+  @media (max-width: 1024px) {
+    min-height: 280px;
+  }
+
+  @media (max-width: 900px) {
+    height: auto;
+    max-height: 420px;
+    min-height: 260px;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 220px;
+  }
 `;
 
 export const FourColumnSection = styled.section`
@@ -259,11 +328,16 @@ export const FourColumnSection = styled.section`
   gap: 1.5rem;
   padding: 2.5rem;
 
+  @media (max-width: 1024px) {
+    gap: 1.25rem;
+    padding: 2rem;
+  }
+
   @media (max-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     grid-template-columns: 1fr;
     padding: 1.5rem;
   }
@@ -287,6 +361,18 @@ export const FourColumnImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
+
+  @media (max-width: 1024px) {
+    height: 180px;
+  }
+
+  @media (max-width: 768px) {
+    height: 210px;
+  }
+
+  @media (max-width: 500px) {
+    height: 180px;
+  }
 `;
 
 export const FourColumnContent = styled.div`
