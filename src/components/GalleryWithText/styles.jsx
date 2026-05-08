@@ -115,6 +115,16 @@ export const GalleryDotsWrapper = styled.div`
   width: auto;
   margin: 0;
   z-index: 2;
+
+  @media (max-width: 1024px) {
+    gap: 14px;
+    max-width: calc(100% - 32px);
+  }
+
+  @media (max-width: 500px) {
+    gap: 12px;
+    max-width: calc(100% - 24px);
+  }
 `;
 
 export const GalleryDot = styled.button`
@@ -129,6 +139,14 @@ export const GalleryDot = styled.button`
   transition: background 0.2s;
   &.active {
     background: #e60012;
+  }
+
+  @media (max-width: 1024px) {
+    width: 64px;
+  }
+
+  @media (max-width: 500px) {
+    width: 48px;
   }
 `;
 

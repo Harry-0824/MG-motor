@@ -3,12 +3,32 @@ import { HomeLinkButton } from "../Home/styles";
 
 export const Container = styled.div`
   padding: 2rem;
+
+  @media (max-width: 1024px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const HeroImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 480px;
+
+  @media (max-width: 1024px) {
+    height: 420px;
+  }
+
+  @media (max-width: 768px) {
+    height: 360px;
+  }
+
+  @media (max-width: 500px) {
+    height: 480px;
+  }
 `;
 
 export const HeroImage = styled.img`
@@ -29,19 +49,28 @@ export const HeroNavBar = styled.nav`
   z-index: 10;
   height: 70px;
   border-bottom: 1.5px solid #e5e5e5;
-  @media (max-width: 768px) {
-    gap: 1.2rem;
-    height: 48px;
-    padding: 0 0.5rem;
-  }
-  @media (max-width: 500px) {
+
+  @media (max-width: 1024px) {
     justify-content: flex-start;
+    gap: 1.5rem;
+    height: 60px;
+    top: 72px;
+    padding: 0 1.5rem;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
+
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    height: 52px;
+    padding: 0 1rem;
+  }
+  @media (max-width: 500px) {
     position: relative; /* Ensure positioning context for pseudo-elements */
 
     &::before {
@@ -81,6 +110,7 @@ export const HeroNavItem = styled.button`
   font-size: 1.15rem;
   font-weight: 600;
   color: ${({ $active }) => ($active ? "#222" : "#919399")};
+  flex: 0 0 auto;
   padding: 0 0.5em 0.5em 0.5em;
   position: relative;
   cursor: pointer;
@@ -98,6 +128,11 @@ export const HeroNavItem = styled.button`
     display: ${({ $active }) => ($active ? "block" : "none")};
   }
 
+  @media (max-width: 1024px) {
+    font-size: 1.05rem;
+    padding: 0 0.4em 0.45em 0.4em;
+  }
+
   @media (max-width: 768px) {
     font-size: 0.98rem;
     padding: 0 0.3em 0.3em 0.3em;
@@ -108,6 +143,13 @@ export const SectionAnchor = styled.div`
   scroll-margin-top: 110px;
   min-height: 400px;
   margin: 40px 0;
+
+  @media (max-width: 1024px) {
+    scroll-margin-top: 104px;
+    min-height: 320px;
+    margin: 32px 0;
+  }
+
   @media (max-width: 768px) {
     min-height: 260px;
     margin: 24px 0;
@@ -120,6 +162,12 @@ export const DesignSectionTitle = styled.h2`
   font-weight: 700;
   margin: 0 0 5rem 0;
   letter-spacing: 2px;
+
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+    margin: 0 0 3rem 0;
+  }
+
   @media (max-width: 768px) {
     margin: 0;
     font-size: 24px;
@@ -128,6 +176,14 @@ export const DesignSectionTitle = styled.h2`
 
 export const DetailSectionWrapper = styled.div`
   margin-top: 4rem;
+
+  @media (max-width: 1024px) {
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+  }
 `;
 
 export const DetailSectionTitle = styled.h2`
@@ -136,6 +192,15 @@ export const DetailSectionTitle = styled.h2`
   font-weight: 700;
   margin-bottom: 2.5rem;
   letter-spacing: 1.5px;
+
+  @media (max-width: 1024px) {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const PowerImage = styled.img`
@@ -145,6 +210,12 @@ export const PowerImage = styled.img`
 export const ExperienceTextWrapper = styled.div`
   text-align: center;
   margin-bottom: 3rem;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 2rem;
+    padding: 0 1.5rem;
+  }
+
   @media (max-width: 500px) {
     padding: 0 1rem;
     text-align: left; // 行動裝置文字靠左對齊
@@ -157,8 +228,14 @@ export const PowerAccordionWrapper = styled.div`
 
 export const SafetySectionWrapper = styled.div`
   margin: 4rem 0;
+
+  @media (max-width: 1024px) {
+    margin: 3rem 0;
+  }
+
   @media (max-width: 500px) {
     margin: 1rem 0; // 調整行動裝置的
+  }
 `;
 
 export const SafetyCarouselWrapper = styled.div`
@@ -176,8 +253,14 @@ export const SafetyImageBlock = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 2.5rem;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 2rem;
+  }
+
   @media (max-width: 500px) {
   margin-bottom: 0; // 調整行動裝置的底部邊距
+  }
 `;
 
 export const SafetyImage = styled.img`
@@ -197,6 +280,11 @@ export const SafetyText = styled.p`
   line-height: 1.6; // 行高
   padding: 0 2rem; // 區塊內部的左右內邊距
   box-sizing: border-box; // 確保 padding 被包含在寬度計算之內
+
+  @media (max-width: 1024px) {
+    padding: 0 1.5rem;
+    width: 86%;
+  }
 
   @media (max-width: 768px) {
     font-size: 1rem;
@@ -270,6 +358,13 @@ export const SafetyCarouselWrapperStyled = styled.div`
         color: #c00;
       }
 
+      @media (max-width: 1024px) {
+        width: 190px;
+        height: 50px;
+        padding: 0 18px;
+        font-size: 1.05rem;
+      }
+
       @media (max-width: 500px) {
         position: static; // 行動裝置版面改為靜態定位
         width: 150px; // 根據圖片調整寬度 (基於內容)
@@ -289,6 +384,27 @@ export const SafetyCarouselWrapperStyled = styled.div`
         }
       }
     }
+    @media (max-width: 1024px) {
+      bottom: 48px;
+      left: 48px;
+      gap: 1rem;
+      max-width: 480px;
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      bottom: 36px;
+      left: 32px;
+      max-width: 420px;
+
+      h1 {
+        font-size: 1.55rem;
+      }
+    }
+
     @media (max-width: 500px) {
       position: static; /* Change from absolute to static for stacking */
       bottom: auto;
@@ -325,6 +441,12 @@ export const SafetyCarouselWrapperStyled = styled.div`
     bottom: 1rem;
     transform: translateX(-50%);
     z-index: 2;
+
+    @media (max-width: 1024px) {
+      gap: 22px;
+      bottom: 0.75rem;
+    }
+
     @media (max-width: 500px) {
       position: static;
       padding: 0;
@@ -370,6 +492,26 @@ export const ExperienceCarouselWrapperStyled = styled.div`
       line-height: 1.2;
     }
 
+    @media (max-width: 1024px) {
+      bottom: 48px;
+      left: 48px;
+      max-width: 480px;
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      bottom: 36px;
+      left: 32px;
+      max-width: 420px;
+
+      h1 {
+        font-size: 1.55rem;
+      }
+    }
+
     @media (max-width: 500px) {
       position: static;
       order: 2; // Text content is third
@@ -394,6 +536,15 @@ export const ExperienceCarouselWrapperStyled = styled.div`
     bottom: 200px; // Position dots above the text on desktop
     transform: translateX(-50%);
     z-index: 2;
+
+    @media (max-width: 1024px) {
+      bottom: 150px;
+      gap: 22px;
+    }
+
+    @media (max-width: 768px) {
+      bottom: 120px;
+    }
 
     @media (max-width: 500px) {
       position: static;
