@@ -14,14 +14,21 @@ AI coding work in this repository must stay small, issue-driven, and scoped to t
 ## Workflow Rules
 
 - Start from a GitHub issue, PR comment, or explicit user request before changing code.
+- Follow only the currently assigned GitHub Issue; do not infer scope from unrelated history.
+- Start implementation from the Issue `Suggested Files`, then expand only when the Issue requires it.
 - Keep each task narrow; avoid broad refactors or unrelated cleanup.
 - Change only the files required for the task.
+- Keep the final diff minimal and reviewable.
 - Do not create extra markdown files unless explicitly requested.
 - Do not add `WORKFLOW.md`, `TODO.md`, `PROJECT_BRIEF.md`, `ARCHITECTURE.md`, `NOTES.md`, or similar side documents unless the user asks for that exact file.
 - Do not modify application code during documentation-only tasks.
 - Do not modify `package.json` or lockfiles unless dependency work is explicitly requested.
+- Do not add or upgrade dependencies unless explicitly requested by the issue.
+- Do not commit `.env`, API keys, secrets, tokens, credentials, or local machine config.
 - Do not migrate away from Create React App.
 - Do not upgrade React Router or use React Router v6 APIs.
+- Do not migrate routing, build tooling, or perform full-site redesigns unless explicitly requested.
+- Do not change Netlify settings, `netlify.toml`, or other deployment config unless explicitly requested.
 - Do not edit files under `public/media/` unless explicitly requested.
 
 ## Branch Strategy
@@ -102,3 +109,8 @@ Do not copy visual references pixel-by-pixel. Use them only as design direction 
 - Confirm no unrelated files changed.
 - For documentation-only changes, verify by reading the rendered or raw markdown.
 - In the PR description, explain what changed and how reviewers can check it.
+
+## Docs-Only Validation Guidance
+
+- For docs-only rule updates, no build/test command is required unless the issue explicitly asks for it.
+- Validate with git diff checks that only the intended documentation files changed (for this repo task type, typically `AGENTS.md`).
