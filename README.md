@@ -1,80 +1,102 @@
-# MG Motor React 品牌展示網站
+# MG Motor 前端品牌網站
 
-本專案是一個基於 React 的品牌展示網站，旨在展示 MG Motor 品牌的各式車款與服務，並提供直觀的用戶界面供訪客進行預約試乘、經銷商查詢與線上訂購。
+MG Motor 是一個以 React 實作的汽車品牌展示型前端專案，重點在於品牌頁面建置、RWD 體驗、元件化 UI、以及 API 內容呈現流程。此專案作為前端作品集項目，展示從畫面到資料串接的實作能力。
 
-## 核心功能
+## 專案連結
 
-- **響應式界面**: 為桌機與行動裝置優化的流暢操作體驗。
-- **車型目錄**: 詳細展示 HS, ZS 等熱門車款的規格與特色。
-- **規格比較**: 提供互動式彈窗，輕鬆對比不同車型的詳細性能。
-- **線上表單**: 集成預約試乘、線上訂購與聯絡我們表單，簡化用戶操作流程。
-- **經銷商查詢**: 整合 Google Maps API，快速定位最近的服務據點。
-- **動態內容**: 包含新聞中心與文章詳情頁，保持品牌訊息即時更新。
+- Live Demo：目前未公開固定 URL（可於部署後補上 Netlify 網址）
+- Frontend Repository：[Harry-0824/MG-motor](https://github.com/Harry-0824/MG-motor)
+- Backend / API Repository：目前此前端以 `REACT_APP_API_URL` 對接 API，未在本倉庫綁定單一後端專案
 
 ## 技術棧
 
-- **前端框架**: [React 17](https://reactjs.org/)
-- **UI 組件庫**: [Ant Design](https://ant.design/)
-- **CSS-in-JS**: [Styled Components](https://styled-components.com/)
-- **路由導航**: [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start)
-- **圖標資源**: [Lucide React](https://lucide.dev/)
-- **地圖整合**: [@react-google-maps/api](https://www.npmjs.com/package/@react-google-maps/api)
+- React 18
+- React Router DOM v5
+- Ant Design 5
+- styled-components 6
+- lucide-react
+- @react-google-maps/api
+- react-scripts（Create React App）
 
-## 專案結構
+## 主要功能
 
+- 品牌形象首頁與車型展示頁（含 HS、ZS 等內容）
+- 響應式導覽與版面配置（桌機 / 平板 / 手機）
+- 車型與規格相關資訊呈現
+- 新聞 / 文章列表與詳情頁內容呈現
+- 經銷據點頁與地圖相關資訊整合
+- 試乘 / 聯絡 / 登入等前端互動流程頁面
+
+## 前端實作重點
+
+- 以 React 元件化拆分頁面區塊，維持可維護的 UI 結構
+- 使用 styled-components 管理樣式，強化元件層級的樣式封裝
+- 使用 React Router DOM v5 進行多頁路由切換
+- 在 `src/services/api.js` 統一 API 請求入口，降低頁面與資料層耦合
+- 透過環境變數配置 API Base URL，讓開發 / 測試 / 部署環境可切換
+
+## API 整合摘要
+
+- API Base URL 由 `REACT_APP_API_URL` 提供
+- 前端透過 `apiRequest()` 統一發送請求與處理錯誤
+- 目前已涵蓋常見資料流：
+  - 車型與規格資料（models / trims）
+  - 驗證與帳號流程（auth）
+  - 首頁輪播與文章內容（slides / articles）
+
+## 專案結構摘要
+
+```text
+MG-motor/
+├─ src/
+│  ├─ components/    # 共用 UI 元件
+│  ├─ pages/         # 各路由頁面
+│  ├─ services/      # API 呼叫與資料存取層
+│  ├─ data/          # 前端展示用資料
+│  └─ styles/        # 全域或共用樣式
+├─ public/           # 靜態資源
+└─ README.md
 ```
-mgm-react-site
-├── src
-│   ├── index.jsx          # 應用程式進入點
-│   ├── App.jsx            # 主應用佈局與路由配置
-│   ├── components/        # 可重用組件
-│   │   ├── Navbar/        # 響應式導覽欄
-│   │   ├── Footer/        # 頁尾資訊
-│   │   ├── BookingForm/   # 預約表單
-│   │   ├── Carousel/      # 輪播圖組件
-│   │   └── StickyBar/     # 固定動作欄
-│   ├── pages/             # 頁面組件
-│   │   ├── Home/          # 首頁簡介
-│   │   ├── Models/        # 車型列表
-│   │   ├── HSPage/        # HS 車型細節
-│   │   ├── ZSPage/        # ZS 車型細節
-│   │   └── DealerPage/     # 經銷商地圖查詢
-│   └── styles/            # 全域樣式定義
-├── public/                # 靜態資源檔案
-├── package.json           # 依賴與腳本配置
-└── README.md              # 專案說明文件
+
+## 本機啟動（npm）
+
+### 前置需求
+
+- Node.js（建議 LTS 版本）
+- npm
+
+### 安裝與執行
+
+```bash
+git clone https://github.com/Harry-0824/MG-motor.git
+cd MG-motor
+npm install
+npm start
 ```
 
-## 安裝與開發
+啟動後預設開啟 `http://localhost:3000`。
 
-### 前置要求
+## 可用 npm scripts
 
-- Node.js (建議 v14 或以上版本)
-- npm 或 yarn
+- `npm start`：啟動開發伺服器
+- `npm run build`：產生 production build
+- `npm test`：執行測試
+- `npm run eject`：輸出 CRA 設定（不可逆）
 
-### 快速開始
+## 部署說明
 
-1. **複製專案**:
-   ```bash
-   git clone <repository-url>
-   cd MG-motor-main
-   ```
+- 目標部署平台：Netlify
+- 部署時需設定對應環境變數（例如 `REACT_APP_API_URL`）
+- 建議先執行 `npm run build` 確認可產生正式版資產
 
-2. **安裝依賴**:
-   ```bash
-   npm install
-   ```
+## 可討論的實作重點
 
-3. **啟動開發伺服器**:
-   ```bash
-   npm start
-   ```
-   應用程式將在預設瀏覽器中開啟 `http://localhost:3000`。
+- 如何在品牌官網型專案中平衡視覺呈現與元件可維護性
+- 如何透過 API service layer 統一錯誤處理與資料解包策略
+- 如何在 RWD 需求下維持各斷點的互動一致性
+- 如何將前端部署流程標準化到 Netlify
 
-## 貢獻指南
+## 專案狀態與限制
 
-歡迎提交 Issue 或 Pull Request 來改進本專案！
-
-## 授權協議
-
-本專案採用 [MIT License](LICENSE) 授權。
+- 本倉庫聚焦前端實作，不包含後端原始碼
+- Live Demo URL 尚未固定公開，可於後續部署完成後補充
