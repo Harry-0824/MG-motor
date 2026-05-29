@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Carousel from "../../components/Carousel/Carousel";
 import {
   FlexRow,
@@ -31,6 +32,7 @@ const Home = () => {
   const [model, setModel] = useState("HS");
   const [allSlides, setAllSlides] = useState([]);
   const [currentSlides, setCurrentSlides] = useState([]);
+  const modelRoute = model === "HS" ? "/hs" : "/zs";
 
   useEffect(() => {
     const fetchSlides = async () => {
@@ -83,7 +85,7 @@ const Home = () => {
             <option value="HS">HS</option>
             <option value="ZS">ZS</option>
           </StyledSelect>
-          <HomeLinkButton>
+          <HomeLinkButton as={Link} to={modelRoute}>
             預約試乘<span>&rarr;</span>
           </HomeLinkButton>
         </ActionRow>

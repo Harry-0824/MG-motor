@@ -184,20 +184,32 @@ const Footer = () => {
       <FooterBottom>
         <CopyrightText>
           Copyright©台灣英倫摩里斯汽車事業股份有限公司 |{" "}
-          <FooterLink to="/privacy-policy" style={{ color: "#6c757d" }}>
+          <a
+            href="https://www.mgmotor.com.tw/policy/privacy.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#6c757d", textDecoration: "none" }}
+          >
             隱私權政策
-          </FooterLink>{" "}
+          </a>{" "}
           |{" "}
-          <FooterLink to="/cookie-policy" style={{ color: "#6c757d" }}>
+          <a
+            href="https://www.mgmotor.com.tw/policy/cookie.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#6c757d", textDecoration: "none" }}
+          >
             Cookie 政策
-          </FooterLink>{" "}
+          </a>{" "}
           |{" "}
-          <FooterLink
-            to="/environmental-noise-policy"
-            style={{ color: "#6c757d" }}
+          <a
+            href="https://www.mgmotor.com.tw/customerService/contactForm.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#6c757d", textDecoration: "none" }}
           >
             環保署環境噪音政策宣導
-          </FooterLink>
+          </a>
         </CopyrightText>
       </FooterBottom>
     </FooterContainer>
