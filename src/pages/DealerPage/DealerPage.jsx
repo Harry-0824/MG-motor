@@ -23,13 +23,17 @@ const allLocations = {
 const containerStyle = {
   width: "100%",
   height: "600px",
+  touchAction: "pan-y",
 };
 
 const center = { lat: 24.5, lng: 121 };
 const mapOptions = {
-  // Prevent mouse-wheel/touch scroll from hijacking page scrolling.
-  gestureHandling: "cooperative",
+  // Fully prevent map gestures from hijacking vertical page scrolling.
+  gestureHandling: "none",
   scrollwheel: false,
+  draggable: false,
+  disableDoubleClickZoom: true,
+  keyboardShortcuts: false,
 };
 
 const DealerPage = () => {
