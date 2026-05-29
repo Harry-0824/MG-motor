@@ -26,6 +26,11 @@ const containerStyle = {
 };
 
 const center = { lat: 24.5, lng: 121 };
+const mapOptions = {
+  // Prevent mouse-wheel/touch scroll from hijacking page scrolling.
+  gestureHandling: "cooperative",
+  scrollwheel: false,
+};
 
 const DealerPage = () => {
   const { isLoaded } = useJsApiLoader({
@@ -37,7 +42,12 @@ const DealerPage = () => {
   return (
     <div className="dealer-page">
       {isLoaded && (
-        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8}>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={8}
+          options={mapOptions}
+        >
           {locations.map((loc, idx) => (
             <Marker
               key={idx}
