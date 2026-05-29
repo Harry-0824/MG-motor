@@ -86,7 +86,9 @@ const DealerPage = () => {
                 }
               }}
             >
-              {canEnableMapInteraction ? "啟用地圖操作" : "行動裝置已鎖定地圖"}
+              {canEnableMapInteraction
+                ? "啟用地圖操作"
+                : "行動裝置可上下滑動頁面，據點分類請使用下方按鈕"}
             </MapInteractionButton>
           </MapScrollShield>
         )}
