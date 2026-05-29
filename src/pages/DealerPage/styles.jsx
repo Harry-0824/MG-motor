@@ -31,13 +31,17 @@ export const MapScrollShield = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 16px 24px;
+  padding: 0 16px 104px;
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.2) 0%,
     rgba(0, 0, 0, 0) 36%
   );
   pointer-events: auto;
+
+  @media (max-width: 768px) {
+    padding-bottom: 88px;
+  }
 `;
 
 export const MapInteractionButton = styled.button`
