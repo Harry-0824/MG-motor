@@ -22,27 +22,9 @@ import { useAuth } from "../../contexts/AuthContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
   const dropdownRef = useRef(null);
-
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY;
-    // Sticky logic
-    if (scrollPosition > 0) {
-      setIsSticky(true);
-    } else {
-      setIsSticky(false);
-    }
-    // Scrolled logic (10% of viewport height)
-    if (scrollPosition > window.innerHeight * 0.1) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -51,10 +33,8 @@ const Navbar = () => {
       }
     };
     window.addEventListener("mousedown", handleClickOutside);
-    window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("mousedown", handleClickOutside);
-      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -158,14 +138,10 @@ const Navbar = () => {
   );
 
   return (
-    <Nav $isSticky={isSticky}>
+    <Nav>
       <Brand>
         <Link to="/">
-          <LogoImg
-            $isScrolled={isScrolled}
-            src="/media/navbar/logo.webp"
-            alt="MG Logo"
-          />
+          <LogoImg src="/media/navbar/logo.webp" alt="MG Logo" />
         </Link>
       </Brand>
 

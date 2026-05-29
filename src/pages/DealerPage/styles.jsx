@@ -18,13 +18,63 @@ export const HeroImage = styled.img`
   object-fit: cover;
 `;
 
+export const MapShell = styled.div`
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  touch-action: pan-y;
+`;
+
+export const MapScrollShield = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 16px 24px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0) 36%
+  );
+  pointer-events: auto;
+`;
+
+export const MapInteractionButton = styled.button`
+  pointer-events: auto;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  &:disabled {
+    background: rgba(0, 0, 0, 0.58);
+    cursor: default;
+  }
+`;
+
 export const MapOptionsWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   position: relative;
-  margin-top: -70px;
-  z-index: 10;
+  margin-top: -56px;
+  padding: 0 16px 32px;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    margin-top: -44px;
+    padding-bottom: 24px;
+  }
 `;
 
 export const MapOptionsInner = styled.div`
@@ -33,6 +83,11 @@ export const MapOptionsInner = styled.div`
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 360px;
+  }
 `;
 
 export const MapOptionButton = styled.button`
@@ -45,4 +100,10 @@ export const MapOptionButton = styled.button`
   cursor: pointer;
   border-right: ${({ last }) => (last ? "none" : "1px solid #eee")};
   transition: background 0.2s, color 0.2s;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    padding: 14px 12px;
+    font-size: 1rem;
+  }
 `;

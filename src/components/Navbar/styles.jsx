@@ -16,8 +16,10 @@ export const Nav = styled.nav`
   justify-content: space-between; // Ensure items spread out
   align-items: center;
   min-height: 64px;
-  position: relative;
-  transition: all 0.3s ease-in-out;
+  position: sticky;
+  top: 0;
+  transition: box-shadow 0.2s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 
   @media (max-width: 1024px) {
@@ -29,15 +31,6 @@ export const Nav = styled.nav`
     padding: 0.75rem 1.5rem;
   }
 
-  ${({ $isSticky }) =>
-    $isSticky &&
-    `
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  `}
 `;
 
 // Brand 絕對定位於左上角
@@ -71,17 +64,10 @@ export const Brand = styled.div`
 
 // Logo 圖片樣式統一管理
 export const LogoImg = styled.img`
-  width: 100%;
+  width: 100px;
   height: 100px;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  transition: height 0.3s ease-in-out;
-
-  ${({ $isScrolled }) =>
-    $isScrolled &&
-    `
-      height: 60px;
-    `}
 
   @media (min-width: 1025px) and (max-width: 1180px) {
     width: 76px;
